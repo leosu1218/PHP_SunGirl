@@ -1,0 +1,121 @@
+<div>
+
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom:0;">
+
+    <div class="navbar-header">
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <a class="navbar-brand" href="#!">TCIT Media 數據分析平台</a>
+
+    </div>
+    <!-- /.navbar-header -->
+
+    <ul class="nav navbar-top-links navbar-right">
+
+        <!-- /.dropdown -->
+        <li class="dropdown">
+
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-user fa-fw"></i>
+                <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-messages in" style="width:150px;">
+                <li>
+                    <a href="" ng-click="changePassword()"><i class="fa fa-key"></i> 修改自己密碼</a>
+                </li>
+                <li>
+                    <a href="" ng-click="logout()"><i class="fa fa-sign-out fa-fw"></i>登出系統</a>
+                </li>
+            </ul>
+            <!-- /.dropdown-alerts -->
+        </li>
+        <!-- /.dropdown -->
+
+    </ul>
+    <!-- /.navbar-top-links -->
+
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse collapse" >
+            <ul class="nav in" id="side-menu">
+
+                <!-- User Management -->
+                <li ng-show="showItem['platform_user']">
+                    <a href="#!/user/list">
+                        <div>
+                            <i class="fa fa-child fa-fw"></i> 管理使用者
+                        </div>
+                    </a>
+                </li>
+
+                <li class="active">
+                    <a href="#">
+                        <i class="fa fa-sitemap fa-fw"></i>
+                        報表查詢
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level collapse in" aria-expanded="true">
+                        <li class="active">
+                            <a href="#">
+                                MediaEvent
+                                <span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-third-level collapse in" aria-expanded="true">
+
+                                <li>
+                                    <a href="#!/reports/media-event/import">上傳資料</a>
+                                </li>
+                                <li>
+                                    <a href="#!/reports/media-event/feature-translate">規則設定</a>
+                                </li>
+                                <li>
+                                    <a href="#!/reports/media-event/interval-mode">區間數據</a>
+                                </li>
+                                <li>
+                                    <a href="#!/reports/media-event/monthly-report">每月報表</a>
+                                </li>
+                                <li>
+                                    <a href="#!/reports/media-event/compare-mode">比較模式</a>
+                                </li>
+
+                            </ul>
+                            <!-- /.nav-third-level -->
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+
+</nav>
+
+<!-- Modal for show build header, menu error. -->
+<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{modal.title}}</h4>
+            </div>
+            <div class="modal-body">
+                {{modal.message}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-primary" data-dismiss="modal">{{modal.buttonText}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<sb-alert instance="alert"></sb-alert>
+            

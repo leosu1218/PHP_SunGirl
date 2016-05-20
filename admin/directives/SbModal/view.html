@@ -1,0 +1,78 @@
+		<form>
+		<div class="modal fade" id="{{id}}-sbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+			    <div class="modal-header">
+			      	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			      	<div ng-repeat="title in headerText">
+			      		<h4 class="modal-title" id="myModalLabel">{{title.text}}</h4>	
+			      	</div>
+			    </div>
+		      	<div class="modal-body">
+
+			      	<div ng-repeat="text in bodyText">
+			      		<label>{{text.label}}</label>
+			      		<span>{{text.attribute}}</span>
+			      	</div>
+
+			      	<div ng-repeat="textarea in bodyTextarea">
+			      		<label>{{textarea.label}}</label>
+			      		<textarea ng-model="textarea.attribute"></textarea>
+			      	</div>
+
+					<sb-upload instance="upload" ng-show="uploadIsShow"></sb-upload>
+			      	<div class="row" ng-repeat="image in bodyImage">
+			      		<!-- <img class="col-lg-12" src="{{image.attribute}}"> -->
+			      		<img class="col-lg-12" ng-src="image.attribute">
+			      	</div>
+
+
+			      	<span ng-repeat="input in bodyInput">
+			      		<label>{{input.label}}</label>
+			      		<input class="form-control" type="{{input.type}}" ng-model="input.attribute">
+			      	</span>
+			      	
+			      	<span ng-repeat="inputNumber in bodyInputNumber">
+			      		<label>{{inputNumber.label}}</label>
+			      		<input class="form-control" type="{{inputNumber.type}}" string-to-number ng-model="inputNumber.attribute" min=0 required>
+			      	</span>
+
+			      	<span ng-repeat="item in bodyDate">
+			      		<label>{{item.label}}</label>
+			      		<input type="{{item.type}}" ng-model="item.attribute" style="height:25px;">
+			      	</span>
+			      	
+			      	<span ng-repeat="item in bodyTime">
+			      		<label>{{item.label}}</label>
+			      		<input type="{{item.type}}" ng-model="item.attribute" style="height:25px;">
+			      	</span>
+
+			      	<span ng-repeat="options in bodySelect">
+			      		<label>{{options.label}}</label>
+	                    <div class="btn-group">
+	                        <button type="button" class="btn btn-default">{{options.attribute.selected.text}}</button>
+	                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+	                        	<span class="caret"></span>          
+	                        </button>
+	                        <ul class="dropdown-menu" role="menu" style="padding:0px;">
+	                        	<div ng-repeat="item in options.attribute.list">
+	                            	<li align="center" style="height:33px;">
+	                                	<button type="button" style="width:100%;" class="btn btn-default" ng-click="options.attribute.click(item)">
+	                                    {{item.text}}
+	                                    </button>
+	                                </li>
+	                            </div>
+	                        </ul>
+	                    </div>
+			      	</span>
+		        
+		      	</div>
+		    	<div class="modal-footer">
+			      	<span ng-repeat="button in footerButton">
+			      		<button type="button" class="btn btn-default btn-default" ng-click="button.target()" data-dismiss="modal"> {{button.label}} </button>
+			      	</span>
+		      	</div>
+		    </div>
+		  </div>
+		</div>
+		</form>

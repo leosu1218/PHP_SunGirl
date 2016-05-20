@@ -1,0 +1,57 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        每日男女人數表
+    </div>
+    <div class="panel-body">
+
+        <!-- chart -->
+        <div class="row">
+            <div class="col-md-12">
+                <sb-line-chart2 instance="chart"></sb-line-chart2>
+            </div>
+        </div>
+        <!-- /chart -->
+
+        <!-- table -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th ng-repeat="item in table.days">{{item}}</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Number of male</td>
+                                <th ng-repeat="item in table.male track by $index">{{item}}</th>
+                            </tr>
+                            <tr>
+                                <td>Number of female</td>
+                                <th ng-repeat="item in table.female track by $index">{{item}}</th>
+                            </tr>
+                            <tr>
+                                <td>Total visits</td>
+                                <th ng-repeat="item in table.all track by $index">{{item}}</th>
+                            </tr>
+                            <tr>
+                                <td>Male(%)</td>
+                                <th ng-repeat="all in table.all track by $index">{{ formatFloat((table.male[$index]/all) * 100, 2) }}%</th>
+                            </tr>
+                            <tr>
+                                <td>Female(%)</td>
+                                <th ng-repeat="all in table.all track by $index">{{ formatFloat((table.female[$index]/all) * 100, 2) }}%</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /table -->
+
+    </div>
+</div>

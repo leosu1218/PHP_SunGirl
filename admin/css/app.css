@@ -1,0 +1,55 @@
+// ---- Set up variables ----
+@dark-blue: #1e718b;	
+@blue:      #2ba6ca; 
+@dark-gray: #222222;
+@green:     #8fdc21;
+
+// ---- Mixins ----
+
+
+
+.right-hand-box {
+    padding-top: 20px;
+	padding-bottom: 20px;
+    min-height:240px;
+}
+
+
+.tab-pane .well {
+    .right-hand-box;
+}
+
+.well.testimonal-well {
+    .right-hand-box;
+}
+
+.testimonials {
+  padding:10px;
+  border:1px solid black;
+  height:200px;
+  overflow:auto;
+}
+
+.testimonials {
+  -webkit-transition:all linear 0.5s;
+  -moz-transition:all linear 0.5s;
+  -o-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+  display:block!important;
+}
+
+.testimonials.ng-hide-add {
+    opacity: 1;
+}
+
+.testimonials.ng-hide-add.ng-hide-add-active {
+    opacity:0;
+}
+ 
+.testimonials.ng-hide-remove {
+    opacity:0;
+    
+}
+.testimonials.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1; 
+}

@@ -1,0 +1,16 @@
+<form role="form">
+    <div class="form-group">
+        <label >舊密碼</label>
+        <input type="password" class="form-control" id="password" placeholder="請輸入原本密碼" ng-model="oldPassword" required>
+    </div>
+    <div class="form-group">
+        <label >密碼</label>
+        <input type="password" class="form-control" id="password" placeholder="請輸入密碼" ng-model="newPassword" required>
+    </div>
+    <div class="form-group">
+        <label >密碼</label>
+        <input type="password" class="form-control" id="check" placeholder="請再次輸入密碼" ng-model="checkPassword" required>
+    </div>
+    <button type="button" class="btn btn-success" ng-click="change()">送出</button>
+</form>
+<sb-alert instance="alert"></sb-alert>

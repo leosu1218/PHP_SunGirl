@@ -1,0 +1,50 @@
+<!-- Nested node template -->
+<script type="text/ng-template" id="nodes_renderer.html">
+  <div ui-tree-handle 
+  data-nodrag 
+  class="tree-node tree-node-content"
+  style="background-color:bisque; margin-bottom:3px;">
+    
+    <a class="btn btn-success btn-xs" 
+    style="width: 65px;height:30px;"
+    ng-if="node.nodes && node.nodes.length > 0"
+    data-nodrag 
+    ng-click="toggle(this)">
+      <span class="glyphicon"
+      ng-class="{
+       'glyphicon-folder-close': collapsed,
+       'glyphicon-folder-open': !collapsed
+      }"
+      style="padding:5px;">
+      </span>
+    </a>
+    <span ng-click="selected(node)"
+    data-nodrag
+    style="width:100%;">
+     <span style="padding:10px;">
+      {{node.id}} : {{node.name}}
+     </span>
+    </span>
+  
+  </div>
+
+  <ol ui-tree-nodes="" 
+  ng-model="node.nodes" 
+  data-nodrag 
+  ng-class="{hidden: collapsed}">
+    <li ng-repeat="node in node.nodes" 
+    ui-tree-node
+    data-nodrag  
+    ng-include="'nodes_renderer.html'">
+    </li>
+  </ol>
+
+</script>
+
+<div ui-tree id="tree-root">
+  <ol ui-tree-nodes ng-model="treeData">
+    <li ng-repeat="node in treeData" ui-tree-node 
+    ng-include="'nodes_renderer.html'">
+    </li>
+  </ol>
+</div>

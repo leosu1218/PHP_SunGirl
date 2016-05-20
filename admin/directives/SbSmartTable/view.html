@@ -1,0 +1,35 @@
+<div>
+	<table class="table table-hover">
+
+	    <thead>
+	        <tr>
+	            <th ng-repeat="field in fieldFilter" ng-click="onHeadClick(field.attribute, field.name)"> {{field.name}} </th>            
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr ng-repeat="record in records">
+	            <td 
+	            	ng-repeat="(key, field) in fieldFilter"
+	            	ng-click="onRowClick(record, field.attribute)"
+	            	ng-style="record.style">
+
+                    <div ng-bind-html="field.htmlFilter(record[field.attribute], record)"></div>
+	            	
+	            	<span class="tooltip-btns">
+	                    <span ng-repeat="control in field.controls | filter:tooltipFilter">
+	                        <button class="btn btn-info btn-circle" ng-click="control.click(record, field.attribute)">
+	                        	<i class="fa {{control.icon}}"></i>
+	                        </button>
+	                    </span>                   
+	                </span>
+
+		            {{
+		            	( field.filter(record[field.attribute], record) || ( field.htmlFilter(record[field.attribute], record) ? "" : record[field.attribute]) )
+		            }}
+	            </td>       
+	        </tr>                       
+	    </tbody>
+	</table>
+
+	<sb-pagination instance="pagination"></sb-pagination>
+</div>

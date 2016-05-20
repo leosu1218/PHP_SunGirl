@@ -1,0 +1,38 @@
+<div class="body-container">
+
+    <div class="jumbotron jumbotron-customer no-padding no-margin">
+        <img src="/images/connection/cover.png" class="img-responsive">
+    </div>
+
+
+    <div class="row no-margin service-section">
+        <div class="col-md-4 no-padding">
+            <div class="col-xs-12 vertical-padding-lg"></div>
+            <img src="/images/connection/icon.png" class="img-responsive no-margin title-service-second">
+        </div>
+        <div class="col-md-8 col-xs-12 col-sm-12 item-list">
+            <div class="col-xs-12 vertical-padding-lg"></div>
+
+            <div class="col-xs-12 col-md-12">
+                <div class="col-md-offset-1 col-md-2 col-xs-3 connection-img">
+                    <img src="/images/connection/icon-1.png" class="img-responsive">
+                </div>
+                <div class="col-md-9 col-xs-9 connection-detail">
+                    <h4>會址地址：台北市松山區民生東路 5 段 167 號 6 樓</h4>
+                    <h4>通訊地址：台北市文山區萬壽路 64 號 </h4>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-12" ng-repeat="item in items">
+                <div class="col-md-offset-1 col-md-2 col-xs-3 connection-img">
+                    <img src="/images/connection/{{item.img}}" class="img-responsive">
+                </div>
+                <div class="col-md-9 col-xs-9 connection-img-detail">
+                    <h4>{{item.detail}}</h4>
+                </div>
+            </div>
+
+            <div class="col-xs-12 vertical-padding-lg"></div>
+        </div>
+    </div>
+</div>

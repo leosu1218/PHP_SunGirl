@@ -1,0 +1,23 @@
+<div id="page-wrapper">
+    Collection Demo
+    <div class="row">
+        <div class="col-xs-12">
+            Name: <input type="text" class="text" ng-model="name">
+            Type: <input type="text" class="text" ng-model="type">
+            <button class="btn btn-success" ng-click="collection.$create({name:name, type:type}, {refreshType: 'sync'})">New Item</button>
+        </div>
+
+        <div class="col-xs-12" ng-repeat="item in collection"> {{item}}
+            <button class="btn btn-danger" ng-click="item.$remove({refreshType: 'sync'})" >Delete the Item</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            pageNo: <input type="text" class="text" ng-model="pageNo">
+            pageSize: <input type="text" class="text" ng-model="pageSize">
+            <button class="btn btn-success" ng-click="movePage(1)">Next</button>
+            <button class="btn btn-success" ng-click="movePage(-1)">Previous</button>
+        </div>
+    </div>
+</div>

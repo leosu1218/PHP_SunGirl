@@ -1,0 +1,56 @@
+-- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: aems
+-- ------------------------------------------------------
+-- Server version	5.6.25
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `platform_user_has_permission`
+--
+
+DROP TABLE IF EXISTS `platform_user_has_permission`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `platform_user_has_permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `platform_user_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id_puhp_idx` (`platform_user_id`),
+  KEY `permission_id_puhp_idx` (`permission_id`),
+  CONSTRAINT `platform_user_has_permission_ibfk_1` FOREIGN KEY (`permission_id`) REFERENCES `permission` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `platform_user_has_permission_ibfk_2` FOREIGN KEY (`platform_user_id`) REFERENCES `platform_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=231 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `platform_user_has_permission`
+--
+
+LOCK TABLES `platform_user_has_permission` WRITE;
+/*!40000 ALTER TABLE `platform_user_has_permission` DISABLE KEYS */;
+INSERT INTO `platform_user_has_permission` VALUES (31,7,26),(32,7,27),(33,7,28),(34,7,29),(35,7,30),(36,7,31),(37,7,32),(38,7,33),(39,7,34),(40,7,35),(41,8,26),(42,8,27),(43,8,28),(44,8,29),(45,8,30),(46,8,31),(47,8,32),(48,8,33),(49,8,34),(50,8,35),(51,9,26),(52,9,27),(53,9,28),(54,9,29),(55,9,30),(56,9,31),(57,9,32),(58,9,33),(59,9,34),(60,9,35),(61,10,26),(62,10,27),(63,10,28),(64,10,29),(65,10,30),(66,10,31),(67,10,32),(68,10,33),(69,10,34),(70,10,35),(71,11,26),(72,11,27),(73,11,28),(74,11,29),(75,11,30),(76,11,31),(77,11,32),(78,11,33),(79,11,34),(80,11,35),(81,12,26),(82,12,27),(83,12,28),(84,12,29),(85,12,30),(86,12,31),(87,12,32),(88,12,33),(89,12,34),(90,12,35),(91,13,26),(92,13,27),(93,13,28),(94,13,29),(95,13,30),(96,13,31),(97,13,32),(98,13,33),(99,13,34),(100,13,35),(101,14,26),(102,14,27),(103,14,28),(104,14,29),(105,14,30),(106,14,31),(107,14,32),(108,14,33),(109,14,34),(110,14,35),(111,15,26),(112,15,27),(113,15,28),(114,15,29),(115,15,30),(116,15,31),(117,15,32),(118,15,33),(119,15,34),(120,15,35),(121,16,26),(122,16,27),(123,16,28),(124,16,29),(125,16,30),(126,16,31),(127,16,32),(128,16,33),(129,16,34),(130,16,35),(131,17,26),(132,17,27),(133,17,28),(134,17,29),(135,17,30),(136,17,31),(137,17,32),(138,17,33),(139,17,34),(140,17,35),(141,18,26),(142,18,27),(143,18,28),(144,18,29),(145,18,30),(146,18,31),(147,18,32),(148,18,33),(149,18,34),(150,18,35),(151,19,26),(152,19,27),(153,19,28),(154,19,29),(155,19,30),(156,19,31),(157,19,32),(158,19,33),(159,19,34),(160,19,35),(161,20,26),(162,20,27),(163,20,28),(164,20,29),(165,20,30),(166,20,31),(167,20,32),(168,20,33),(169,20,34),(170,20,35),(171,21,26),(172,21,27),(173,21,28),(174,21,29),(175,21,30),(176,21,31),(177,21,32),(178,21,33),(179,21,34),(180,21,35),(181,22,26),(182,22,27),(183,22,28),(184,22,29),(185,22,30),(186,22,31),(187,22,32),(188,22,33),(189,22,34),(190,22,35),(191,23,26),(192,23,27),(193,23,28),(194,23,29),(195,23,30),(196,23,31),(197,23,32),(198,23,33),(199,23,34),(200,23,35),(201,24,26),(202,24,27),(203,24,28),(204,24,29),(205,24,30),(206,24,31),(207,24,32),(208,24,33),(209,24,34),(210,24,35),(211,25,26),(212,25,27),(213,25,28),(214,25,29),(215,25,30),(216,25,31),(217,25,32),(218,25,33),(219,25,34),(220,25,35),(221,26,26),(222,26,27),(223,26,28),(224,26,29),(225,26,30),(226,26,31),(227,26,32),(228,26,33),(229,26,34),(230,26,35);
+/*!40000 ALTER TABLE `platform_user_has_permission` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2016-05-20 16:13:00

@@ -1,0 +1,18 @@
+<div class="modal fade" id="{{id}}-Modal" tabindex="-1" role="dialog" aria-labelledby="{{id}}-ModalLabel">
+  <div class="modal-dialog" role="document" ng-style="style">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="{{id}}-ModalLabel">{{title}}</h4>
+      </div>
+      <div class="modal-body">
+          <div compile="htmlMessage"></div>
+          {{message}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-primary" ng-click="button1Click()">{{buttonText1}}</button>
+        <button type="button" class="btn btn-default btn-default" ng-click="button2Click()" ng-show="showButton2">{{buttonText2}}</button>
+      </div>
+    </div>
+  </div>
+</div>

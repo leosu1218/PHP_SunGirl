@@ -1,0 +1,73 @@
+<!-- Main jumbotron for a primary marketing message or call to action -->
+
+
+<div class="body-container">
+
+    <div class="jumbotron jumbotron-customer no-padding no-margin">
+        <img src="/images/home/cover.png" class="img-responsive">
+    </div>
+
+    <div class="row no-margin">
+        <div class="col-xs-12 section-title">
+            <h1 class="text-center">新興市場研究協會宗旨</h1>
+        </div>
+    </div>
+
+    <!-- purpose -->
+    <div class="row no-margin">
+        <div class="col-xs-1 purpose-margin"></div>
+        <div class="col-xs-10 purpose">
+            <div class="odd-col-sm-2 purpose-item" ng-repeat="item in purpose">
+                <div class="col-xs-10 col-xs-offset-1 icon">
+                    <img ng-src="/images/purpose/{{item.img}}" class="img-responsive img-center">
+                </div>
+                <div class="col-xs-12">
+                    <h4 class="text-center">
+                        {{item.text}}
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-1 purpose-margin"></div>
+
+        <div class="col-xs-12 vertical-padding-lg">
+            <a href="#">
+                <img src="/images/common/btn-more-black.png" class="img-responsive img-center img-btn">
+            </a>
+        </div>
+    </div>
+
+    <!-- news -->
+    <div class="row no-margin">
+        <img src="/images/home/news-cover.png" class="img-responsive img-center">
+    </div>
+
+    <!-- service -->
+    <div class="row no-margin service-section">
+        <div class="col-md-4 no-padding">
+            <img src="/images/home/title-service.png" class="img-responsive no-margin title-service">
+        </div>
+        <div class="col-md-8 col-xs-12 col-sm-12 item-list">
+
+            <div class="col-xs-12 vertical-padding-lg"></div>
+
+            <div class="col-xs-12 vertical-padding-lg" ng-repeat="item in service">
+                <div class="col-xs-3">
+                    <img src="/images/home/{{item.img}}" class="img-responsive">
+                </div>
+                <div class="col-xs-9">
+                    <h2 class="underscore">{{item.title}}</h2>
+                    <h4>{{item.text}}</h4>
+                    <a href="#">
+                        <img src="/images/common/btn-more-black.png" class="img-right img-btn">
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="col-xs-12 vertical-padding-lg"></div>
+
+        </div>
+    </div>
+
+</div>

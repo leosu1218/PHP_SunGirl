@@ -1,0 +1,35 @@
+
+
+<div class="button"
+     ng-hide="isMutiple"
+     ngf-select
+     ng-model="file"
+     accept="{{acceptType}}"
+     ngf-pattern="'{{acceptType}}'"
+     ngf-multiple="false">
+
+    <button type="button" class="btn btn-default btn-sm">
+        {{upload_label.single.text}}
+    </button>
+
+</div>
+
+<div ng-show="isMutiple"
+     ngf-drop
+     ngf-select
+     ng-model="file"
+     class="drop-box"
+     ngf-drag-over-class="dragover"
+     ngf-multiple="true"
+     ngf-allow-dir="true"
+     accept="{{acceptType}}"
+     ngf-pattern="'{{acceptType}}'">
+
+    <button type="button" class="btn btn-default btn-sm">
+        {{upload_label.mutiple.text}}
+    </button>
+
+</div>
+<div ngf-no-file-drop>
+    {{upload_label.mutiple.not_supported}}
+</div>
