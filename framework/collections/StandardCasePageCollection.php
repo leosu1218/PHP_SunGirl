@@ -15,6 +15,7 @@ require_once( FRAMEWORK_PATH . 'models/StandardCasePage.php' );
 
 require_once( dirname(__FILE__) . "/StandardCasePage/SearchStandardCasePageClassification.php" );
 
+require_once( FRAMEWORK_PATH . 'extends/ValidatorHelper.php' );
 /**
 *	StandardCasePageCollection Access StandardCasePage entity collection.
 *
@@ -28,9 +29,12 @@ require_once( dirname(__FILE__) . "/StandardCasePage/SearchStandardCasePageClass
 class StandardCasePageCollection extends PermissionDbCollection {
 	
 	/* PermissionDbCollection abstract methods. */
+    private $searchConditions;
 
 	public function __construct(&$dao=null) {
         parent::__construct($dao);
+
+        $this->validator = new ValidatorHelper();
 
         $this->searchConditions = array(
             new SearchStandardCasePageClassification(),
@@ -38,6 +42,14 @@ class StandardCasePageCollection extends PermissionDbCollection {
 
     }
 
+
+    public function appendStatements(DbHero &$dao, &$params, &$conditions, &$select, &$search, &$sqlStatements) {
+        foreach ($sqlStatements as $key => $statement) {
+            $statement->append($dao, $params, $conditions, $select, $search);
+        }
+    }
+
+    
 	/**
      * Search records.
      *

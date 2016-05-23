@@ -4,7 +4,7 @@ require_once( dirname(__FILE__) . "/../ConditionStatement.php" );
 /**
  * Class SearchGeneralActivityIds
  */
-class SearchStandaedCasePageClassification  extends ConditionStatement {
+class SearchStandardCasePageClassification  extends ConditionStatement {
     /**
      * Append search condition statement to dao.
      *

@@ -31,7 +31,7 @@ define(['angular', 'app', 'configs'], function (angular, app, configs) {
         	console.log("success");
         	console.log(data);
         }).error(function(data, status, headers, config){
-            console.log("dail");
+            console.log("fail");
         });
     	
     	function getCountryCoverImg(num) {
