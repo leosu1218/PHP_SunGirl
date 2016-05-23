@@ -1,31 +1,31 @@
 <?php
 /**
-*	StandaedCasePageCollection code.
+*	StandardCasePageCollection code.
 *
 *	PHP version 5.3
 *
 *	@category Collection
-*	@package StandaedCasePage
+*	@package StandardCasePage
 *	@author Ares <ares@synctech.ebiz.tw>
 *	@copyright 2016 synctech.com
 */
 
 require_once( FRAMEWORK_PATH . 'system/collections/PermissionDbCollection.php' );
-require_once( FRAMEWORK_PATH . 'models/StandaedCasePage.php' );
+require_once( FRAMEWORK_PATH . 'models/StandardCasePage.php' );
 
-require_once( dirname(__FILE__) . "/StandaedCasePage/SearchStandaedCasePageClassification.php" );
+require_once( dirname(__FILE__) . "/StandardCasePage/SearchStandardCasePageClassification.php" );
 
 /**
-*	StandaedCasePageCollection Access StandaedCasePage entity collection.
+*	StandardCasePageCollection Access StandardCasePage entity collection.
 *
 *	PHP version 5.3
 *
 *	@category Collection
-*	@package StandaedCasePage
+*	@package StandardCasePage
 *	@author Ares <ares@synctech.ebiz.tw>
 *	@copyright 2016 synctech.com
 */
-class StandaedCasePageCollection extends PermissionDbCollection {
+class StandardCasePageCollection extends PermissionDbCollection {
 	
 	/* PermissionDbCollection abstract methods. */
 
@@ -35,7 +35,7 @@ class StandaedCasePageCollection extends PermissionDbCollection {
         $this->validator = new ValidatorHelper();
 
         $this->searchConditions = array(
-            new SearchStandaedCasePageClassification(),
+            new SearchStandardCasePageClassification(),
         );
 
     }
@@ -86,11 +86,11 @@ class StandaedCasePageCollection extends PermissionDbCollection {
 	*	@return string 
 	*/
 	public function getTable() {
-		return "standaed_case_page";
+		return "standard_case_page";
 	}
 
 	public function getModelName() {
-		return "StandaedCasePage";
+		return "StandardCasePage";
 	}
 
 	/**
