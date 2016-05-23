@@ -32,8 +32,6 @@ class StandardCasePageCollection extends PermissionDbCollection {
 	public function __construct(&$dao=null) {
         parent::__construct($dao);
 
-        $this->validator = new ValidatorHelper();
-
         $this->searchConditions = array(
             new SearchStandardCasePageClassification(),
         );
