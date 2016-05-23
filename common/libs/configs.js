@@ -26,6 +26,7 @@ define(function (require) {
 			product:"/api/product",
 			productUpload:"/api/product/materials/upload",
 			exportFile:"/api/export/excel/",
+			standardCase:"/api/standard/case",
 
 			systemConfig:"/api/system/config",
 		},

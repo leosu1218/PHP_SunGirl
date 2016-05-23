@@ -39,7 +39,7 @@ define(['angular', 'app',
 			.when('/work/project', {templateUrl: currentPath('/WorkProject.html'), controller: 'WorkProjectController'})
 			.when('/analysis', {templateUrl: currentPath('/Analysis.html'), controller: 'AnalysisController'})
 			.when('/standard/case', {templateUrl: currentPath('/StandardCase.html'), controller: 'StandardCaseController'})
-			.when('/standard/case/page', {templateUrl: currentPath('/StandardCasePage.html'), controller: 'StandardCasePageController'})
+			.when('/standard/case/page/:classification', {templateUrl: currentPath('/StandardCasePage.html'), controller: 'StandardCasePageController'})
 			.when('/activity', {templateUrl: currentPath('/Activity.html'), controller: 'ActivityController'})
 			.when('/activity/page', {templateUrl: currentPath('/ActivityPage.html'), controller: 'ActivityPageController'})
 			.when('/consultation', {templateUrl: currentPath('/Consultation.html'), controller: 'ConsultationController'})

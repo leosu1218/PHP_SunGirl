@@ -59,6 +59,8 @@ try
                 array( "GET: 	/test/barchart",						                                    "TestController", "getBarChart()"),
                 array( "GET: 	/test/curvechart",						                                    "TestController", "getCurveChart()"),
 
+                // standard case page
+                array( "GET: 	/standard/case/get/<pageNo:\d+>/<pageSize:\d+>/<querystring:\w+>",		"StandardCasePageController", "searchByClient(<pageNo>,<pageSize>,<querystring>)"),
 			),
 			'default' => array( "DefaultController", "getNotFound" )
 		)

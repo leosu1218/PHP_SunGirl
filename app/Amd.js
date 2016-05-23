@@ -8,6 +8,7 @@ require.config({
 		jquery: 	'../common/libs/jquery-2.1.1',
 		smoothscroll: 'libs/smoothscroll',
 		bootstrap : '../common/libs/bootstrap.min',
+		configs		: '../common/libs/configs',
 		angular : 	'../common/libs/angular-1.3.0.min',
 		ngAnimate : '../common/libs/angular-animate-1.3.0.min',
 		ngCookies : '../common/libs/angular-cookies-1.3.0.min',

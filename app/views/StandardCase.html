@@ -11,7 +11,17 @@
         <div class="col-md-6 col-xs-12 service-section standard-search">
         	<div class="col-md-offset-4 col-md-7">
         		<div class="col-xs-12 standard-vertical-padding"></div>
-	            <input id="search-database" type="text" size="40" placeholder="搜索資料庫" />         
+	            <!-- <input id="search-database" type="text" size="40" placeholder="搜索資料庫" />          -->
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">請選擇區域
+                    <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation" ng-repeat="item in items">
+                            <a role="menuitem" tabindex="-1" href="#/standard/case/page/{{item.value}}">{{item.name}}</a>
+                        </li>
+                    </ul>
+                </div>
 	        </div>
         </div>
     </div>
