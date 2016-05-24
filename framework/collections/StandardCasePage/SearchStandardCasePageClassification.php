@@ -20,7 +20,6 @@ class SearchStandardCasePageClassification  extends ConditionStatement {
                 array_push($conditions, 's.classification=:classification');
                 $params[':classification'] = $search['classification'];
             }
-
         }
     }
 }

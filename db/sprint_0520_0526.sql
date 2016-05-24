@@ -12,14 +12,14 @@ AUTO_INCREMENT=36
 ROW_FORMAT=COMPACT
 ;
 
-INSERT INTO `standard_case` (`id`, `country_name`) VALUES ('1', '全部')
-INSERT INTO `standard_case` (`id`, `country_name`) VALUES ('2', '東亞')
-INSERT INTO `standard_case` (`id`, `country_name`) VALUES ('3', '東南亞')
-INSERT INTO `standard_case` (`id`, `country_name`) VALUES ('4', '中亞')
-INSERT INTO `standard_case` (`id`, `country_name`) VALUES ('5', '南亞')
-INSERT INTO `standard_case` (`id`, `country_name`) VALUES ('6', '非洲')
-INSERT INTO `standard_case` (`id`, `country_name`) VALUES ('7', '南美洲')
-INSERT INTO `standard_case` (`id`, `country_name`) VALUES ('8', '歐洲')
+
+INSERT INTO `standard_case` (`id`, `country_name`) VALUES ('1', '東亞')
+INSERT INTO `standard_case` (`id`, `country_name`) VALUES ('2', '東南亞')
+INSERT INTO `standard_case` (`id`, `country_name`) VALUES ('3', '中亞')
+INSERT INTO `standard_case` (`id`, `country_name`) VALUES ('4', '南亞')
+INSERT INTO `standard_case` (`id`, `country_name`) VALUES ('5', '非洲')
+INSERT INTO `standard_case` (`id`, `country_name`) VALUES ('6', '南美洲')
+INSERT INTO `standard_case` (`id`, `country_name`) VALUES ('7', '歐洲')
 
 --
 --2016/05/23

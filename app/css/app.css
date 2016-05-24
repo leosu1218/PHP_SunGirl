@@ -73,6 +73,10 @@ body {
 :-ms-input-placeholder {
     color: #fff;
 }
+.cover-img-padding{
+	margin-top: 40px;
+
+}
 
 /* screen-lg */
 @media (min-width: 1170px) {
@@ -192,7 +196,7 @@ body {
         padding: 0px 100px;
     }
     .download-img {
-        width: 10%;
+        height: 20px;
         margin-left: 30px;
     }
     .connection-img-detail > h4{
@@ -261,7 +265,8 @@ body {
 		padding-left: 0px;
 	}
 	.download-img {
-        width: 35%;
+        height: 25px;
+    	padding-left: 15px;
     }
     .connection-detail {
 	    padding-top: 0px;

@@ -7,7 +7,7 @@ define(['angular', 'app'], function (angular, app) {
         $scope.presetCountry = true;
        
     	$scope.items = [
-    		{value:'0', img:'title-1.png', country:'word.png',           name:'全部'},
+    		{value:'all', img:'title-1.png', country:'word.png',         name:'全部'},
     		{value:'1', img:'title-2.png', country:'eastasia.png',       name:'東亞'},
     		{value:'2', img:'title-3.png', country:'southeastasia.png',  name:'東南亞'},
     		{value:'3', img:'title-4.png', country:'centralasia.png',    name:'中亞'},
@@ -26,7 +26,7 @@ define(['angular', 'app'], function (angular, app) {
         $scope.changeStyle = function(value){
             
             switch(value){
-                case '0':
+                case 'all':
                     $scope.countryStyle = {left: '13%'};
                     break; 
                 case '1':

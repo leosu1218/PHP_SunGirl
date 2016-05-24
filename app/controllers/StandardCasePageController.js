@@ -9,7 +9,7 @@ define(['angular', 'app', 'configs'], function (angular, app, configs) {
 		$scope.pageSize = 20;
         $scope.params = $routeParams;	
     	$scope.items = [
-    		{value:'0', country:'page-word.png',           name:'全部'},
+    		{value:'all', country:'page-word.png',         name:'全部'},
     		{value:'1', country:'page-eastasia.png',       name:'東亞'},
     		{value:'2', country:'page-southeastasia.png',  name:'東南亞'},
     		{value:'3', country:'page-centralasia.png',    name:'中亞'},
@@ -28,10 +28,10 @@ define(['angular', 'app', 'configs'], function (angular, app, configs) {
         };
 
         $http(Request).success(function(data, status, headers, config) {
-        	console.log("success");
-        	console.log(data);
+        	$scope.pageDetail = data.records;
+            // console.log("success");
         }).error(function(data, status, headers, config){
-            console.log("fail");
+            // console.log("fail");
         });
     	
     	function getCountryCoverImg(num) {
@@ -45,7 +45,7 @@ define(['angular', 'app', 'configs'], function (angular, app, configs) {
             }
             return $scope.valueOfCountry;
         }
-        
-        getCountryCoverImg($scope.params.country);
+
+        getCountryCoverImg($scope.params.classification);
     });
 });
