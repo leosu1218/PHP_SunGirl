@@ -41,7 +41,7 @@ define(['angular', 'app',
 			.when('/standard/case', {templateUrl: currentPath('/StandardCase.html'), controller: 'StandardCaseController'})
 			.when('/standard/case/page/:classification', {templateUrl: currentPath('/StandardCasePage.html'), controller: 'StandardCasePageController'})
 			.when('/activity', {templateUrl: currentPath('/Activity.html'), controller: 'ActivityController'})
-			.when('/activity/page', {templateUrl: currentPath('/ActivityPage.html'), controller: 'ActivityPageController'})
+			.when('/activity/page/:classification', {templateUrl: currentPath('/ActivityPage.html'), controller: 'ActivityPageController'})
 			.when('/consultation', {templateUrl: currentPath('/Consultation.html'), controller: 'ConsultationController'})
 			.when('/connection', {templateUrl: currentPath('/Connection.html'), controller: 'ConnectionController'})
 			.when('/news', {templateUrl: currentPath('/News.html'), controller: 'NewsController'})

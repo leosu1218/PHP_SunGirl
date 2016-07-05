@@ -15,7 +15,7 @@ define(['angular', 'app'], function (angular, app) {
 
         $scope.service = [
             {img: 'service-icon-1.png', title: '國際', text: '針對新興市場國家的需求，協助探討更佳發展策略。針對新興市場國家的需求，協助探討更佳發展策略。'},
-            {img: 'service-icon-2.png', title: '商情分析', text: '針對新興市場國家的需求，協助探討更佳發展策略。針對新興市場國家的需求，協助探討更佳發展策略。'},
+            {img: 'service-icon-2.png', title: '商情分析', text: '針對新興市場國家的需求，協助探討更佳發展策略。針對新興市場國家的需求，協助探討更佳發展策略。', href: 'analysis'},
             {img: 'service-icon-3.png', title: '策略諮詢', text: '針對新興市場國家的需求，協助探討更佳發展策略。針對新興市場國家的需求，協助探討更佳發展策略。'}
         ];
 
