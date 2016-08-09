@@ -3,21 +3,62 @@
 
 define(['angular', 'app'], function (angular, app) {
 
-    return app.controller("HomeController", function ($scope) {
+    return app.controller("HomeController", function ($scope,$timeout) {
 
-        $scope.purpose = [
-            {img: 'p-1.png', text: '參與新興市場國家未來的發展與轉變。'},
-            {img: 'p-2.png', text: '針對新興市場國家的需求，協助探討更佳發展策略。'},
-            {img: 'p-3.png', text: '努力展現台灣面對新興市場國家發展中的整理策略。'},
-            {img: 'p-4.png', text: '籌謀與區域和全球化發展連結的策略。'},
-            {img: 'p-5.png', text: '協助台灣中小企業建立新興市場國家產官學的網路，發展各種商機。'},
-        ];
+        $timeout(function() {
+            //輪播
+            $(".th-sliderShow").sliderShow();
 
-        $scope.service = [
-            {img: 'service-icon-1.png', title: '國際', text: '針對新興市場國家的需求，協助探討更佳發展策略。針對新興市場國家的需求，協助探討更佳發展策略。'},
-            {img: 'service-icon-2.png', title: '商情分析', text: '針對新興市場國家的需求，協助探討更佳發展策略。針對新興市場國家的需求，協助探討更佳發展策略。', href: 'analysis'},
-            {img: 'service-icon-3.png', title: '策略諮詢', text: '針對新興市場國家的需求，協助探討更佳發展策略。針對新興市場國家的需求，協助探討更佳發展策略。'}
-        ];
+            //album,video,download開啟popup
+            $(".pt-cont").on("click",function(){
+                $(".md-album-popup").maskSet().albumPopup();
+                $(".md-video-popup").maskSet();
+                $(".md-download-popup").maskSet();
+                $(".th-maskbg").addClass('showMask');
+                $("body, html").animate({scrollTop:0});
+            });
+
+
+            //首頁開啟popup
+            $(".main-aside .album-cont figure").on("click",function(){
+                $(".md-album-popup").maskSet();
+                $(".md-album-popup").albumPopup();
+                $(".th-maskbg").addClass('showMask');
+                $("body, html").animate({scrollTop:0});
+            });
+            $(".main-aside .md-video figure").on("click",function(){
+                $(".md-video-popup").maskSet();
+                $(".th-maskbg").addClass('showMask');
+                $("body, html").animate({scrollTop:0});
+            });
+
+            //首頁 右側浮動
+            $(window).scroll(function(){
+                var scrollH = $(this).scrollTop();
+                var finalScrollH = ($(document).outerHeight(true)-$(window).innerHeight())-scrollH;
+                if($(".index").length>=1){
+                    if(scrollH > $("#footer").offset().top - $(".md-activity").outerHeight(true) - $(".fixedHdBg").height() ){
+                        //大於footer;
+                        $(".md-activity").attr("style","").css({
+                            position:"fixed",
+                            bottom: $("#footer").height() + 20 - finalScrollH +"px",
+                        });
+                    }else if(scrollH > ($(".fullbar").offset().top + $(".fullbar").height())){
+                        //大於header;
+                        $(".md-activity").attr("style","").css({
+                            position:"fixed",
+                            top: "0",
+                            marginTop:"70px"
+                        });
+                    } else{
+                        //小於header;
+                        $(".md-activity").attr("style","");
+                    }
+                }
+
+            }).scroll();
+        },500);
+
 
     });
 });

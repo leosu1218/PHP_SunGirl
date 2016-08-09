@@ -9,6 +9,8 @@ require(
         'ngCarousel',
         'bootstrap',
         'smoothscroll',
+        'sunGirl',
+        'sunGirlPlugin',
 
         // Directives
         'directives/AppHeader/controller',
