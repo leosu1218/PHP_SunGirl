@@ -24,7 +24,7 @@ $.fn.sliderShow = function(){
     //初始預設
     bigimgLi.eq(imgNow).addClass('active').siblings().css({"left":'100%'});
     if(imgMax<2){ ptNext.hide(); ptPrev.hide(); }
-    bigimgUl.css({ paddingTop: (((bigimgLi.eq(imgNext).find("img").height()/bigimgLi.eq(imgNext).find("img").width())*100 )|0) +"%"});
+    // bigimgUl.css({ paddingTop: (((bigimgLi.eq(imgNext).find("img").height()/bigimgLi.eq(imgNext).find("img").width())*100 )|0) +"%"});
 
     function moveNext(num) {
         clearInterval(timer);

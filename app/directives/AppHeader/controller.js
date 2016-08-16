@@ -9,13 +9,20 @@ define(['angular', 'app', 'text!directives/AppHeader/view.html'], function (angu
             template: view,
             scope: {
             },
-            controller:  function($scope) {
+            controller:  function($scope,$timeout) {
 
-                //右上角m版icon開關
-                $(".icon-share").on("click",function(){
-                    $(".th-share ul").slideToggle(300);
-                    return false;
-                });
+                $timeout(function() {
+                    //右上角m版icon開關
+                    $("li").on("click", function () {
+                        $("li").removeClass("on");
+                        $(this).addClass("on");
+                    });
+
+                    $(".icon-share").on("click", function () {
+                        $(".th-share ul").slideToggle(300);
+                        return false;
+                    });
+                },500);
             }
         };
     });

@@ -1,0 +1,119 @@
+{
+  "001" : [{
+    "model_id"  : "001",
+    "title"     : "1月比基尼宝贝写真",
+    "computer"  : [
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/1_1024x768.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/1_1280x1024.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/1_1366x768.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/1_1920x1080.jpg"
+    ],
+    "mobile"    : [
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/1_640x960.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/1_640x1136.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/1_720x1280.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/1_1080x1920.jpg"
+    ]
+  }],
+
+  "002" : [{
+    "model_id"  : "002",
+    "title"     : "2月比基尼宝贝写真",
+    "computer"  : [
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/2_1024x768.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/2_1280x1024.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/2_1366x768.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/2_1920x1080.jpg"
+    ],
+    "mobile"    : [
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/2_640x960.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/2_640x1136.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/2_720x1280.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/2_1080x1920.jpg"
+    ]
+  }],
+
+  "003" : [{
+    "model_id"  : "003",
+    "title"     : "3月比基尼宝贝写真",
+    "computer"  : [
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/3_1024x768.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/3_1280x1024.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/3_1366x768.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/3_1920x1080.jpg"
+    ],
+    "mobile"    : [
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/3_640x960.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/3_640x1136.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/3_720x1280.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/3_1080x1920.jpg"
+    ]
+  }],
+
+  "004" : [{
+    "model_id"  : "004",
+    "title"     : "4月比基尼宝贝写真",
+    "computer"  : [
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/4_1024x768.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/4_1280x1024.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/4_1366x768.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/4_1920x1080.jpg"
+    ],
+    "mobile"    : [
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/4_640x960.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/4_640x1136.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/4_720x1280.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/4_1080x1920.jpg"
+    ]
+  }],
+
+  "005" : [{
+    "model_id"  : "005",
+    "title"     : "5月比基尼宝贝写真",
+    "computer"  : [
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/5_1024x768.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/5_1280x1024.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/5_1366x768.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/5_1920x1080.jpg"
+    ],
+    "mobile"    : [
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/5_640x960.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/5_640x1136.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/5_720x1280.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/5_1080x1920.jpg"
+    ]
+  }],
+
+  "006" : [{
+    "model_id"  : "006",
+    "title"     : "6月比基尼宝贝写真",
+    "computer"  : [
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/6_1024x768.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/6_1280x1024.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/6_1366x768.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/6_1920x1080.jpg"
+    ],
+    "mobile"    : [
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/6_640x960.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/6_640x1136.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/6_720x1280.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/6_1080x1920.jpg"
+    ]
+  }],
+  "007" : [{
+    "model_id"  : "007",
+    "title"     : "7月比基尼宝贝写真",
+    "computer"  : [
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/7_1024x768.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/7_1280x1024.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/7_1366x768.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/7_1920x1080.jpg"
+    ],
+    "mobile"    : [
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/7_640x960.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/7_640x1136.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/7_720x1280.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/7_1080x1920.jpg"
+    ]
+  }]
+}

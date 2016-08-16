@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" id="ng-app" data-framework="angularjs">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" /> 
+		<meta name="apple-touch-fullscreen" content="YES" />
+
+		<title>TCIT Media 數據分析平台</title>
+
+		<!-- base template -->		
+		<link rel="stylesheet" href="/common/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/common/css/font-awesome-4.2.0.min.css">
+    	<link rel="stylesheet" href="/common/libs/metisMenu/dist/metisMenu.min.css">
+
+    	<!-- sb-admin template -->
+    	<link rel="stylesheet" href="/admin/css/app.css">
+    	<link rel="stylesheet" href="/admin/libs/components/morrisjs/morris.css">
+    	<link rel="stylesheet" href="/admin/css/timeline.css">
+    	<link rel="stylesheet" href="/admin/css/sb-admin-2.css">
+    	
+		
+	</head>
+	<body>
+    	<div class="wrapper">
+			<ng-view></ng-view>	       
+			<script data-main="/adLogin/Amd" src="/common/libs/require-2.1.15.min.js"></script>
+    	</div>
+	</body>
+</html>

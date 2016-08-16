@@ -3,7 +3,7 @@
 
 define(['angular', 'app'], function (angular, app) {
 
-    return app.controller("HomeController", function ($scope,$timeout) {
+    return app.controller("DownloadController", function ($scope,$timeout) {
 
         $timeout(function() {
             //輪播
@@ -120,6 +120,12 @@ define(['angular', 'app'], function (angular, app) {
             $(".icon-nextBtn").css({"line-height":"56px"});
         }
 
-
+        //相簿,影音,下載hover
+        $(".md-list figure").hover(function(){
+            if($(window).width()>960){$(this).find("figcaption").stop().animate({top:"40%"},400);}
+        },function(){
+            if($(window).width()>960){$(this).find("figcaption").stop().animate({top: $(this).height()-40+"px" },400);}
+        });
+       
     });
 });
