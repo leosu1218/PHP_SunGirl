@@ -1,0 +1,454 @@
+<style type="text/css">
+	.text_style {
+		color: darkslategray;	
+	}
+	.col_style {
+		padding: 0px 10px 0px 10px;
+	}
+	.panel_heading_style{
+		height: 40px;
+	}
+</style>
+<div id="page-wrapper" style="padding-top:10px;">
+	
+	<div class="row">
+        <div class="col-lg-12">
+        	<strong>
+            	<h2 class="page-header" style="font-family:微軟正黑體; font-weight:500">批發商品上架</h2>
+            </strong>
+        </div>
+    </div>
+
+	<!-- base info -->
+    <div class="row">
+		<div class="col-md-6 col_style">
+
+			<div class="panel panel-info" style="height: 100px;">
+	            <div class="panel-heading panel_heading_style">
+	                <label class="text_style">商品名稱</label>
+	            </div>
+	            <!-- /.panel-heading -->
+	            <div class="panel-body">  
+
+	        		<div class="form-group">
+	                    <input class="form-control" placeholder="請輸入商品名稱，例如：獨家觸電眼線筆" ng-model="name" type="text" />
+	                </div>
+
+	            </div>
+	            <!-- /.panel-body -->
+	        </div>
+
+	        <div class="panel panel-info">
+	            <div class="panel-heading">
+	                <label class="text_style">價格設定</label>
+	            </div>
+	            <!-- /.panel-heading -->
+	            <div class="panel-body">  
+
+	        		<div class="col-md-12">
+	        			<div class="form-group input-group">
+                            <span class="input-group-addon" style="width:150px;">批發價</span>
+                            <input type="number" min="0" ng-model="wholesale_price" class="form-control" placeholder="請輸入進貨的成本價位">
+                            <span class="input-group-addon">元</span>
+                        </div>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon" style="width:150px;">定價</span>
+                            <input type="number" min="0" ng-model="suggested_price" class="form-control" placeholder="請輸入售出的最低價位">
+                            <span class="input-group-addon">元</span>
+                        </div>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon" style="width:150px;">最低末端價</span>
+                            <input type="number" min="0" ng-model="lowest_end_price" class="form-control" placeholder="請輸入進貨的成本價位">
+                            <span class="input-group-addon">元</span>
+                        </div>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon" style="width:150px;">成本價</span>
+                            <input type="number" min="0" ng-model="cost_price" class="form-control" placeholder="請輸入成本價">
+                            <span class="input-group-addon">元</span>
+                        </div>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon" style="width:150px;">建議售價</span>
+                            <input type="number" min="0" ng-model="propose_price" class="form-control" placeholder="請輸入建議售價">
+                            <span class="input-group-addon">元</span>
+                        </div>
+	        		</div>
+
+	            </div>
+	            <!-- /.panel-body -->
+	        </div>
+
+		</div>
+
+		<div class="col-md-6 col_style">
+
+			<div class="panel panel-info">
+	            <div class="panel-heading panel_heading_style">
+	                <label class="text_style">商品標籤</label>
+	            </div>
+	            <div class="panel-body">  
+
+	            	<div class="form-group">
+	                    <input class="form-control" placeholder="請輸入商品標籤" ng-model="tag" type="text" />
+	                </div>
+
+	            </div>
+	        </div>
+
+	        <div class="panel panel-info">
+	            <div class="panel-heading panel_heading_style">
+	                <label class="text_style">商品外觀規格</label>
+	            </div>
+	            <div class="panel-body">  
+
+	            	<div class="form-group input-group">
+	                    <span class="input-group-addon" style="width:150px;">重量</span>
+	                    <input type="number" min="0" ng-model="weight" class="form-control" placeholder="請輸入重量">
+	                    <span class="input-group-addon">g</span>
+	                </div>
+	                <div class="form-group input-group">
+	                    <span class="input-group-addon" style="width:150px;">商品材積的長</span>
+	                    <input type="number" min="0" ng-model="productLength" class="form-control" placeholder="請輸入商品的長度">
+	                    <span class="input-group-addon">cm</span>
+	                </div>
+	                <div class="form-group input-group">
+	                    <span class="input-group-addon" style="width:150px;">商品材積的寬</span>
+	                    <input type="number" min="0" ng-model="productWidth" class="form-control" placeholder="請輸入商品的寬度">
+	                    <span class="input-group-addon">cm</span>
+	                </div>
+	                <div class="form-group input-group">
+	                    <span class="input-group-addon" style="width:150px;">商品材積的高</span>
+	                    <input type="number" min="0" ng-model="productHeight" class="form-control" placeholder="請輸入商品的高度">
+	                    <span class="input-group-addon">cm</span>
+	                </div>
+
+	                <div class="alert alert-warning" role="alert">
+	                	<div class="row" align="center">
+	                		<span class="col-lg-3">
+	                			{{(productLength*productWidth*productHeight*cuftNumber).toFixed(4)}}
+	                		</span>
+	                		<span class="col-lg-3">
+	                			Cuft(材)
+	                		</span>
+	                		<span class="col-lg-3">
+	                			{{(productLength*productWidth*productHeight*cuftNumber/CBMNumber).toFixed(4)}}
+	                		</span>
+	                		<span class="col-lg-3">
+	                			CBM(立方米)
+	                		</span>
+	                	</div>
+	                </div>
+
+	            </div>
+	        </div>
+
+		</div>
+
+		<div class="col-md-12 col_style">
+			<fare-list-select instance="fareList"></fare-list-select>
+		</div>
+
+		<div class="col-md-12 col_style">
+
+			<div class="panel panel-info">
+	            <div class="panel-heading">
+	            	<div class="row">
+		                <label class="text_style col-lg-3">商品規格</label>
+		                <div class="col-lg-8"></div>
+		                <div class="col-lg-1">
+		                	<button class="btn btn-default" ng-click="spec_add()">新增</button>
+		                </div>
+	            	</div>
+	            </div>
+	            <!-- /.panel-heading -->
+	            <div class="panel-body">
+
+	            	<sb-smart-table instance="specTable"></sb-smart-table>
+	            	
+	            </div>
+	            <!-- /.panel-body -->
+	        </div>
+
+		</div>
+
+		<div class="col-md-12 col_style">
+
+			<div class="panel panel-info">
+	            <div class="panel-heading">
+	                <label class="text_style">商品封面主圖</label>
+	            </div>
+	            <!-- /.panel-heading -->
+	            <div class="panel-body">
+
+	            	<div class="panel panel-default">
+
+			            <div class="panel-heading">
+					                <div class="row">
+					                	<label class="col-lg-2 text_style" >商品頁主圖及影片設定</label>
+					                	<sb-upload class="col-lg-1" instance="productCoverImageUpload"></sb-upload>
+					                </div>
+					            </div>
+					            <!-- /.panel-heading -->
+					            <div class="panel-body">  
+
+					            	<div class="row">
+					            		<div ng-repeat="file in productCoverImage">
+
+					            			<div class="col-lg-3">
+						                        <div style="width:100%;">
+						                            <div class="panel panel-default">
+						                                <div class="panel-body">
+						                                    <image style="width:100%;" ng-src="upload/image/{{file.fileName}}">
+						                                </div>
+						                                <ul class="panel-footer btn" 
+						                                	ng-click="deleteImage( file, 'productCoverImage' )" 
+						                                	style="height:40px; width:100%; background-color:#FFFAFA;">
+						                                    <span 	class="glyphicon glyphicon-remove" 
+						                                    		style="color:#FF8888;" 
+						                                    		aria-hidden="true">
+						                                    </span>
+						                                </ul>
+						                            </div>
+						                        </div>
+				                    		</div>
+
+					            		</div>	
+					            	</div>
+					        		
+					            </div>
+					            <!-- /.panel-body -->
+
+
+			        </div>
+
+	            	<div class="panel panel-default">
+			            <div class="panel-heading">
+			          		簡述（建議不超商150文字）
+			            </div>
+			            <!-- /.panel-heading -->
+			            <div class="panel-body">
+			            	<textarea ng-model="product_text" style="width:100%;"></textarea>
+			            </div>
+			            <!-- /.panel-body -->
+			        </div>
+			        
+			        <!-- <div class="panel panel-default"> -->
+			        	
+			        	<div class="panel panel-default">
+				            <div class="panel-heading">
+				            	<div class="row">
+					                <label class="col-lg-3">選擇商品描述 - 媒體</label>
+					                <div class="col-lg-9" style="height:35px;">
+					                	
+					                	<div class="btn-group"
+											style="position:absolute; right:0px; width:50%; padding:3px;" 
+											role="group"
+											ng-init="isUseImage = true">
+											
+											<div class="btn-group" role="group" style="width:50%;">
+										    	<button class="btn btn-default btn-md" 
+										    		style="width:100%;" 
+										    		ng-click="isUseImage=true">
+										    		使用相片輪播圖
+										    	</button>
+											</div>
+
+											<div class="btn-group" role="group" style="width:50%;">
+										    	<button class="btn btn-default  btn-md" 
+										    		style="width:100%;" 
+										    		ng-click="isUseImage=false">
+										    		使用youtube影片
+										    	</button>
+											</div>
+										
+										</div>
+
+					                </div>
+				            	</div>
+				            </div>
+				            <!-- /.panel-heading -->
+				            <div class="panel-body" ng-show="isUseImage">
+
+				            	<div class="panel-heading">
+					                <div class="row">
+					                	<label class="col-lg-2 text_style" >上傳商品圖片</label>
+					                	<sb-upload 
+					                		class="col-lg-1" 
+					                		instance="productImageUpload">
+					                	</sb-upload>
+					                </div>
+					            </div>
+					            <!-- /.panel-heading -->
+					            <div class="panel-body">  
+
+					            	<div class="row">
+					            		<div ng-repeat="file in productImages">
+					            			<div class="col-lg-3">
+						                        <div style="width:100%;">
+						                            <div class="panel panel-default" ng-style="file.style">
+						                                <div class="panel-body" ng-click="selectedImage(file, 'productImages')">
+						                                    <image style="width:100%;" ng-src="upload/image/{{file.fileName}}">
+						                                </div>
+						                                <ul class="panel-footer btn" 
+						                                	ng-click="deleteImage( file, 'productImages' )" 
+						                                	style="height:40px; width:100%; background-color:#FFFAFA;">
+						                                    <span 	class="glyphicon glyphicon-remove" 
+						                                    		style="color:#FF8888;" 
+						                                    		aria-hidden="true">
+						                                    </span>
+						                                </ul>
+						                            </div>
+						                        </div>
+				                    		</div>
+					            		</div>	
+					            	</div>
+					        		
+					            </div>
+					            <!-- /.panel-body -->
+				            	
+				            </div>
+				            <!-- /.panel-body -->
+				            <div class="panel-body" ng-show="!isUseImage" style="width:100%;">
+
+				            	<div class="form-group input-group" style="width:100%;">
+			                        <span class="input-group-addon">URL</span>
+			                        <input type="text" 
+			                        	ng-model="youtube_url" 
+			                        	class="form-control" 
+			                        	placeholder="https://www.youtube.com/watch?v=GEodRlFzMsU">
+			                    </div>
+
+				            </div>
+				            <!-- /.panel-body -->
+				        </div>
+			        
+
+			        <!-- </div> -->
+	            	
+	            </div>
+	            <!-- /.panel-body -->
+	        </div>
+
+		</div>
+
+		<div class="col-md-12 col_style">
+
+			<div class="panel panel-info">
+	            <div class="panel-heading">
+	                <label class="text_style">商品介紹（每張圖不得超過800KB)</label>
+	            </div>
+	            <!-- /.panel-heading -->
+	            <div class="panel-body">
+
+	            	<div class="panel panel-default">
+			            <div class="panel-heading">
+			          		商品說明 - 圖文
+			            </div>
+			            <!-- /.panel-heading -->
+			            <div class="panel-body">
+                            <sb-editor instance="sbEditor"></sb-editor>
+			            </div>
+			            <!-- /.panel-body -->
+			        </div>
+
+
+	            </div>
+	            <!-- /.panel-body -->
+	        </div>
+
+		</div>
+
+		<div class="col-md-12">
+			<div class="panel panel-info">
+	            <div class="panel-heading">
+	                <label class="text_style">商品類別</label>
+	                <div> 您選擇的商品群组ID:{{productGroupTree.getSingleSelectedId()}}</div>
+	            </div>
+	            <div class="panel-body">
+	            	<product-group-use-smart-tree instance="productGroupTree"></product-group-use-smart-tree>
+	            </div>
+		    </div>
+		</div>
+
+		<div class="col-md-12 col_style">
+
+			<div class="panel panel-info">
+	            <div class="panel-heading">
+	            	<div class="row">
+		                <label class="text_style col-lg-3">是否開放團購</label>
+		                <div class="col-lg-9" style="height:35px;">
+		                	
+		                	<div class="btn-group"
+								style="position:absolute; right:0px; width:45%;" 
+								role="group"
+								ng-init="is_open_groupbuying = false">
+								
+								<div class="btn-group" role="group" style="width:50%;">
+							    	<button class="btn btn-primary" 
+							    		style="width:100%;" 
+							    		ng-click="is_open_groupbuying=!is_open_groupbuying">
+							    		<span ng-show="is_open_groupbuying">開放</span>
+							    		<span ng-show="!is_open_groupbuying">不開放</span>
+							    	</button>
+								</div>
+							
+							</div>
+
+		                </div>
+	            	</div>
+	            </div>
+	            <!-- /.panel-heading -->
+	            <div class="panel-body" ng-show="is_open_groupbuying">
+
+	            	<div class="form-group input-group">
+                        <span class="input-group-addon" style="width:150px;">最多開團</span>
+                        <input type="number" min="0" ng-model="groupbuying_maxmun_day" class="form-control" placeholder="請輸入至多開團天數">
+                        <span class="input-group-addon">天</span>
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon" style="width:150px;">至少開團</span>
+                        <input type="number" min="0" ng-model="groupbuying_minimun_day" class="form-control" placeholder="請輸入最少開團天數">
+                        <span class="input-group-addon">天</span>
+                    </div>
+	            	
+	            </div>
+	            <!-- /.panel-body -->
+	            <div class="panel-body" ng-show="!is_open_groupbuying">
+	            </div>
+	            <!-- /.panel-body -->
+	        </div>
+
+		</div>
+
+		<div class="col-md-12" ng-show="message.isShow">
+			<div class="alert alert-warning alert-dismissable">
+                <button type="button" class="close" ng-click="message.isShow = false">×</button>
+                {{message.text}}
+            </div>
+		</div>
+
+		<!-- create button group -->
+	    	<div class="col-md-12" style="height:50px;">
+
+				<div class="btn-group"
+					style="position:absolute; right:0px; width:45%;" 
+					role="group">
+					
+					<div class="btn-group" role="group" style="width:50%;">
+				    	<input type="submit"  style="width:100%;" class="btn btn-primary" ng-click="create()" value="新增"></input>
+					</div>		  
+					<div class="btn-group" role="group" style="width:50%;">
+				    	<button ng-click="cancel()"  style="width:100%;" type="button" class="btn btn-default">取消</button>
+					</div>
+				
+				</div>
+			
+			</div>
+	    <!-- create button group /-->
+
+	</div>
+	<!-- base info /-->
+
+</div>
+
+
+<sb-modal instance="modal"></sb-modal>

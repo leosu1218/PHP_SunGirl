@@ -7,8 +7,7 @@ define(['angular', 'app', 'metisMenu', 'message', 'configs', 'text!directives/Sb
 		return {
 			restrict: "E",			
 			template: view,
-			controller: function($scope, $location, $http, $FeatureTranslateRule) {
-                $FeatureTranslateRule.$list();
+			controller: function($scope, $location, $http) {
 
                 activeMenuUI();
                 activeMenuItem();

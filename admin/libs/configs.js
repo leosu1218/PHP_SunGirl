@@ -12,12 +12,15 @@ define(function (require) {
 			userSelf: "/api/user/self",
 			exporter:"/api/export",
 			user: "/api/user",
-			rawfile: "/api/rawfile/imediaevent",
 			groupPlatformuser:"/api/group/platformuser",
+            website:"api/website/",
+            sungirl:"api/sungirl"
 		},
 		path: {
 			appRoot:"/admin",
 			login: "/adLogin.html",
+            carousel:"upload/carousel",
+            upload:"upload/"
 		},
 	};
 });

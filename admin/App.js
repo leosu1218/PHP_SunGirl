@@ -3,28 +3,7 @@
 
 // Hook up all modules to the 'app' module
 // Returns TheApp (see commonRoutes.js for usage)
-define([
-    'angular',
-    'ngCookiesHelper',
-
-    // Collections
-    'FullProportionCollection',
-    'GenderDailyCollection',
-    'FullHourlyCollection',
-    'GenderHourlyCollection',
-    'FeatureTranslateRule'
-
-], function (
-    angular,
-    ngCookiesHelper,
-
-    //Collections
-    FullProportionCollection,
-    GenderDailyCollection,
-    FullHourlyCollection,
-    GenderHourlyCollection,
-    FeatureTranslateRule
-) {
+define(['angular', 'ngCookiesHelper'], function (angular, ngCookiesHelper) {
     
     angular.module('HashBangURLs', ['ngRoute'])
         .config([
@@ -43,19 +22,17 @@ define([
     
     // Choose to inject either HashBangs or HTML5 mode, your preference.
 	var app = angular.module('app', 
-        ['HashBangURLs', 'ui.bootstrap', 'ngSanitize', 'ngAnimate', 'ngFileUpload', 'ui.tree', 'tc.chartjs', 'ngCookies'],
+        ['HashBangURLs', 'ui.bootstrap', 'ngSanitize', 'ngAnimate', 'ngFileUpload', 'ui.tree', 'ngCookies'],
         function ($routeProvider, $locationProvider, $httpProvider) {
 	});
 
     // Inject services
     app.service("$cookiesHelper", ngCookiesHelper);
-    app.service("$FullProportionCollection", FullProportionCollection);
-    app.service("$GenderDailyCollection", GenderDailyCollection);
-    app.service("$FullHourlyCollection", FullHourlyCollection);
-    app.service("$GenderHourlyCollection", GenderHourlyCollection);
-    app.service("$FeatureTranslateRule", FeatureTranslateRule);
 
-	app.controller("AppController", function ($scope, $log, $q, $timeout, $http, $interval) {
+    app.commonPath      = "/common";
+    app.applicationPath = "/admin";
+
+    app.controller("AppController", function ($scope, $log, $q, $timeout, $http, $interval) {
 
     });
 

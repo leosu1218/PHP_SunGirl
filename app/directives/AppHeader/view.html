@@ -5,11 +5,11 @@
         <nav>
             <a href="" class="icon-back"></a>
             <ul>
-                <li class=""><a class="icon-photo" href="#/album" title="性感寫真"></a></li>
-                <li class="li-video"><a class="icon-video" href="#/video" title="美女視頻"></a></li>
-                <li class="li-home on"><a class="icon-home" href="#/" title="首頁"></a></li>
-                <li class=""><a class="icon-download" href="#/download" title="桌布下載"></a></li>
-                <li class="li-info"><a class="icon-info" href="#/info"></a></li>
+                <li class=""><a class="icon-photo" href="/album" title="性感寫真"></a></li>
+                <li class="li-video"><a class="icon-video" href="/video" title="美女視頻"></a></li>
+                <li class="li-home on"><a class="icon-home" href="/" title="首頁"></a></li>
+                <li class=""><a class="icon-download" href="/download" title="桌布下載"></a></li>
+                <li class="li-info"><a class="icon-info" href="/info"></a></li>
             </ul>
         </nav>
         <!--menu end-->
@@ -31,4 +31,18 @@
     <!--fixedHdBg start-->
     <div class="fixedHdBg"></div>
     <!--fixedHdBg end-->
+    <!--共用輪播模組  start-->
+    <div class="th-sliderShow">
+        <div class="md-slideShow">
+            <ul class="pt-bannerList">
+                <li ng-repeat="homepage in homepages"><a href="{{homepage.image_url}}"><img src="{{homepagepPath}}{{homepage.filename}}"></a></li>
+                <!--<li><a href="javascript:;"><img src="images/1.jpg"></a></li>-->
+                <!--<li><a href="javascript:;"><img src="images/2.jpg"></a></li>-->
+                <!--<li><a href="javascript:;"><img src="images/3.jpg"></a></li>-->
+            </ul>
+            <a class="pt-prev" href="javascript:;"><span class="icon-prevBtn"></span></a>
+            <a class="pt-next" href="javascript:;"><span class="icon-nextBtn"></span></a>
+        </div>
+    </div>
+    <!--共用輪播模組  end-->
 </div>

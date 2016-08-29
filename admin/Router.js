@@ -5,15 +5,8 @@
 define(['angular', 'app', 'configs',
 	'controllers/UserListController',
     'controllers/ImportIMediaController',
-    'controllers/FeatureTranslationController',
-    'controllers/IntervalModeController',
-    'controllers/MonthlyReportController',
-    'controllers/CompareModeController',
-
-    'controllers/BarChart2Controller',
-    'controllers/LineChart2Controller',
-    'controllers/PieChart2Controller',
-    'controllers/FeatureTranslateRuleController',
+    'controllers/CarouselController',
+    'controllers/SungirlbbPhotoListController'
 
 ], function (angular, app, configs) {
 
@@ -26,62 +19,25 @@ define(['angular', 'app', 'configs',
 		$routeProvider
             .when('/',
                 {
-                    templateUrl: currentPath('/ImportIMedia.html'),
-                    controller: 'ImportIMediaController'
+                    templateUrl: currentPath('/SungirlbbPhotoList.html'),
+                    controller: 'SungirlbbPhotoListController'
                 })
             .when('/user/list',
                 {
                     templateUrl: currentPath('/UserList.html'),
                     controller: 'UserListController'
                 })
-            .when('/reports/media-event/import',
+            .when('/carousel',
                 {
-                    templateUrl: currentPath('/ImportIMedia.html'),
-                    controller: 'ImportIMediaController'
+                    templateUrl: currentPath('/Carousel.html'),
+                    controller: 'CarouselController'
                 })
-            .when('/reports/media-event/feature-translate',
-                {
-                    templateUrl: currentPath('/FeatureTranslation.html'),
-                    controller: 'FeatureTranslationController'
-                })
-            .when( '/reports/media-event/interval-mode',
-                {
-                    templateUrl: currentPath('/IntervalMode.html'),
-                    controller: 'IntervalModeController'
-                })
-            .when('/reports/media-event/monthly-report',
-                {
-                    templateUrl: currentPath('/MonthlyReport.html'),
-                    controller: 'MonthlyReportController'
-                })
-            .when('/reports/media-event/compare-mode',
-                {
-                    templateUrl: currentPath('/CompareMode.html'),
-                    controller: 'CompareModeController'
-                })
+            .when('/photoList',
+            {
+                templateUrl: currentPath('/SungirlbbPhotoList.html'),
+                controller: 'SungirlbbPhotoListController'
+            })
 
-
-            // test directives.
-            .when('/directives/barchart2',
-                {
-                    templateUrl: currentPath('/BarChart2.html'),
-                    controller: 'BarChart2Controller'
-                })
-            .when('/directives/linechart2',
-                {
-                    templateUrl: currentPath('/LineChart2.html'),
-                    controller: 'LineChart2Controller'
-                })
-            .when('/directives/piechart2',
-                {
-                    templateUrl: currentPath('/PieChart2.html'),
-                    controller: 'PieChart2Controller'
-                })
-            .when('/collections/feature',
-                {
-                    templateUrl: currentPath('/FeatureTranslateRule.html'),
-                    controller: 'FeatureTranslateRuleController'
-                })
 			.otherwise({redirectTo: '/'});
 
 	}]);

@@ -36,31 +36,15 @@ try
 				array( "PUT: 	/group/platformuser/password/<groupId:\d+>/user/<userId:\d+>", 				"UserGroupController", "updateUserPassword(<groupId>,<userId>)"),
                 array( "GET: 	/export/<category:\w+>/<entityType:[\w\-]+>/<querystring:\w+>",					"ExportController", "export(<category>,<entityType>,<querystring>)"),
 
-                // IMedia event raw data.
-                array( "GET: 	/imediaevent/self-all/box/list/<pageNo:\d+>/<pageSize:\d+>",					    "IMediaEventRawController", "getBoxListSelf(<pageNo>,<pageSize>)"),
-                array( "GET: 	/imediaevent/self-all/box/<boxId:[\w\-\%]+>/cam/list/<pageNo:\d+>/<pageSize:\d+>",		"IMediaEventRawController", "getCamListSelfByBoxId(<boxId>, <pageNo>,<pageSize>)"),
+                //website
+                array( "POST: 	/website/<position:\w+>/upload",								            "CarouselImageController", "upLoadHomePage(<position>)"),
+                array( "DELETE: /website/<position:\w+>/<id:\d+>",											"CarouselImageController", "removeHomePage(<position>,<id>)"),
+                array( "GET: 	/website/<position:\w+>/image/<pageNo:\d+>/<pageSize:\d+>",			   		"CarouselImageController", "getByBanner(<position>,<pageNo>,<pageSize>)"),
+                array( "PUT:    /website/<position:\w+>/modify/<id:\d+>",                                   "CarouselImageController", "updateUrl(<position>,<id>)"),
 
-                // IMedia event raw data.
-                array( "GET: 	/imediaevent/translate-rule/list/<pageNo:\d+>/<pageSize:\d+>",					        "IMediaEventTranslateRuleController", "getList(<pageNo>, <pageSize>)"),
-                array( "GET: 	/imediaevent/translate-rule/<id:\d+>",					                                "IMediaEventTranslateRuleController", "getById(<id>)"),
-                array( "DELETE: /imediaevent/translate-rule/<id:\d+>",					                                "IMediaEventTranslateRuleController", "deleteById(<id>)"),
-                array( "PUT: 	/imediaevent/translate-rule/<id:\d+>",					                                "IMediaEventTranslateRuleController", "updateById(<id>)"),
-                array( "POST: 	/imediaevent/translate-rule",					                                        "IMediaEventTranslateRuleController", "create()"),
+                //sungirlbb
+                array( "GET: 	/sungirl/<category:\w+>/list/<pageNo:\d+>/<pageSize:\d+>/<querystring:\w+>",			   		"SungirlbbListController", "getSungirlList(<category>,<pageNo>,<pageSize>)"),
 
-                //  Raw file
-                array( "POST: 	/rawfile/imediaevent",					                                    "RawFileController", "receiveFile()"),
-                array( "GET: 	/rawfile/imediaevent/list/<pageNo:\d+>/<pageSize:\d+>",					    "RawFileController", "getList(<pageNo>,<pageSize>)"),
-
-                array( "DELETE: /rawfile/imediaevent/self-all", 											"RawFileController", "removeSelfAll()"),
-                array( "DELETE: /rawfile/imediaevent/<id:\d+>", 											    "RawFileController", "remove(<id>)"),
-
-                // Test
-                array( "GET: 	/test/piechart",						                                    "TestController", "getPieChart()"),
-                array( "GET: 	/test/barchart",						                                    "TestController", "getBarChart()"),
-                array( "GET: 	/test/curvechart",						                                    "TestController", "getCurveChart()"),
-
-                // standard case page
-                array( "GET: 	/standard/case/get/<pageNo:\d+>/<pageSize:\d+>/<querystring:\w+>",		"StandardCasePageController", "searchByClient(<pageNo>,<pageSize>,<querystring>)"),
 			),
 			'default' => array( "DefaultController", "getNotFound" )
 		)

@@ -102,7 +102,7 @@ module.exports = function (grunt) {
 
     concat: {
       options: {
-        banner: '<%= banner %>\n<%= jqueryCheck %>\n<%= jqueryVersionCheck %>',
+        banner: '<%= homepage %>\n<%= jqueryCheck %>\n<%= jqueryVersionCheck %>',
         stripBanners: false
       },
       bootstrap: {
@@ -251,7 +251,7 @@ module.exports = function (grunt) {
     usebanner: {
       options: {
         position: 'top',
-        banner: '<%= banner %>'
+        banner: '<%= homepage %>'
       },
       files: {
         src: 'dist/css/*.css'
@@ -474,7 +474,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build-customizer', ['build-customizer-html', 'build-raw-files']);
   grunt.registerTask('build-customizer-html', 'jade');
   grunt.registerTask('build-raw-files', 'Add scripts/less files to customizer.', function () {
-    var banner = grunt.template.process('<%= banner %>');
+    var banner = grunt.template.process('<%= homepage %>');
     generateRawFiles(grunt, banner);
   });
 

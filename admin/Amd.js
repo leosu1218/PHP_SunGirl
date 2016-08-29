@@ -6,6 +6,9 @@ require.config({
 	paths: {
 		
 		jquery 		: '../common/libs/jquery-2.1.4.min',
+        jqueryui 	: '../admin/libs/components/jquery-ui-1.11.4/jquery-ui.min',
+        timepicker 	: '../admin/libs/components/jquery-ui-1.11.4/jquery-ui-timepicker-addon',
+        sliderAccess 	: '../admin/libs/components/jquery-ui-1.11.4/jquery-ui-sliderAccess',
 		text 		: '../common/libs/require-text',
 		bootstrap 	: '../common/libs/bootstrap.min',
         angular 	: '../common/libs/angular.min',
@@ -36,16 +39,12 @@ require.config({
 		ngFileUpload : '../admin/libs/ng-file-upload',
 		ngFileUploadShim : '../admin/libs/ng-file-upload-shim',
 		ngTree : '../admin/libs/angular-ui-tree',
+
+        createController 	: '../admin/controllers/CreateController',
 		
 		Class 		: '../common/libs/ooad-class-1.0',
 		ControllerCreator : '../common/libs/controller-creator-1.0',
 		SbControllerCreator: 'libs/SbControllerCreator',
-
-        FullProportionCollection : 'collections/FullProportionCollection',
-        GenderDailyCollection: 'collections/GenderDailyCollection',
-        FullHourlyCollection: 'collections/FullHourlyCollection',
-        GenderHourlyCollection: 'collections/GenderHourlyCollection',
-        FeatureTranslateRule: 'collections/FeatureTranslateRule',
 
 
 		app 		: 'App',
@@ -55,9 +54,10 @@ require.config({
 	},
 	shim: {
         jquery 		: { exports: '$'},
+        jqueryui 		: { exports: 'jqueryui' ,  deps: ['jquery'] },
         EventHero 	: { exports: 'EventHero'},
 		bootstrap 	: { exports: 'bootstrap', 	deps: ['jquery'] },
-		angular 	: { exports: 'angular', },
+		angular 	: { exports: 'angular' },
 		ngAnimate 	: { exports: 'ngAnimate', 	deps: ['angular'] },
 		ngCookies 	: { exports: 'ngCookies', 	deps: ['angular'] },
         ngCookiesHelper: { exports: 'ngCookiesHelper', 	deps: ['ngCookies'] },
@@ -74,7 +74,11 @@ require.config({
         Chart2      : { exports: 'Chart2' },
 
         // Sb ui modules.
-        metisMenu   : { exports: 'metisMenu', 	deps: ['jquery'] },   
+        metisMenu   : { exports: 'metisMenu', 	deps: ['jquery'] },
+
+        //timepicker
+        timepicker 		: { exports: 'timepicker' ,  deps: ['jqueryui'] },
+        sliderAccess 		: { exports: 'sliderAccess' ,  deps: ['jqueryui'] },
 
         // Extends angularJs tools.
         Class: { exports: 'Class' },
@@ -101,12 +105,10 @@ require(
 		'app',
 		'Router',
 
-        // Collections.
-        'FullProportionCollection',
-        'GenderDailyCollection',
-        'FullHourlyCollection',
-        'GenderHourlyCollection',
-        'FeatureTranslateRule',
+        'jquery',
+        'jqueryui',
+        'timepicker',
+        //'sliderAccess',
 
 		// Common directive.
         'directives/SbAlert/controller',
@@ -116,43 +118,21 @@ require(
         'directives/SbUpload/controller',
         'directives/Compile/controller',
         'directives/SbTree/controller',
-        'directives/SbBarChart2/controller',
-        'directives/SbLineChart2/controller',
-        'directives/SbPieChart2/controller',
-        'directives/HoursTable/controller',
+        'directives/AdminImageList/controller',
+        'directives/UrlInput/controller',
+        'directives/DatetimePicker/controller',
 
         // App directive.
         'directives/SbHeader/controller',
         'directives/SbFooter/controller',
 
-        // App selector directive.
-        'directives/IntervalSelectorTools/controller',
-        'directives/BetweenDateSelector/controller',
-        'directives/DeviceSelector/controller',
-        'directives/MonthlySelectorTools/controller',
-        'directives/OnlyMonthSelector/controller',
-        'directives/CompareSelectorTools/controller',
-
-        // App chart directive.
-        'directives/FullHourlyChart/controller',
-        'directives/FullProportionChart/controller',
-        'directives/GenderDailyChart/controller',
-        'directives/GenderHourlyChart/controller',
-
-        'directives/MonthlySelectorTools/controller',
-        'directives/OnlyMonthSelector/controller',
-        'directives/GenderMonthlyChart/controller',
-
-        'directives/SbBarChart2/controller',
-        'directives/SbLineChart2/controller',
-        'directives/SbPieChart2/controller',
-        'directives/SbCalendar/controller',
-
         // App other directive.
         'directives/UserRegisterForm/controller',
         'directives/UserChangePasswordForm/controller',
         'directives/ChangePassword/controller',
-        'directives/FeatureTranslationForm/controller'
+
+
+
 	], 
 	function (angular) {
 		var AppRoot = angular.element(document.getElementById('ng-app'));

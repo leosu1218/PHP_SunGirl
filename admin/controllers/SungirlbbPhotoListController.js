@@ -1,0 +1,84 @@
+/*global define*/
+'use strict';
+
+define(['angular', 'app', 'createController', 'message', 'configs'], 
+	function (angular, app, createController, message, configs) {
+
+	return app.controller("SungirlbbPhotoListController", createController(function ( $scope , $routeParams, $http, $timeout ) {
+
+            $scope.pageSize = 10;
+            $scope.search = {};
+            $scope.search.keyword = null;
+            $scope.search.order = "DESC";
+            $scope.enableSelect = $scope.enableSelect || false;
+            $scope.api = configs.api.sungirl + "/photo/list";
+
+            /**
+             * Reload list
+             */
+            $scope.reloadList = function() {
+                $scope.table.loadByUrl( $scope.api, 1, $scope.pageSize,
+                    function(data, status, headers, config) {
+                        // Handle reload table success;
+                    },
+                    function(data, status, headers, config) {
+                        $scope.alert.show("無法搜尋到資料");
+                    },
+                    $scope.search
+                );
+            };
+
+            //table
+            $timeout(function(){
+
+                //main table for admin to using.
+                $scope.table.configField([
+                    {attribute: "id",               name: "ID"},
+                    {attribute: "title",            name: "標題"},
+                    {attribute: "banner_name",       name: "主圖",     htmlFilter:displayCoverPhoto},
+                    {attribute: "ready_time",        name: "上架時間"},
+                    {attribute: "create_time",     name: "建立時間"},
+                    {attribute: "control",          name: "控制",
+                        controls: [
+                            {type: "button", icon: "fa-search", click: viewDetail }
+                        ]
+                    }
+                ]);
+
+                $scope.reloadList();
+                $scope.table.rowClickCss({'background-color':'#FFDDAA'});
+                $scope.table.onRowClick(function(row, field, instance) {
+                    if($scope.enableSelect) {
+                        if(field != 'control') {
+                            instance.selected();
+                        }
+                    }
+                });
+                $scope.instance = $scope.table;
+            }, 100);
+
+
+            /**
+             * Display cover photo field.
+             *
+             * @param value
+             * @param row
+             * @returns {string}
+             */
+            function displayCoverPhoto(value, row) {
+                return '<img src="' + configs.path.material + 'image/' + value + '"  height="50" />';
+            }
+
+            /**
+             * view the item's details.
+             */
+            function viewDetail(row, value) {
+                if(typeof($scope.detail) == 'function') {
+                    $scope.detail(row, value);
+                }
+            }
+
+		})
+	);
+	
+});

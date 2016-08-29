@@ -13,11 +13,12 @@
 	            	ng-click="onRowClick(record, field.attribute)"
 	            	ng-style="record.style">
 
-                    <div ng-bind-html="field.htmlFilter(record[field.attribute], record)"></div>
+                    <div compile="field.htmlFilter(record[field.attribute], record)"></div>
 	            	
 	            	<span class="tooltip-btns">
 	                    <span ng-repeat="control in field.controls | filter:tooltipFilter">
-	                        <button class="btn btn-info btn-circle" ng-click="control.click(record, field.attribute)">
+	                        <button class="btn btn-info btn-circle" ng-click="control.click(record, field.attribute)" 
+	                        	ng-hide="field.hideHandler()">
 	                        	<i class="fa {{control.icon}}"></i>
 	                        </button>
 	                    </span>                   
@@ -26,7 +27,7 @@
 		            {{
 		            	( field.filter(record[field.attribute], record) || ( field.htmlFilter(record[field.attribute], record) ? "" : record[field.attribute]) )
 		            }}
-	            </td>       
+	            </td>           
 	        </tr>                       
 	    </tbody>
 	</table>

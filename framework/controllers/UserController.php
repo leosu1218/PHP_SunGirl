@@ -13,7 +13,6 @@
 
 require_once( FRAMEWORK_PATH . 'system/controllers/RestController.php' );
 require_once( FRAMEWORK_PATH . 'collections/PlatformUserCollection.php' );
-include_once( FRAMEWORK_PATH . 'collections/IMediaEventTranslateRuleCollection.php' );
 require_once( FRAMEWORK_PATH . 'extends/GeneralSession.php' );
 
 class UserController extends RestController {
@@ -397,28 +396,7 @@ class UserController extends RestController {
         return $this->getUserInfo($user->toRecord());
    	}
 
-    /**
-     * Append default rules for the new user.
-     * @param PlatformUser $user
-     * @throws AuthorizationException
-     */
-	public function setDefaultRules(PlatformUser $user) {
 
-		$attributes = array("user_id", "name", "type");
-		$values = array(
-            array("user_id" => $user->id, "name" => "y:1, g:1", "type" => "0-17歲男性"),
-            array("user_id" => $user->id, "name" => "y:1, g:2", "type" => "0-17歲女性"),
-            array("user_id" => $user->id, "name" => "y:2, g:1", "type" => "18-31歲男性"),
-            array("user_id" => $user->id, "name" => "y:2, g:2", "type" => "18-31歲女性"),
-            array("user_id" => $user->id, "name" => "y:3, g:1", "type" => "32-59歲男性"),
-            array("user_id" => $user->id, "name" => "y:3, g:2", "type" => "32-59歲女性"),
-            array("user_id" => $user->id, "name" => "y:4, g:1", "type" => "60-100歲男性"),
-            array("user_id" => $user->id, "name" => "y:4, g:2", "type" => "60-100歲女性"),
-		);
-
-		$rules = new IMediaEventTranslateRuleCollection();
-		$rules->multipleCreate($attributes, $values);
-	}
 
    	/**
    	*	GET: 	/user/list/<pageNo:\d+>/<pageSize:\d+>

@@ -46,8 +46,6 @@ define(['angular', 'app'], function (angular, app) {
                 $("html body").animate({scrollTop:0});
             });
 
-            //輪播
-            $(".th-sliderShow").sliderShow();
 
             //album,video,download開啟popup
             $(".pt-cont").on("click",function(){

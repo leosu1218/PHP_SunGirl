@@ -17,7 +17,8 @@ define('DB_NAME', 'aems');
 define('DB_CONNECT_NAME', 'aems');
 define('DB_LOGIN_USRE', 'aems');
 define('DB_LOGIN_PASSWORD', 'laskdnmcanv');
-
+//sungirlbb
+//mjas#fskm&a
 /********************************************
  *
  * 時區定義

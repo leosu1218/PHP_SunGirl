@@ -90,8 +90,7 @@ class IMediaEventUploadHelper extends UploadHelper {
         return array(
             self::OCTET_STREAM_MIME,
             self::MS_EXCEL_MIME,
-            self::TEXT_PLAIN_MIME,
-            self::TEXT_CSV_MIME
+            self::TEXT_PLAIN_MIME
         );
     }
 
