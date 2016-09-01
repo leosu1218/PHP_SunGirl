@@ -6,7 +6,9 @@ define(['angular', 'app', 'configs',
 	'controllers/UserListController',
     'controllers/ImportIMediaController',
     'controllers/CarouselController',
-    'controllers/SungirlbbPhotoListController'
+    'controllers/SungirlbbPhotoListController',
+    'controllers/CreateSungirlPhotoController',
+    'controllers/SungirlPhotoController'
 
 ], function (angular, app, configs) {
 
@@ -36,6 +38,16 @@ define(['angular', 'app', 'configs',
             {
                 templateUrl: currentPath('/SungirlbbPhotoList.html'),
                 controller: 'SungirlbbPhotoListController'
+            })
+            .when('/photoList/create',
+            {
+                templateUrl: currentPath('/CreateSungirlPhoto.html'),
+                controller: 'CreateSungirlPhotoController'
+            })
+            .when('/photoList/view',
+            {
+                templateUrl: currentPath('/SungirlPhoto.html'),
+                controller: 'SungirlPhotoController'
             })
 
 			.otherwise({redirectTo: '/'});

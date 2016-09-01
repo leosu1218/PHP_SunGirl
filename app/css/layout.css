@@ -45,7 +45,7 @@ nav ul li:before, .th-share ul li:before, .footer-content .md-iconlink .btn-shar
 @keyframes hover-color { 0% { background-position: 0% 88%; }
   50% { background-position: 100% 45%; }
   100% { background-position: 0% 88%; } }
-html { font-family: "Microsoft JhengHei"; }
+html { font-family: "Microsoft JhengHei",sans-serif; }
 html *, html *:before, html *:after { text-decoration: none; }
 
 html, body { width: 100%; min-width: 1280px; }
@@ -58,7 +58,7 @@ main:after { content: " "; display: block; clear: both; }
 
 .fixedHdBg { position: fixed; top: 0; left: 0; width: 100%; min-width: 320px; height: 55px; z-index: 9900; }
 
-.header-content h1 { display: block; width: 200px; height: 55px; position: fixed; left: 50%; top: 0; z-index: 9999; margin-left: -100px; background-image: url("../images/logo.svg"); background-size: auto 100%; background-position: center; background-repeat: no-repeat; }
+.header-content h1 { display: block; width: 200px; height: 55px; position: fixed; left: 50%; top: 0; z-index: 9999; margin-left: -100px; background-image: url("../../images/logo.svg"); background-size: auto 100%; background-position: center; background-repeat: no-repeat; }
 .header-content h1 a { display: block; width: 100%; height: 100%; text-indent: 100%; overflow: hidden; }
 
 nav { position: fixed; left: 0; top: 0; z-index: 9999; }
@@ -217,7 +217,7 @@ nav ul .li-info { display: none; }
 .th-album .md-list .pt-cont figure figcaption i:before, .th-video .md-list .pt-cont figure figcaption i:before, .th-download .md-list .pt-cont figure figcaption i:before { color: #FFF; font-size: 1.3rem; position: absolute; left: 10px; top: 11px; }
 .th-album .md-list .pt-cont figure figcaption .times, .th-video .md-list .pt-cont figure figcaption .times, .th-download .md-list .pt-cont figure figcaption .times { font-size: 0.75rem; color: #FFF; position: absolute; right: 10px; top: 0; }
 .th-album .md-list .pt-cont figure figcaption .times i, .th-video .md-list .pt-cont figure figcaption .times i, .th-download .md-list .pt-cont figure figcaption .times i { font-size: 0.75rem; }
-.th-album .md-list .pt-cont figure figcaption button, .th-video .md-list .pt-cont figure figcaption button, .th-download .md-list .pt-cont figure figcaption button { width: 70%; height: 40px; outline: none; background-color: transparent; color: #FFF; border: none; font-size: 16px; font-size: 1rem; line-height: 20px; line-height: 1.25rem; top: 25%; bottom: auto; font-family: "Microsoft JhengHei"; cursor: pointer; }
+.th-album .md-list .pt-cont figure figcaption button, .th-video .md-list .pt-cont figure figcaption button, .th-download .md-list .pt-cont figure figcaption button { width: 70%; height: 40px; outline: none; background-color: transparent; color: #FFF; border: none; font-size: 16px; font-size: 1rem; line-height: 20px; line-height: 1.25rem; top: 25%; bottom: auto; font-family: "Microsoft JhengHei",sans-serif; cursor: pointer; }
 .th-album .md-list .pt-cont figure figcaption button:before, .th-video .md-list .pt-cont figure figcaption button:before, .th-download .md-list .pt-cont figure figcaption button:before { content: ""; display: block; height: 100%; width: 100%; border: 2px solid #FFF; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; -moz-border-radius: 30px; -webkit-border-radius: 30px; border-radius: 30px; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60); opacity: 0.6; filter: alpha(opacity=60); position: absolute; top: 0; left: 0; z-index: -1; background-color: transparent; -moz-transition: background-color, 0.3s; -o-transition: background-color, 0.3s; -webkit-transition: background-color, 0.3s; transition: background-color, 0.3s; }
 .th-album .md-list .pt-cont figure figcaption button:hover, .th-video .md-list .pt-cont figure figcaption button:hover, .th-download .md-list .pt-cont figure figcaption button:hover { color: #FF52C3; }
 .th-album .md-list .pt-cont figure figcaption button:hover:before, .th-video .md-list .pt-cont figure figcaption button:hover:before, .th-download .md-list .pt-cont figure figcaption button:hover:before { background-color: white; -moz-transition: background-color, 0.3s; -o-transition: background-color, 0.3s; -webkit-transition: background-color, 0.3s; transition: background-color, 0.3s; }
@@ -315,19 +315,18 @@ main.index { background-color: #ffeef2; }
 @media (max-width: 640px) { .main-content .main-aside .video-cont figure .btn { width: 80px; height: 80px; } }
 .md-album-popup .albumCont { max-width: 860px; margin: 0 auto; width: 100%; }
 .md-album-popup .gp-ptCont { position: relative; max-width: 860px; margin: 0 auto; overflow: hidden; }
-.md-album-popup .pt-bannerList { position: relative; z-index: 0; }
-.md-album-popup .pt-bannerList li { position: absolute; top: 0; width: 100%; }
+.md-album-popup .pt-bannerList { position: relative; z-index: 0; padding-top: 574px; }
+.md-album-popup .pt-bannerList li { position: absolute; top: 0; width: 100%; height: 100%; overflow: hidden; text-align: center; }
 .md-album-popup .pt-bannerList li.active { z-index: 10; filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false); opacity: 1; }
-.md-album-popup .pt-bannerList li img { width: 100%; top: 0; left: 0; }
+.md-album-popup .pt-bannerList li img { display: inline-block; top: 0; left: 0; }
 .md-album-popup .btnCont { margin-top: 15px; max-width: 860px; margin: 15px auto; }
 .md-album-popup .pt-btnList { min-width: 100%; line-height: 0; position: relative; }
-.md-album-popup .pt-btnList li { display: inline-block; width: 20%; cursor: pointer; background-color: transparent; margin: 0 -4px 10px 0; position: relative; }
+.md-album-popup .pt-btnList li { float: left; width: 20%; height: 150px; cursor: pointer; background-color: transparent; margin: 0 0 20px 0; position: relative; overflow: hidden; }
 .md-album-popup .pt-btnList li:hover:before { filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=10); opacity: 0.1; filter: alpha(opacity=10); -moz-transition: all, 0.5s; -o-transition: all, 0.5s; -webkit-transition: all, 0.5s; transition: all, 0.5s; }
 .md-album-popup .pt-btnList li:before, .md-album-popup .pt-btnList li:after { content: ""; display: block; position: absolute; }
 .md-album-popup .pt-btnList li:before { width: 100%; height: 100%; top: 0; z-index: 5; left: 0; background-color: #000; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40); opacity: 0.4; filter: alpha(opacity=40); -moz-transition: all, 0.5s; -o-transition: all, 0.5s; -webkit-transition: all, 0.5s; transition: all, 0.5s; }
-.md-album-popup .pt-btnList li:after { left: 50%; bottom: -3px; height: 3px; width: 0; -moz-transition: all, 0.3s; -o-transition: all, 0.3s; -webkit-transition: all, 0.3s; transition: all, 0.3s; }
-.md-album-popup .pt-btnList li img { display: block; width: 100%; position: relative; z-index: 0; }
-.md-album-popup .pt-btnList li.on:after { width: 100%; background-color: #FF52C3; left: 0; -moz-transition: all, 0.4s; -o-transition: all, 0.4s; -webkit-transition: all, 0.4s; transition: all, 0.4s; }
+.md-album-popup .pt-btnList li img { display: block; position: relative; z-index: 0; }
+.md-album-popup .pt-btnList li.on:before { filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=10); opacity: 0.1; filter: alpha(opacity=10); -moz-transition: all, 0.5s; -o-transition: all, 0.5s; -webkit-transition: all, 0.5s; transition: all, 0.5s; }
 .md-album-popup .pt-prev, .md-album-popup .pt-next { display: block; width: 40px; height: 50px; position: absolute; z-index: 999; top: 50%; margin-top: -25px; z-index: 5; }
 .md-album-popup .pt-prev:after, .md-album-popup .pt-next:after { content: ""; display: block; width: 40px; height: 50px; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30); opacity: 0.3; filter: alpha(opacity=30); background-color: #000; position: absolute; top: 0; left: 0; z-index: -1; }
 .md-album-popup .pt-prev > span, .md-album-popup .pt-next > span { position: relative; z-index: 20; }
@@ -339,7 +338,7 @@ main.index { background-color: #ffeef2; }
 
 @media (max-width: 980px) { .md-album-popup .gp-ptCont { display: none; }
   .md-album-popup .btnCont { padding: 0 3%; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
-  .md-album-popup .pt-btnList li { width: 100%; margin: 0 -4px 3% 0; }
+  .md-album-popup .pt-btnList li { width: 100%; height: auto; margin: 0 -4px 3% 0; }
   .md-album-popup .pt-btnList li:before, .md-album-popup .pt-btnList li:after { display: none; } }
 .md-video-popup .videoCont { max-width: 860px; margin: 0 auto; width: 100%; }
 .md-video-popup .pt-videoCont { max-width: 860px; margin: 0 auto; width: 100%; }

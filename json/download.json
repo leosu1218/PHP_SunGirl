@@ -115,5 +115,21 @@
       "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/7_720x1280.jpg",
       "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/7_1080x1920.jpg"
     ]
+  }],
+  "008" : [{
+    "model_id"  : "008",
+    "title"     : "8月比基尼宝贝写真",
+    "computer"  : [
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/8_1024x768.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/8_1280x1024.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/8_1366x768.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/8_1920x1080.jpg"
+    ],
+    "mobile"    : [
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/8_640x960.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/8_640x1136.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/8_720x1280.jpg",
+      "http://www.sungirlbaby.com/wp-content/themes/sungirlbaby/common/calendar/desktop/images/dn/8_1080x1920.jpg"
+    ]
   }]
 }

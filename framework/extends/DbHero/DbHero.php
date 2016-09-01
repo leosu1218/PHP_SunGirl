@@ -1,7 +1,5 @@
 <?php 
 
-require_once(dirname(__FILE__) . "/../LoggerHelper.php");
-
 /**
 *	A base on PDO module tool that for simple db query function.
 *	the module help developer coding flexibility, speed with db query. 
@@ -102,8 +100,6 @@ class DbHero
 
 	private $lastInsertId = -1;
 
-    private $log = null;
-
 	/**
 	*	initial by database name.
 	*
@@ -111,7 +107,6 @@ class DbHero
 	*/
 	public function __construct( $select ) {
 		try {
-
 			$config = $this->_config();
             if(is_string($select)) {
                 if(!is_array($config)) {
@@ -167,17 +162,6 @@ class DbHero
 			throw new Exception($e->getMessage(), 1);
 		}
 	}
-
-    private function debug($sql, $params) {
-//        if(is_null($this->log)) {
-//            $this->log = new LoggerHelper("db", dirname(__FILE__) . "/");
-//        }
-//
-//        $this->log->debug(json_encode(array(
-//            "sql" => $sql,
-//            "params" => $params
-//        )));
-    }
 
 	/**
 	*	config connection datas.
@@ -698,7 +682,6 @@ class DbHero
 		
 		// execute the sentence.
 		$this->_stmt->execute();
-        $this->debug($sql, $params);
 	}
 
 	/**
@@ -811,7 +794,6 @@ class DbHero
 		
 		// execute the sentence.
 		$stmt->execute();
-        $this->debug($sql, $params);
 		$counter = $stmt->rowCount();		
 		return $counter;		
 	}
@@ -860,7 +842,6 @@ class DbHero
 		// prepare sentence.
 		$stmt = $this->_conn->prepare( $sql );
 		$stmt->execute( $params );
-        $this->debug($sql, $params);
 
 		return $stmt->rowCount();
 	}
@@ -962,7 +943,6 @@ class DbHero
 		// prepare sentence.
 		$stmt = $this->_conn->prepare( $sql );
 		$stmt->execute( $params );
-        $this->debug($sql, $params);
 
 		return $stmt->rowCount();	
 	}
@@ -1024,7 +1004,6 @@ class DbHero
 		// prepare sentence.
 		$stmt = $this->_conn->prepare( $sql );
 		$stmt->execute( $params );
-        $this->debug($sql, $params);
 
 		return $stmt->rowCount();
 	}
@@ -1044,11 +1023,10 @@ class DbHero
 
 		$record = 0;
 
-		while( $row = $this->_stmt->fetch( PDO::FETCH_ASSOC ) ) {
+		while( $row = $this->_stmt->fetch( PDO::FETCH_ASSOC ) )
+		{
 			$record[] = $row;
 		}
-
-        $this->debug($sql, $params);
 
 		return $record;
 	}
@@ -1130,8 +1108,6 @@ class DbHero
 			
 		$stmt = $this->_conn->prepare( $sql );
 		$stmt->execute( $params );
-        $this->debug($sql, $params);
-		
 		return $stmt->rowCount();
 	}
 
@@ -1178,7 +1154,6 @@ class DbHero
 		// prepare sentence.
 		$stmt = $this->_conn->prepare( $sql );
 		$stmt->execute( $params );
-        $this->debug($sql, $params);
 
 		$this->lastInsertId = $this->_conn->lastInsertId();
 

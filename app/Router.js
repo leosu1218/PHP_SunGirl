@@ -26,7 +26,7 @@ define(['angular', 'app',
 			.when('/download', {templateUrl: currentPath('/Download.html'), controller: 'DownloadController'})
             .when('/info', {templateUrl: currentPath('/Info.html'), controller: 'InfoController'})
 			.otherwise({redirectTo: '/'});
-        //$locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(true);
 
 	}]);
 });

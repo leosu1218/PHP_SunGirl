@@ -14,7 +14,8 @@ define(function (require) {
 			user: "/api/user",
 			groupPlatformuser:"/api/group/platformuser",
             website:"api/website/",
-            sungirl:"api/sungirl"
+            sungirl:"api/sungirl",
+            photoUpload:"api/sungirl/photo/upload"
 		},
 		path: {
 			appRoot:"/admin",

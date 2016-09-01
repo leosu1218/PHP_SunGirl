@@ -191,7 +191,7 @@ abstract class DbCollection implements Collection {
 	*	@param int   $pageSize   限制資料分頁的大小
 	*	@return array 資料集, 如果找不到回傳array( ... "totalPage" => 0);
 	*/
-	public function getRecords($attributes=array(), $pageNo=1, $pageSize=1000, $filter=array()) {
+	public function getRecords($attributes=array(),  $pageNo=1, $pageSize=1000, $filter=array() , $order='') {
 
 		if(empty($attributes)) {
 			$attributes = array("1" => 1);
@@ -204,7 +204,7 @@ abstract class DbCollection implements Collection {
 			array_push($where, "$name=:$name");
 			$param[":$name"] = $attribute;
 		}
-		return $this->innerRecordsByCondition($where, $param, $pageNo, $pageSize, $filter);
+		return $this->innerRecordsByCondition($where, $param, $pageNo, $pageSize, $filter , $order);
 	}
 
 	/**
@@ -216,7 +216,7 @@ abstract class DbCollection implements Collection {
 	*	@param int   $pageSize   限制資料分頁的大小
 	*	@return array 資料集, 如果找不到回傳array( ... "totalPage" => 0);
 	*/
-	private function innerRecordsByCondition($conditions, $paramters, $pageNo, $pageSize, $filter=array()) {
+	private function innerRecordsByCondition($conditions, $paramters, $pageNo, $pageSize, $filter=array() , $order) {
 		$result = $this->getDefaultRecords($pageNo, $pageSize);	
 		$this->dao->fresh();
 
@@ -228,6 +228,9 @@ abstract class DbCollection implements Collection {
 			$this->dao->from($this->getTable());
 			$this->dao->where($conditions, $paramters);
 
+            if(!empty($order)) {
+                $this->dao->order($this->getTable() . '.' . $order);
+            }
 			$result["recordCount"] = $this->dao->queryCount();
 			$result["totalPage"] = intval(ceil($result["recordCount"] / $pageSize));
 
@@ -247,8 +250,8 @@ abstract class DbCollection implements Collection {
 	*	@param int   $pageSize   限制資料分頁的大小
 	*	@return array 資料集, 如果找不到回傳array( ... "totalPage" => 0);
 	*/
-	public function getRecordsByCondition($conditions, $paramters, $pageNo, $pageSize, $filter=array()) {		
-		return $this->innerRecordsByCondition($conditions, $paramters, $pageNo, $pageSize, $filter);
+	public function getRecordsByCondition($conditions, $paramters, $pageNo, $pageSize, $filter=array() , $order='') {
+		return $this->innerRecordsByCondition($conditions, $paramters, $pageNo, $pageSize, $filter , $order);
 	}
 
 	/**
@@ -369,7 +372,7 @@ abstract class DbCollection implements Collection {
 	*/
 	public function create($attributes) {
 		if($this->validAttributes($attributes)) {
-			$this->dao->fresh();
+			$this->dao->fresh();			
 			$effectRow = $this->dao->insert($this->getTable(), $attributes);
 			return $effectRow;
 		}
@@ -420,6 +423,7 @@ abstract class DbCollection implements Collection {
 		}
 	}
 
+	// TODO TEST
 	/**	
 	*	Destory models by id list
 	*
@@ -441,6 +445,22 @@ abstract class DbCollection implements Collection {
 
 		return $this->dao->delete($table, $where, $params);
 	}
+
+    public function multipleDestroyByCondition($condition) {
+        $this->dao->fresh();
+
+        $table 	= $this->getTable();
+        $where 	= array("and");
+        $params = array();
+        $primaryKey = $this->getPrimaryAttribute();
+
+        foreach($condition as $key => $value) {
+            array_push($where, "$key=:$value");
+            $params[":$value"] = $value;
+        }
+
+        return $this->dao->delete($table, $where, $params);
+    }
 
     /**
      * Update attribute by id list.

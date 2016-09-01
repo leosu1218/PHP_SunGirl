@@ -40,7 +40,8 @@ define(['angular', 'app', 'createController', 'message', 'configs'],
                     {attribute: "create_time",     name: "建立時間"},
                     {attribute: "control",          name: "控制",
                         controls: [
-                            {type: "button", icon: "fa-search", click: viewDetail }
+                            {type: "button", icon: "fa-search", click: viewDetail },
+                            {type: "button", icon: "fa-times", click: removePhoto }
                         ]
                     }
                 ]);
@@ -76,6 +77,21 @@ define(['angular', 'app', 'createController', 'message', 'configs'],
                 if(typeof($scope.detail) == 'function') {
                     $scope.detail(row, value);
                 }
+            }
+
+            function removePhoto(row, value) {
+                var api = configs.api.sungirl +"/delete/" + row.id;
+                var request = {
+                    method: 'DELETE',
+                    url: api,
+                    headers: configs.api.headers
+                };
+
+                $http(request).success(function(data, status, headers, config) {
+                    $scope.reloadList();
+                }).error(function(data, status, headers, config){
+                    $scope.alert.show("圖片刪除有誤，請再次嘗試。");
+                });
             }
 
 		})

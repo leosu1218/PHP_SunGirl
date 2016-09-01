@@ -127,12 +127,11 @@ abstract class PermissionDbCollection extends DbCollection implements Permission
 	*	@param mixed $attributes 資料要符合該屬性
 	*	@param int 	 $pageNo     限制資料分頁的頁碼
 	*	@param int   $pageSize   限制資料分頁的大小
-     *  @param array $filter     select欄位
 	*	@return array 資料集, 如果找不到回傳array( ... "totalPage" => 0);
 	*/
-	public function getRecords($attributes=array(), $pageNo=1, $pageSize=1000, $filter=array()) {
+	public function getRecords($attributes=array(), $pageNo=1, $pageSize=1000, $filter=array() , $order='') {
 		if($this->hasPermission("list")) {
-			return parent::getRecords($attributes, $pageNo, $pageSize, $filter);
+			return parent::getRecords($attributes, $pageNo, $pageSize, $filter, $order);
 		}		
 		else {
 			throw new AuthorizationException("Actor haven't permission to list model in " . $this->getTable(), 1);		
@@ -314,6 +313,15 @@ abstract class PermissionDbCollection extends DbCollection implements Permission
     public function multipleDestroyById($ids) {
         if($this->hasPermission("delete")) {
             return parent::multipleDestroyById($ids);
+        }
+        else {
+            throw new AuthorizationException("Actor haven't permission to destroy model in " . $this->getTable(), 1);
+        }
+    }
+
+    public function multipleDestroyByCondition($condition) {
+        if($this->hasPermission("delete")) {
+            return parent::multipleDestroyByCondition($condition);
         }
         else {
             throw new AuthorizationException("Actor haven't permission to destroy model in " . $this->getTable(), 1);

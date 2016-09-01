@@ -100,24 +100,7 @@ define(['angular', 'app'], function (angular, app) {
                 }
             }).scroll();
         },500);
-
-        //變動輪播箭頭的lineheight in firefox
-        var oBrowser;
-        function DetectBrowser(){
-            var sAgent = navigator.userAgent.toLowerCase();
-            this.isIE = (sAgent.indexOf("msie")!=-1); //IE6.0-7
-            this.isFF = (sAgent.indexOf("firefox")!=-1);//firefox
-            this.isSa = (sAgent.indexOf("safari")!=-1);//safari
-            this.isOp = (sAgent.indexOf("opera")!=-1);//opera
-            this.isNN = (sAgent.indexOf("netscape")!=-1);//netscape
-            this.isCh = (sAgent.indexOf("chrome")!=-1);//chrome
-            this.isMa = this.isIE;//marthon
-            this.isOther = (!this.isIE && !this.isFF && !this.isSa && !this.isOp && !this.isNN && !this.isSa);//unknown Browser
-        }
-        oBrowser = new DetectBrowser();
-        if(oBrowser.isFF) {
-            $(".icon-nextBtn").css({"line-height":"56px"});
-        }
+        
 
         //相簿,影音,下載hover
         $(".md-list figure").hover(function(){

@@ -44,7 +44,10 @@ try
 
                 //sungirlbb
                 array( "GET: 	/sungirl/<category:\w+>/list/<pageNo:\d+>/<pageSize:\d+>/<querystring:\w+>",			   		"SungirlbbListController", "getSungirlList(<category>,<pageNo>,<pageSize>)"),
-
+                array( "POST: 	/sungirl/photo/upload",								                          "SungirlbbListController", "upLoadPhoto()"),
+                array( "POST: 	/sungirl/<category:\w+>/create",								                  "SungirlbbListController", "create(<category>)"),
+                array( "DELETE: /sungirl/photo/delete/<filename:\w+>/<type:\w+>",											"SungirlbbListController", "removePhoto(<filename>,<type>)"),
+                array( "DELETE: /sungirl/delete/<id:\d+>",											"SungirlbbListController", "removeSungirl(<id>)"),
 			),
 			'default' => array( "DefaultController", "getNotFound" )
 		)

@@ -186,7 +186,7 @@ abstract class UploadHelper {
             $currentPath    = $path . $name;
             $tempPath       = $file["tmp_name"];
             $width          = imagesx($src);
-            $high           = imagesy($src);
+            $height         = imagesy($src);
             $saveResult     = move_uploaded_file($tempPath, $currentPath);
 
             if(!$saveResult) {
@@ -199,7 +199,7 @@ abstract class UploadHelper {
                 "type" => $file['type'],
                 "size" => $file["size"],
                 "error" => $file["error"],
-                "high"     => $high,
+                "height"     => $height,
                 "width" =>$width
             );
 
