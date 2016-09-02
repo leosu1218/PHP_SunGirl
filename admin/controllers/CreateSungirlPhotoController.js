@@ -5,7 +5,9 @@ define(['angular', 'app', 'createController', 'configs'],
 	function (angular, app, createController, configs) {
 
 	return app.controller("CreateSungirlPhotoController",
-		createController(function ($scope, $timeout, $http, $location) {	
+		createController(function ($scope, $timeout, $http, $location) {
+
+
 			//message tool
 			function Message( msg )
 			{
@@ -15,19 +17,7 @@ define(['angular', 'app', 'createController', 'configs'],
 		    	};	
 			}
 
-			//table tools
-			function TableLoad( table_instance, records, pageNo, pageSize )
-        	{
- 				var count  = records.length;
 
- 				$scope[table_instance].load({
-					records: records,
-					recordCount: (count||0),
-					totalPage: Math.ceil((count||0)/pageSize),
-					pageNo: pageNo,
-					pageSize: pageSize,
-				});
-        	}
 
         	//upload instance setting tool
         	function UploadInstanceSetting( upload_instance, api, label, isMutiple, successCallback )
@@ -45,9 +35,12 @@ define(['angular', 'app', 'createController', 'configs'],
 				$scope.productCoverImage = [];
 				$scope.productImages = [];
 				$scope.youtube_url = "";
+                $scope.home_state = '0';
+
 			};
 
-			$scope.cancel();
+            $scope.cancel();
+
 
         	function deleteImageUi( file, type ){
 				if(type=="productCoverImage"){
@@ -183,7 +176,8 @@ define(['angular', 'app', 'createController', 'configs'],
 				if( result.isOk )
 				{
 					var formData = getDataForm();
-					Product_create(formData);
+                    console.log(formData);
+					//Product_create(formData);
 				}
 				else
 				{

@@ -36,6 +36,17 @@ class SungirlbbListController extends RestController {
         return $records;
     }
 
+    public function getSungirlById($category,$id){
+        $collection = new SungirlbbListCollection;
+        $record = $collection->getRecordById($id);
+        if($category == 'photo'){
+            $photoCollection = new SungirlbbPhotoCollection();
+            $photorecords = $photoCollection->getRecords( array("sungirlbb_id"=> $id ));
+            $record['photo'] = $photorecords['records'];
+        }
+        return $record;
+    }
+
     /**
      * @param $category
      * @param $pageNo
@@ -116,6 +127,37 @@ class SungirlbbListController extends RestController {
         return $result;
     }
 
+    public function update( $category ,$id) {
+        $result = array();
+        PlatformUser::instanceBySession();
+        $collection = new SungirlbbListCollection;
+        $model = $collection->getById($id);
+        $attribute = $this->receiver;
+        unset($attribute['photo']);
+        $model->update($attribute);
+        if( $category == "photo" ){
+            $photos = $this->params("photo");
+            $photoCollection = new SungirlbbPhotoCollection;
+
+            $photoCout = $photoCollection->multipleDestroyByCondition(array('sungirlbb_id' => $id));
+            if($photoCout == 0) {
+                throw new DbOperationException("Delete sungirlbb_photo record to DB fail.");
+            }
+            foreach($photos as $key => $photo){
+                $result["effectRow"] = $photoCollection->create( array('sungirlbb_id' => $id , 'photo_name' => $photo['fileName'] ,'height' => $photo['height'] ,'width' => $photo['width'] ) );
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * DELETE: /sungirl/delete/<id:\d+>
+     * @param $id
+     * @return array
+     * @throws AuthorizationException
+     * @throws DbOperationException
+     */
     public function removeSungirl($id){
         PlatformUser::instanceBySession();
         $collection = new SungirlbbListCollection;

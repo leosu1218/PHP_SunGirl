@@ -44,8 +44,10 @@ try
 
                 //sungirlbb
                 array( "GET: 	/sungirl/<category:\w+>/list/<pageNo:\d+>/<pageSize:\d+>/<querystring:\w+>",			   		"SungirlbbListController", "getSungirlList(<category>,<pageNo>,<pageSize>)"),
+                array( "GET: 	/sungirl/<category:\w+>/<id:\d+>",			   		"SungirlbbListController", "getSungirlById(<category>,<id>)"),
                 array( "POST: 	/sungirl/photo/upload",								                          "SungirlbbListController", "upLoadPhoto()"),
                 array( "POST: 	/sungirl/<category:\w+>/create",								                  "SungirlbbListController", "create(<category>)"),
+                array( "PUT: 	/sungirl/<category:\w+>/update/<id:\d+>",								                  "SungirlbbListController", "update(<category>,<id>)"),
                 array( "DELETE: /sungirl/photo/delete/<filename:\w+>/<type:\w+>",											"SungirlbbListController", "removePhoto(<filename>,<type>)"),
                 array( "DELETE: /sungirl/delete/<id:\d+>",											"SungirlbbListController", "removeSungirl(<id>)"),
 			),

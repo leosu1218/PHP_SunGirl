@@ -5,7 +5,28 @@ define(['angular', 'app', 'createController', 'configs'],
 	function (angular, app, createController, configs) {
 
 	return app.controller("SungirlPhotoController",
-		createController(function ($scope, $timeout, $http, $location) {	
+		createController(function ($scope, $timeout, $http, $location ,$routeParams) {
+            $scope.productCoverImage = [];
+            $scope.productImages = [];
+
+            var url = configs.api.sungirl + "/photo/" + $routeParams.id ;
+            var req = {
+                method: 'GET',
+                url: url,
+                headers: configs.api.headers
+            };
+            $http(req).success(function(data, status, headers, config) {
+                $scope.title = data.title;
+                $scope.home_state = data.home_state;
+                $scope.ready_time.setdate(data.ready_time);
+                $scope.productCoverImage.push({'fileName' : data.banner_name});
+                for(var key in data.photo){
+                    $scope.productImages.push({'fileName' : data.photo[key].photo_name , 'height' : data.photo[key].height, 'width' : data.photo[key].width})
+                }
+            }).error(function(data, status, headers, config) {
+                alert("找不到資料");
+            });
+
 			//message tool
 			function Message( msg )
 			{
@@ -15,19 +36,6 @@ define(['angular', 'app', 'createController', 'configs'],
 		    	};	
 			}
 
-			//table tools
-			function TableLoad( table_instance, records, pageNo, pageSize )
-        	{
- 				var count  = records.length;
-
- 				$scope[table_instance].load({
-					records: records,
-					recordCount: (count||0),
-					totalPage: Math.ceil((count||0)/pageSize),
-					pageNo: pageNo,
-					pageSize: pageSize,
-				});
-        	}
 
         	//upload instance setting tool
         	function UploadInstanceSetting( upload_instance, api, label, isMutiple, successCallback )
@@ -93,7 +101,7 @@ define(['angular', 'app', 'createController', 'configs'],
 					}
 				);
 
-				$scope.productImages = [];
+
 				var image_api = configs.api.photoUpload;
 				var image_label = "上傳";
 				var image_isMutiple = true;
@@ -136,10 +144,10 @@ define(['angular', 'app', 'createController', 'configs'],
 			}
 
 
-			function Product_create( formData ){
-				var url = configs.api.sungirl + "/photo/create";
+			function sungirl_update( formData ){
+				var url = configs.api.sungirl + "/photo/update/" + $routeParams.id;
 				var req = {
-				    method: 'POST',
+				    method: 'PUT',
 				    url: url,
 				    headers: configs.api.headers,
 				    data: formData
@@ -149,16 +157,6 @@ define(['angular', 'app', 'createController', 'configs'],
 				}).error(function(error) {
 					Message("建立相簿發生問題請重新嘗試");
 				});
-			}
-
-			function GetIds( fields ){
-				var result = [];
-				for(var index in fields){
-					if( fields[index]['global']==0 ){
-						result.push(fields[index]["id"]);
-					}
-				}
-				return result;
 			}
 
 			function getDataForm(){
@@ -183,7 +181,7 @@ define(['angular', 'app', 'createController', 'configs'],
 				if( result.isOk )
 				{
 					var formData = getDataForm();
-					Product_create(formData);
+                    sungirl_update(formData);
 				}
 				else
 				{

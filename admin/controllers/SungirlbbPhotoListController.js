@@ -13,6 +13,7 @@ define(['angular', 'app', 'createController', 'message', 'configs'],
             $scope.enableSelect = $scope.enableSelect || false;
             $scope.api = configs.api.sungirl + "/photo/list";
 
+
             /**
              * Reload list
              */
@@ -74,9 +75,7 @@ define(['angular', 'app', 'createController', 'message', 'configs'],
              * view the item's details.
              */
             function viewDetail(row, value) {
-                if(typeof($scope.detail) == 'function') {
-                    $scope.detail(row, value);
-                }
+                location.href = "#!/photoList/view/"+row.id;
             }
 
             function removePhoto(row, value) {

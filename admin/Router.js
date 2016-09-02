@@ -4,7 +4,6 @@
 // set up base routes
 define(['angular', 'app', 'configs',
 	'controllers/UserListController',
-    'controllers/ImportIMediaController',
     'controllers/CarouselController',
     'controllers/SungirlbbPhotoListController',
     'controllers/CreateSungirlPhotoController',
@@ -44,7 +43,7 @@ define(['angular', 'app', 'configs',
                 templateUrl: currentPath('/CreateSungirlPhoto.html'),
                 controller: 'CreateSungirlPhotoController'
             })
-            .when('/photoList/view',
+            .when('/photoList/view/:id',
             {
                 templateUrl: currentPath('/SungirlPhoto.html'),
                 controller: 'SungirlPhotoController'
