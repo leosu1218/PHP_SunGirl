@@ -14,7 +14,7 @@
 	<div class="row">
         <div class="col-lg-12">
         	<strong>
-            	<h2 class="page-header" style="font-family:微軟正黑體; font-weight:500">寫真相簿上架</h2>
+            	<h2 class="page-header" style="font-family:微軟正黑體; font-weight:500">影音上架上架</h2>
             </strong>
         </div>
     </div>
@@ -25,7 +25,7 @@
 
 			<div class="panel panel-info" >
 	            <div class="panel-heading panel_heading_style">
-	                <label class="text_style">相簿標題名稱</label>
+	                <label class="text_style">影音上架標題名稱</label>
 	            </div>
 	            <!-- /.panel-heading -->
 	            <div class="panel-body">
@@ -72,7 +72,7 @@
 
 			<div class="panel panel-info">
 	            <div class="panel-heading">
-	                <label class="text_style">寫真相簿</label>
+	                <label class="text_style">影音設定</label>
 	            </div>
 	            <!-- /.panel-heading -->
 	            <div class="panel-body">
@@ -80,7 +80,7 @@
 	            	<div class="panel panel-default">
 			            <div class="panel-heading">
 					                <div class="row">
-					                	<label class="col-lg-3 text_style" >相簿主圖  <br>上版圖片限定900X625</label>
+					                	<label class="col-lg-3 text_style" >影音主圖  <br>上版圖片限定900X625</label>
 					                	<sb-upload class="col-lg-1" instance="productCoverImageUpload"></sb-upload><br>
 					                </div>
 					            </div>
@@ -120,35 +120,15 @@
 			        	<div class="panel panel-default">
 				            <div class="panel-heading">
 				            	<div class="row">
-					                <label class="col-lg-3">相簿圖片</label>
-                                    <sb-upload
-                                            class="col-lg-1"
-                                            instance="productImageUpload">
-                                    </sb-upload>
+					                <label class="col-lg-3">影音連結</label>
 				            	</div>
 				            </div>
 
 				            <div class="panel-body">
 					            	<div class="row">
-					            		<div ng-repeat="file in productImages">
-					            			<div class="col-lg-3">
-						                        <div style="width:100%;">
-						                            <div class="panel panel-default" ng-style="file.style">
-						                                <div class="panel-body">
-						                                    <image style="width:100%;" ng-src="upload/photo/{{file.fileName}}"/>
-						                                </div>
-						                                <ul class="panel-footer btn" 
-						                                	ng-click="deleteImage( file, 'productImages' )" 
-						                                	style="height:40px; width:100%; background-color:#FFFAFA;">
-						                                    <span 	class="glyphicon glyphicon-remove" 
-						                                    		style="color:#FF8888;" 
-						                                    		aria-hidden="true">
-						                                    </span>
-						                                </ul>
-						                            </div>
-						                        </div>
-				                    		</div>
-					            		</div>	
+                                        <div class ="col-lg-6">
+                                        <input class="form-control"  ng-model="video" type="text" />
+                                            </div>
 					            	</div>
 				            </div>
 				        </div>
@@ -177,7 +157,7 @@
 					role="group">
 					
 					<div class="btn-group" role="group" style="width:50%;">
-				    	<input type="submit"  style="width:100%;" class="btn btn-primary" ng-click="create()" value="新增">
+				    	<input type="submit"  style="width:100%;" class="btn btn-primary" ng-click="create()" value="新增"></input>
 					</div>		  
 					<div class="btn-group" role="group" style="width:50%;">
 				    	<button ng-click="cancel()"  style="width:100%;" type="button" class="btn btn-default">取消</button>

@@ -7,7 +7,13 @@ define(['angular', 'app', 'configs',
     'controllers/CarouselController',
     'controllers/SungirlbbPhotoListController',
     'controllers/CreateSungirlPhotoController',
-    'controllers/SungirlPhotoController'
+    'controllers/SungirlPhotoController',
+    'controllers/SungirlbbVideoListController',
+    'controllers/CreateSungirlVideoController',
+    'controllers/SungirlVideoController',
+    'controllers/SungirlbbDownloadListController',
+    'controllers/CreateSungirlDownloadController',
+    'controllers/SungirlDownloadController'
 
 ], function (angular, app, configs) {
 
@@ -47,6 +53,36 @@ define(['angular', 'app', 'configs',
             {
                 templateUrl: currentPath('/SungirlPhoto.html'),
                 controller: 'SungirlPhotoController'
+            })
+            .when('/videoList',
+            {
+                templateUrl: currentPath('/SungirlbbVideoList.html'),
+                controller: 'SungirlbbVideoListController'
+            })
+            .when('/videoList/create',
+            {
+                templateUrl: currentPath('/CreateSungirlVideo.html'),
+                controller: 'CreateSungirlVideoController'
+            })
+            .when('/videoList/view/:id',
+            {
+                templateUrl: currentPath('/SungirlVideo.html'),
+                controller: 'SungirlVideoController'
+            })
+            .when('/downloadList',
+            {
+                templateUrl: currentPath('/SungirlbbDownloadList.html'),
+                controller: 'SungirlbbDownloadListController'
+            })
+            .when('/downloadList/create',
+            {
+                templateUrl: currentPath('/CreateSungirlDownload.html'),
+                controller: 'CreateSungirlDownloadController'
+            })
+            .when('/downloadList/view/:id',
+            {
+                templateUrl: currentPath('/SungirlDownload.html'),
+                controller: 'SungirlDownloadController'
             })
 
 			.otherwise({redirectTo: '/'});

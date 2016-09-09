@@ -18,8 +18,9 @@ require.config({
 		ngSanitize : '../common/libs/angular-sanitize-1.3.0.min',
 		ngTouch : 	'../common/libs/angular-touch-1.3.0.min',
 		ngBootstrap : '../common/libs/ui-bootstrap-tpls-0.13.0',
-        sunGirl : '../app/libs/sungirl',
+        sunGirl : '../app/libs/sungirl_common_ready',
         sunGirlPlugin : '../app/libs/sungirl_plugin',
+        sunGirlAct : '../app/libs/commonAct',
 
 		app: 'App',
 		common: '../common',
@@ -29,8 +30,9 @@ require.config({
 	shim: {
 		smoothscroll: { exports: 'smoothscroll' },
 		jquery: { exports: '$'},
-        sunGirl: { exports: 'sunGirl', deps: ['jquery']},
-        sunGirlPlugin: { exports: 'sunGirlPlugin', deps: ['sunGirl']},
+        sunGirl: { exports: 'sunGirl',  deps: ['sunGirlPlugin']},
+        sunGirlPlugin: { exports: 'sunGirlPlugin', deps: ['sunGirlAct']},
+        sunGirlAct: { exports: 'sunGirlAct',  deps: ['jquery']},
 		//bootstrap: { exports: 'bootstrap', deps: ['jquery'] },
 		angular: { exports: 'angular', },
 		ngAnimate: { exports: 'ngAnimate', deps: ['angular'] },
@@ -61,6 +63,7 @@ require(
         'smoothscroll',
         'sunGirl',
         'sunGirlPlugin',
+        'sunGirlAct',
 
         // Directives
         'directives/AppHeader/controller',

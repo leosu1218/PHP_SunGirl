@@ -1,5 +1,7 @@
 $(function(){
     var shareTimer;
+    var window_W = $(window).width();
+    //處理browser resize後的回歸預設
     function resizeRest(){
         //右上角icon share reset
         var displayVaule = $(this).innerWidth()>=980 ? "block" : "none";
@@ -20,8 +22,13 @@ $(function(){
     resizeRest();
     //拉伸browser後將style回歸預設
     $(window).resize(function(){  
-        clearTimeout(shareTimer);
-        shareTimer = setTimeout(resizeRest, 50);
+        if(window_W != $(window).width()){
+            clearTimeout(shareTimer);
+            shareTimer = setTimeout(resizeRest, 50);            
+        }
     }).resize();
-
+    $("#backBtn").click(function(e){
+        e.preventDefault();
+        window.history.go(-1);
+    });
 });

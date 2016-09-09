@@ -43,12 +43,13 @@ define(['angular', 'app', 'text!directives/AppHeader/view.html','configs'], func
                     //輪播
                     $(".th-sliderShow").sliderShow();
 
-                    $(".icon-share").on("click", function () {
+                    //共用  右上角m版icon開關
+                    $(".icon-share").on("click",function(){
                         $(".th-share ul").slideToggle(300);
                         return false;
                     });
 
-                    //變動輪播箭頭的lineheight in firefox
+                    //共用  變動輪播箭頭的lineheight in firefox
                     var oBrowser;
                     function DetectBrowser(){
                         var sAgent = navigator.userAgent.toLowerCase();

@@ -8,6 +8,7 @@ define(function (require) {
 			logoutPlatform: "/api/user/logout",
 			loginPlatform: "/api/user/login",
 			userSelf: "/api/user/self",
+
 		},
 		path: {
 			appRoot:"/adLogin",

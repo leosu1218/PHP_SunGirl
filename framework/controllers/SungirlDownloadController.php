@@ -1,7 +1,6 @@
 <?php
 require_once( FRAMEWORK_PATH . 'system/controllers/RestController.php' );
-require_once( FRAMEWORK_PATH . 'collections/SungirlbbListCollection.php' );
-require_once( FRAMEWORK_PATH . 'collections/SungirlbbPhotoCollection.php' );
+require_once( FRAMEWORK_PATH . 'collections/SungirlDownloadCollection.php' );
 require_once( FRAMEWORK_PATH . 'extends/UploadHelper/SungirlUploadHelper.php' );
 require_once( FRAMEWORK_PATH . 'collections/PlatformUserCollection.php' );
 
@@ -18,20 +17,19 @@ require_once( FRAMEWORK_PATH . 'collections/PlatformUserCollection.php' );
  * @author Rex Chen <rexchen@synctech-infinity.com>,Jai Chien <jaichien@syncte-infinity.com>
  * @copyright 2015 synctech.com
  */
-class SungirlbbListController extends RestController {
+class SungirlDownloadController extends RestController {
 
 
     /**
-     * GET: 	/sungirl/<category:\w+>/list/<pageNo:\d+>/<pageSize:\d+>/<querystring:\w+>
-     * @param $category
+     * GET: 	/sungirlDownload//list/<pageNo:\d+>/<pageSize:\d+>/<querystring:\w+>
      * @param $pageNo
      * @param $pageSize
      * @return array
      * @throws AuthorizationException
      */
-    public function getSungirlList($category , $pageNo, $pageSize ){
-        $collection = new SungirlbbListCollection;
-        $records = $collection->getRecords( array("category"=> $category ) ,$pageNo,$pageSize);
+    public function getSungirlDownload($pageNo, $pageSize ){
+        $collection = new SungirlDownloadCollection;
+        $records = $collection->getRecords(array(),$pageNo,$pageSize);
         return $records;
     }
 
@@ -43,14 +41,9 @@ class SungirlbbListController extends RestController {
      * @throws AuthorizationException
      */
 
-    public function getSungirlById($category,$id){
-        $collection = new SungirlbbListCollection;
+    public function getSungirlDownloadById($id){
+        $collection = new SungirlDownloadCollection;
         $record = $collection->getRecordById($id);
-        if($category == 'photo'){
-            $photoCollection = new SungirlbbPhotoCollection();
-            $photorecords = $photoCollection->getRecords( array("sungirlbb_id"=> $id ));
-            $record['photo'] = $photorecords['records'];
-        }
         return $record;
     }
 

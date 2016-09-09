@@ -1,62 +1,50 @@
 <?php
 /**
-*	HomePageImageCollection code.
+*	HomePageImage code.
 *
 *	PHP version 5.3
 *
-*	@category Collection
+*	@category Model
 *	@package HomePageImage
 *	@author Rex chen <rexchen@synctech.ebiz.tw>
 *	@author Jai Chien <jaichien@synctech.ebiz.tw>
 *	@copyright 2015 synctech.com
 */
 
-require_once( FRAMEWORK_PATH . 'system/collections/PermissionDbCollection.php' );
-require_once( FRAMEWORK_PATH . 'models/SungirlbbDownload.php' );
+require_once( FRAMEWORK_PATH . 'system/models/PermissionDbModel.php' );
 
 /**
-*	HomePageImageCollection Access HomePageImage entity collection.
+*	HomePageImage code.
 *
 *	PHP version 5.3
 *
-*	@category Collection
+*	@category Model
 *	@package HomePageImage
 *	@author Rex chen <rexchen@synctech.ebiz.tw>
 *	@author Jai Chien <jaichien@synctech.ebiz.tw>
 *	@copyright 2015 synctech.com
 */
-class SungirlbbDownloadCollection extends PermissionDbCollection {
-	
-	/* PermissionDbCollection abstract methods. */
 
+class SungirlDownload extends PermissionDbModel {
+
+	/* 	Method of interface User. */	
 	/**
 	*	Get the entity table name.
 	*
 	*	@return string 
 	*/
 	public function getTable() {
-		return "sungirlbb_download";
+		return "sungirl_download";
 	}
 
-	public function getModelName() {
-		return "SungirlbbDownload";
-	}
-
-	/**
+   	/**
 	*	Check attributes is valid.
 	*
 	*	@param $attributes 	array Attributes want to checked.
 	*	@return bool 		If valid return true.
 	*/
 	public function validAttributes($attributes) {
-
-
-		if(array_key_exists("id", $attributes) ){
-        	throw new Exception("Error cannot has param [id]", 1);
-        }
-
-        return true;
-
+		return true;
 	}
 
 	/**
@@ -67,9 +55,7 @@ class SungirlbbDownloadCollection extends PermissionDbCollection {
 	public function getPrimaryAttribute() {
 		return "id";
 	}
-
+	
 }
-
-
 
 ?>

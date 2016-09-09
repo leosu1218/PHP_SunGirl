@@ -1,9 +1,23 @@
 /*global define*/
 'use strict';
 
-define(['angular', 'app'], function (angular, app) {
+define(['angular', 'app' , 'configs'], function (angular, app , configs) {
 
-    return app.controller("AlbumController", function ($scope,$timeout) {
+    return app.controller("AlbumController", function ($scope, $timeout , $http) {
+        $scope.pageNo = 1;
+        $scope.pageSize = 12;
+
+        var url = configs.api.sungirl + "/photo/client/" + $scope.pageNo + '/' +  $scope.pageSize;
+        var req = {
+            method: 'GET',
+            url: url,
+            headers: configs.api.headers
+        };
+        $http(req).success(function(data, status, headers, config) {
+            console.log(data);
+        }).error(function(data, status, headers, config) {
+            alert("找不到資料");
+        });
 
         $timeout(function() {
             //輪播

@@ -15,6 +15,7 @@ define(function (require) {
 			groupPlatformuser:"/api/group/platformuser",
             website:"api/website/",
             sungirl:"api/sungirl",
+            sungirlDownload:"api/sungirlDownload",
             photoUpload:"api/sungirl/photo/upload"
 		},
 		path: {

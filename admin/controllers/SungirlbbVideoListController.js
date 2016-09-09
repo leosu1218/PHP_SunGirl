@@ -4,14 +4,14 @@
 define(['angular', 'app', 'createController', 'message', 'configs'], 
 	function (angular, app, createController, message, configs) {
 
-	return app.controller("SungirlbbPhotoListController", createController(function ( $scope , $routeParams, $http, $timeout ) {
+	return app.controller("SungirlbbVideoListController", createController(function ( $scope , $routeParams, $http, $timeout ) {
 
             $scope.pageSize = 10;
             $scope.search = {};
             $scope.search.keyword = null;
             $scope.search.order = "DESC";
             $scope.enableSelect = $scope.enableSelect || false;
-            $scope.api = configs.api.sungirl + "/photo/list";
+            $scope.api = configs.api.sungirl + "/video/list";
 
 
             /**
@@ -75,11 +75,11 @@ define(['angular', 'app', 'createController', 'message', 'configs'],
              * view the item's details.
              */
             function viewDetail(row, value) {
-                location.href = "#!/photoList/view/"+row.id;
+                location.href = "#!/videoList/view/"+row.id;
             }
 
             function removePhoto(row, value) {
-                var api = configs.api.sungirl +"/video/delete/" + row.id;
+                var api = configs.api.sungirl +"/delete/" + row.id;
                 var request = {
                     method: 'DELETE',
                     url: api,

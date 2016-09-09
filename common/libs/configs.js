@@ -15,6 +15,7 @@ define(function (require) {
 			groupbuyingUser: "/api/user/groupbuyingmaster",
 			productGroup: "/api/group/product",
             website:"api/website/",
+            sungirl: "/api/sungirl",
 			systemConfig:"/api/system/config",
 		},
 		path: {

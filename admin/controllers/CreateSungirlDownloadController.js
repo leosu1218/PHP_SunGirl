@@ -4,28 +4,9 @@
 define(['angular', 'app', 'createController', 'configs'], 
 	function (angular, app, createController, configs) {
 
-	return app.controller("SungirlPhotoController",
-		createController(function ($scope, $timeout, $http, $location ,$routeParams) {
-            $scope.productCoverImage = [];
-            $scope.productImages = [];
+	return app.controller("CreateSungirlDownloadController",
+		createController(function ($scope, $timeout, $http, $location) {
 
-            var url = configs.api.sungirl + "/photo/" + $routeParams.id ;
-            var req = {
-                method: 'GET',
-                url: url,
-                headers: configs.api.headers
-            };
-            $http(req).success(function(data, status, headers, config) {
-                $scope.title = data.title;
-                $scope.home_state = data.home_state;
-                $scope.ready_time.setdate(data.ready_time);
-                $scope.productCoverImage.push({'fileName' : data.banner_name});
-                for(var key in data.photo){
-                    $scope.productImages.push({'fileName' : data.photo[key].photo_name , 'height' : data.photo[key].height, 'width' : data.photo[key].width})
-                }
-            }).error(function(data, status, headers, config) {
-                alert("找不到資料");
-            });
 
 			//message tool
 			function Message( msg )
@@ -35,6 +16,7 @@ define(['angular', 'app', 'createController', 'configs'],
         			text : msg
 		    	};	
 			}
+
 
 
         	//upload instance setting tool
@@ -53,9 +35,12 @@ define(['angular', 'app', 'createController', 'configs'],
 				$scope.productCoverImage = [];
 				$scope.productImages = [];
 				$scope.youtube_url = "";
+                $scope.home_state = '0';
+
 			};
 
-			$scope.cancel();
+            $scope.cancel();
+
 
         	function deleteImageUi( file, type ){
 				if(type=="productCoverImage"){
@@ -101,21 +86,6 @@ define(['angular', 'app', 'createController', 'configs'],
 					}
 				);
 
-
-				var image_api = configs.api.photoUpload;
-				var image_label = "上傳";
-				var image_isMutiple = true;
-				UploadInstanceSetting(
-					"productImageUpload",
-					image_api,
-					image_label,
-					image_isMutiple,
-					function(data, status, headers, config){
-						var file = data.file;
-						file['style'] = "";
-						$scope.productImages.push(file);
-					}
-				);
 			},200);
 
 			function IsFillInForm(){
@@ -131,12 +101,7 @@ define(['angular', 'app', 'createController', 'configs'],
 
 				if( $scope.productCoverImageUpload.length == 0 )
 				{
-					return { isOk:false, msg:"商品封面 照片" };
-				}
-
-				if(  $scope.productImages.length == 0 )
-				{
-					return { isOk:false, msg:"商品描述 照片" };	
+					return { isOk:false, msg:"影音主圖  照片" };
 				}
 
 
@@ -144,16 +109,16 @@ define(['angular', 'app', 'createController', 'configs'],
 			}
 
 
-			function sungirl_update( formData ){
-				var url = configs.api.sungirl + "/viedo/update/" + $routeParams.id;
+			function sungirl_create( formData ){
+				var url = configs.api.sungirl + "/video/create";
 				var req = {
-				    method: 'PUT',
+				    method: 'POST',
 				    url: url,
 				    headers: configs.api.headers,
 				    data: formData
 				};
 				$http(req).success(function(result) {
-					location.href = "#!/photoList";
+					location.href = "#!/videoList";
 				}).error(function(error) {
 					Message("建立相簿發生問題請重新嘗試");
 				});
@@ -163,7 +128,7 @@ define(['angular', 'app', 'createController', 'configs'],
 				var formData = {
 						title 			: 	$scope.title,
                         banner_name  	: 	$scope.productCoverImage[0].fileName,
-						photo      :   $scope.productImages,
+						video      :   $scope.video,
                         home_state : $scope.home_state,
                         ready_time: $scope.ready_time.getdate()
 
@@ -181,7 +146,7 @@ define(['angular', 'app', 'createController', 'configs'],
 				if( result.isOk )
 				{
 					var formData = getDataForm();
-                    sungirl_update(formData);
+					sungirl_create(formData);
 				}
 				else
 				{

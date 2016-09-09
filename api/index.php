@@ -45,11 +45,15 @@ try
                 //sungirlbb
                 array( "GET: 	/sungirl/<category:\w+>/list/<pageNo:\d+>/<pageSize:\d+>/<querystring:\w+>",			   		"SungirlbbListController", "getSungirlList(<category>,<pageNo>,<pageSize>)"),
                 array( "GET: 	/sungirl/<category:\w+>/<id:\d+>",			   		"SungirlbbListController", "getSungirlById(<category>,<id>)"),
+                array( "GET: 	/sungirl/<category:\w+>/client/<pageNo:\d+>/<pageSize:\d+>",			   		"SungirlbbListController", "getSungirlClient(<category>,<pageNo>,<pageSize>)"),
                 array( "POST: 	/sungirl/photo/upload",								                          "SungirlbbListController", "upLoadPhoto()"),
                 array( "POST: 	/sungirl/<category:\w+>/create",								                  "SungirlbbListController", "create(<category>)"),
                 array( "PUT: 	/sungirl/<category:\w+>/update/<id:\d+>",								                  "SungirlbbListController", "update(<category>,<id>)"),
                 array( "DELETE: /sungirl/photo/delete/<filename:\w+>/<type:\w+>",											"SungirlbbListController", "removePhoto(<filename>,<type>)"),
-                array( "DELETE: /sungirl/delete/<id:\d+>",											"SungirlbbListController", "removeSungirl(<id>)"),
+                array( "DELETE: /sungirl/<category:\w+>/delete/<id:\d+>",											"SungirlbbListController", "removeSungirl(<category:\w+>,<id>)"),
+
+                //sungirlDownload
+                array( "GET: 	/sungirlDownload/list/<pageNo:\d+>/<pageSize:\d+>/<querystring:\w+>",			   		"SungirlDownloadController", "getSungirlDownload(<pageNo>,<pageSize>)"),
 			),
 			'default' => array( "DefaultController", "getNotFound" )
 		)
