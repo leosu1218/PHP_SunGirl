@@ -33,35 +33,28 @@ define(['angular', 'app', 'createController', 'configs'],
 			$scope.cancel = function(){
 				$scope.title = "";
 				$scope.productCoverImage = [];
-				$scope.productImages = [];
-				$scope.youtube_url = "";
-                $scope.home_state = '0';
-
+				$scope.pcImg1 = [];
+				$scope.pcImg2 = [];
+                $scope.pcImg3 = [];
+                $scope.pcImg4 = [];
+                $scope.mobileImg1 = [];
+                $scope.mobileImg2 = [];
+                $scope.mobileImg3 = [];
+                $scope.mobileImg4 = [];
 			};
 
             $scope.cancel();
 
-
-        	function deleteImageUi( file, type ){
-				if(type=="productCoverImage"){
-					$scope.productCoverImage = [];
-				}else{
-					var index = $scope[type].indexOf(file);
-					$scope[ type ].splice(index, 1);
-				}
-			}
-
-
 			$scope.deleteImage = function( file, type ){
                    var files = file.fileName.split(".");
-					var url = configs.api.sungirl + "/photo/delete/" + files[0] + "/" + files[1];
+					var url = configs.api.sungirl + "/download/deleteImg/" + files[0] + "/" + files[1];
 					var req = {
 					    method: 'DELETE',
 					    url: url,
 					    headers: configs.api.headers
 					};
 					$http(req).success(function(serverResult) {
-						deleteImageUi( file, type );
+                        $scope[type] = [];
 					}).error(function(error) {
 					    alert("Delete product image error");
 					});
@@ -71,14 +64,11 @@ define(['angular', 'app', 'createController', 'configs'],
 
 
 			$timeout(function(){
-				var cover_image_api = configs.api.photoUpload;
-				var cover_image_label = "上傳";
-				var cover_image_isMutiple = false;
 				UploadInstanceSetting(
 					"productCoverImageUpload",
-					cover_image_api,
-					cover_image_label,
-					cover_image_isMutiple,
+                    configs.api.photoUpload,
+					"上傳",
+                    false,
 					function(data, status, headers, config){
                         $scope.productCoverImage = [];
 						var file = data.file;
@@ -86,13 +76,109 @@ define(['angular', 'app', 'createController', 'configs'],
 					}
 				);
 
+                UploadInstanceSetting(
+                    "pcImg1Upload",
+                    configs.api.downloadUpload,
+                    "上傳",
+                    false,
+                    function(data, status, headers, config){
+                        $scope.pcImg1 = [];
+                        var file = data.file;
+                        $scope.pcImg1.push(file);
+                    }
+                );
+
+                UploadInstanceSetting(
+                    "pcImg2Upload",
+                    configs.api.downloadUpload,
+                    "上傳",
+                    false,
+                    function(data, status, headers, config){
+                        $scope.pcImg2 = [];
+                        var file = data.file;
+                        $scope.pcImg2.push(file);
+                    }
+                );
+
+                UploadInstanceSetting(
+                    "pcImg3Upload",
+                    configs.api.downloadUpload,
+                    "上傳",
+                    false,
+                    function(data, status, headers, config){
+                        $scope.pcImg3 = [];
+                        var file = data.file;
+                        $scope.pcImg3.push(file);
+                    }
+                );
+
+                UploadInstanceSetting(
+                    "pcImg4Upload",
+                    configs.api.downloadUpload,
+                    "上傳",
+                    false,
+                    function(data, status, headers, config){
+                        $scope.pcImg4 = [];
+                        var file = data.file;
+                        $scope.pcImg4.push(file);
+                    }
+                );
+
+                UploadInstanceSetting(
+                    "mobileImg1Upload",
+                    configs.api.downloadUpload,
+                    "上傳",
+                    false,
+                    function(data, status, headers, config){
+                        $scope.mobileImg1 = [];
+                        var file = data.file;
+                        $scope.mobileImg1.push(file);
+                    }
+                );
+
+                UploadInstanceSetting(
+                    "mobileImg2Upload",
+                    configs.api.downloadUpload,
+                    "上傳",
+                    false,
+                    function(data, status, headers, config){
+                        $scope.mobileImg2 = [];
+                        var file = data.file;
+                        $scope.mobileImg2.push(file);
+                    }
+                );
+
+                UploadInstanceSetting(
+                    "mobileImg3Upload",
+                    configs.api.downloadUpload,
+                    "上傳",
+                    false,
+                    function(data, status, headers, config){
+                        $scope.mobileImg3 = [];
+                        var file = data.file;
+                        $scope.mobileImg3.push(file);
+                    }
+                );
+
+                UploadInstanceSetting(
+                    "mobileImg4Upload",
+                    configs.api.downloadUpload,
+                    "上傳",
+                    false,
+                    function(data, status, headers, config){
+                        $scope.mobileImg4 = [];
+                        var file = data.file;
+                        $scope.mobileImg4.push(file);
+                    }
+                );
+
 			},200);
 
 			function IsFillInForm(){
 
 				if( $scope.title == "" )
 				{
-					return { isOk:false, msg:"商品名稱" };
+					return { isOk:false, msg:"影音標題" };
 				}
 
                 if(!$scope.ready_time.getdate()) {
@@ -110,7 +196,7 @@ define(['angular', 'app', 'createController', 'configs'],
 
 
 			function sungirl_create( formData ){
-				var url = configs.api.sungirl + "/video/create";
+				var url = configs.api.sungirl + "/create/download";
 				var req = {
 				    method: 'POST',
 				    url: url,
@@ -118,7 +204,7 @@ define(['angular', 'app', 'createController', 'configs'],
 				    data: formData
 				};
 				$http(req).success(function(result) {
-					location.href = "#!/videoList";
+					location.href = "#!/downloadList";
 				}).error(function(error) {
 					Message("建立相簿發生問題請重新嘗試");
 				});
@@ -126,21 +212,23 @@ define(['angular', 'app', 'createController', 'configs'],
 
 			function getDataForm(){
 				var formData = {
-						title 			: 	$scope.title,
-                        banner_name  	: 	$scope.productCoverImage[0].fileName,
-						video      :   $scope.video,
-                        home_state : $scope.home_state,
-                        ready_time: $scope.ready_time.getdate()
-
+					title 			: 	$scope.title,
+                    banner_name  	: 	$scope.productCoverImage[0].fileName,
+                    pc_img1         :   $scope.pcImg1[0].fileName,
+                    pc_img2         :   $scope.pcImg2[0].fileName,
+                    pc_img3         :   $scope.pcImg3[0].fileName,
+                    pc_img4         :   $scope.pcImg4[0].fileName,
+                    mobile_img1     :   $scope.mobileImg1[0].fileName,
+                    mobile_img2     :   $scope.mobileImg2[0].fileName,
+                    mobile_img3     :   $scope.mobileImg3[0].fileName,
+                    mobile_img4     :   $scope.mobileImg4[0].fileName,
+                    ready_time      : $scope.ready_time.getdate()
 				};
 				return formData;
 			}
 
-
-
 			//create flow
 			$scope.create = function(){
-
 				var result = IsFillInForm();
 				
 				if( result.isOk )
@@ -153,7 +241,6 @@ define(['angular', 'app', 'createController', 'configs'],
 					var text = "請確認 ["+ result.msg +"] 來完成表單!";
 					Message( text );
 				}
-
 			};
 
 	}));

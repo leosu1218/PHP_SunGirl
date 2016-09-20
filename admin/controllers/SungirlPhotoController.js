@@ -153,7 +153,7 @@ define(['angular', 'app', 'createController', 'configs'],
 				    data: formData
 				};
 				$http(req).success(function(result) {
-					location.href = "#!/photoList";
+					location.href = "#!/downloadList";
 				}).error(function(error) {
 					Message("建立相簿發生問題請重新嘗試");
 				});
@@ -174,7 +174,7 @@ define(['angular', 'app', 'createController', 'configs'],
 
 
 			//create flow
-			$scope.create = function(){
+			$scope.update = function(){
 
 				var result = IsFillInForm();
 				

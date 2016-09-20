@@ -1,7 +1,7 @@
 <?php
 require_once( FRAMEWORK_PATH . 'system/controllers/RestController.php' );
 require_once( FRAMEWORK_PATH . 'collections/SungirlDownloadCollection.php' );
-require_once( FRAMEWORK_PATH . 'extends/UploadHelper/SungirlUploadHelper.php' );
+require_once( FRAMEWORK_PATH . 'extends/UploadHelper/SungirlDownloadHelper.php' );
 require_once( FRAMEWORK_PATH . 'collections/PlatformUserCollection.php' );
 
 
@@ -28,13 +28,14 @@ class SungirlDownloadController extends RestController {
      * @throws AuthorizationException
      */
     public function getSungirlDownload($pageNo, $pageSize ){
+        PlatformUser::instanceBySession();
         $collection = new SungirlDownloadCollection;
         $records = $collection->getRecords(array(),$pageNo,$pageSize);
         return $records;
     }
 
     /**
-     * GET: 	/sungirl/<category:\w+>/<id:\d+>
+     * GET: 	/sungirl/download/getByid/<id:\d+>
      * @param $category
      * @param $id
      * @return array
@@ -42,61 +43,53 @@ class SungirlDownloadController extends RestController {
      */
 
     public function getSungirlDownloadById($id){
+        PlatformUser::instanceBySession();
         $collection = new SungirlDownloadCollection;
         $record = $collection->getRecordById($id);
         return $record;
     }
 
     /**
+     * GET: 	/sungirl/client/download/<pageNo:\d+>/<pageSize:\d+>
      * @param $category
      * @param $pageNo
      * @param $pageSize
      * @return array
      * @throws AuthorizationException
      */
-    public function getSungirlClient($category , $pageNo, $pageSize ){
-        $collection = new SungirlbbListCollection;
-        $photoCollection = new SungirlbbPhotoCollection();
-        $attributes = array();
-        if($category == 'all'){
-            $attributes['home_state'] = 0;
-        }else{
-            $attributes['category'] = $category;
-        }
-
-        $records = $collection->getRecords($attributes, $pageNo, $pageSize , array() , "ready_time DESC");
-        foreach($records['records'] as $key => $record){
-            $photorecords = $photoCollection->getRecords( array("sungirlbb_id"=>  $record['id'] ));
-            $records['records'][$key]['photo'] = $photorecords['records'];
-        }
-
+    public function getDownloadClient( $pageNo, $pageSize ){
+        $collection = new SungirlDownloadCollection;
+       // $records = $collection->getRecords(array(),$pageNo,$pageSize);
+        $search = array('ready_time' => date("Y-m-d"));
+        $records = $collection->searchRecords($pageNo, $pageSize, $search);
         return $records;
+
     }
 
     /**
-     * POST: 	/sungirl/photo/upload
+     * POST: 	/sungirl/downnload/upload
      * @param $position
      * @return array
      * @throws Exception
      * @throws UploadException
      */
-    public function upLoadPhoto(){
+    public function upLoadDownload(){
         PlatformUser::instanceBySession();
-        $upload = new SungirlUploadHelper ;
+        $upload = new SungirlDownloadHelper ;
         $result = $upload->receive();
 
         return $result;
     }
 
     /**
-     * DELETE: /sungirl/photo/delete/<filename:\w+>/<type:\w+>
+     * DELETE: /sungirl/download/deleteImg/<filename:\w+>/<type:\w+>
      * @param $filename
      * @param $type
      * @return array
      */
-    public function removePhoto($filename,$type){
+    public function removeDownloadImg($filename,$type){
         PlatformUser::instanceBySession();
-        $upload = new SungirlUploadHelper;
+        $upload = new SungirlDownloadHelper;
         $uploadData =  $upload ->removeByName($filename . "." . $type);
 
         return  array($uploadData);
@@ -104,82 +97,59 @@ class SungirlDownloadController extends RestController {
 
 
     /**
-     * POST: 	/sungirl/<category:\w+>/create
+     * POST: 	/sungirl/create/download
      * @param $category
      * @return array
      * @throws AuthorizationException
      * @throws InvalidAccessParamsException
      */
-    public function create( $category ) {
+    public function create( ) {
         $result = array();
         $user = PlatformUser::instanceBySession();
-        $collection = new SungirlbbListCollection;
+        $collection = new SungirlDownloadCollection;
         $attribute = $this->receiver;
-        unset($attribute['photo']);
         $attribute['create_time'] = date("Y-m-d H:i:s");
-        $attribute['category'] = $category;
         $result["effectRow"] = $collection->create( $attribute );
-        $result["id"] = $collection->lastCreated()->id;
-
-        if( $category == "photo" ){
-            $photos = $this->params("photo");
-            $photoCollection = new SungirlbbPhotoCollection;
-
-            foreach($photos as $key => $photo){
-                $result["effectRow"] = $photoCollection->create( array('sungirlbb_id' => $result["id"] , 'photo_name' => $photo['fileName'] ,'height' => $photo['height'] ,'width' => $photo['width'] ) );
-            }
-        }
-
-        return $result;
-    }
-
-    public function update( $category ,$id) {
-        $result = array();
-        PlatformUser::instanceBySession();
-        $collection = new SungirlbbListCollection;
-        $model = $collection->getById($id);
-        $attribute = $this->receiver;
-        unset($attribute['photo']);
-        $model->update($attribute);
-        if( $category == "photo" ){
-            $photos = $this->params("photo");
-            $photoCollection = new SungirlbbPhotoCollection;
-
-            $photoCout = $photoCollection->multipleDestroyByCondition(array('sungirlbb_id' => $id));
-            if($photoCout == 0) {
-                throw new DbOperationException("Delete sungirlbb_photo record to DB fail.");
-            }
-            foreach($photos as $key => $photo){
-                $result["effectRow"] = $photoCollection->create( array('sungirlbb_id' => $id , 'photo_name' => $photo['fileName'] ,'height' => $photo['height'] ,'width' => $photo['width'] ) );
-            }
-        }
 
         return $result;
     }
 
     /**
-     * DELETE: /sungirl/delete/<id:\d+>
+     * PUT: 	/sungirl/update/download/<id:\d+>
+     * @param $category
+     * @param $id
+     * @return array
+     * @throws AuthorizationException
+     * @throws DbOperationException
+     * @throws InvalidAccessParamsException
+     */
+    public function update($id) {
+        $result = array();
+        PlatformUser::instanceBySession();
+        $collection = new SungirlDownloadCollection;
+        $model = $collection->getById($id);
+        $attribute = $this->receiver;
+        $model->update($attribute);
+
+        return $result;
+    }
+
+    /**
+     * DELETE: /sungirl/delete/download/<id:\d+>
      * @param $id
      * @return array
      * @throws AuthorizationException
      * @throws DbOperationException
      */
-    public function removeSungirl($category,$id){
+    public function removeDownload($id){
         PlatformUser::instanceBySession();
-        $collection = new SungirlbbListCollection;
-        $photoCollection = new SungirlbbPhotoCollection();
+        $collection = new SungirlDownloadCollection;
         $count = $collection->getById($id)->destroy();
         if($count != 1) {
             throw new DbOperationException("Delete sungirlbb_list record to DB fail.");
         }
-        if( $category == "photo" ) {
-            $photoCout = $photoCollection->multipleDestroyByCondition(array('sungirlbb_id' => $id));
-            if ($photoCout == 0) {
-                throw new DbOperationException("Delete sungirlbb_photo record to DB fail.");
-            }
-        }
 
-        return  array($photoCout);
+        return  array($count);
     }
 
 

@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: aems
+-- Host: 127.0.0.1    Database: leo_sungirlbb
 -- ------------------------------------------------------
 -- Server version	5.6.25
 
@@ -16,28 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `platform_user_group`
+-- Table structure for table `carousel_image`
 --
 
-DROP TABLE IF EXISTS `platform_user_group`;
+DROP TABLE IF EXISTS `carousel_image`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `platform_user_group` (
+CREATE TABLE `carousel_image` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  `parent_group_id` int(11) NOT NULL DEFAULT '1',
+  `filename` varchar(45) NOT NULL,
+  `property` int(11) NOT NULL,
+  `image_url` varchar(200) DEFAULT NULL,
+  `high` int(11) DEFAULT NULL,
+  `width` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `platform_user_group`
+-- Dumping data for table `carousel_image`
 --
 
-LOCK TABLES `platform_user_group` WRITE;
-/*!40000 ALTER TABLE `platform_user_group` DISABLE KEYS */;
-INSERT INTO `platform_user_group` VALUES (1,'system',1);
-/*!40000 ALTER TABLE `platform_user_group` ENABLE KEYS */;
+LOCK TABLES `carousel_image` WRITE;
+/*!40000 ALTER TABLE `carousel_image` DISABLE KEYS */;
+INSERT INTO `carousel_image` VALUES (4,'1.jpg.jpeg',0,'http://localhost/#/album',NULL,NULL),(5,'2.jpg.jpeg',0,'http://localhost/#/video',NULL,NULL),(6,'3.jpg.jpeg',0,'http://localhost/#/download',NULL,NULL),(7,'4.jpg.jpeg',0,'https://tw.yahoo.com/',NULL,NULL);
+/*!40000 ALTER TABLE `carousel_image` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-20 16:12:59
+-- Dump completed on 2016-09-19 14:58:00

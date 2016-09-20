@@ -71,7 +71,7 @@ class SungirlbbListController extends RestController {
             $attributes['category'] = $category;
         }
 
-        $records = $collection->getRecords($attributes, $pageNo, $pageSize , array() , "ready_time DESC");
+        $records = $collection->getRecords($attributes, $pageNo, $pageSize , array() , "ready_time DESC , id DESC");
         foreach($records['records'] as $key => $record){
             $photorecords = $photoCollection->getRecords( array("sungirlbb_id"=>  $record['id'] ));
             $records['records'][$key]['photo'] = $photorecords['records'];
@@ -140,6 +140,15 @@ class SungirlbbListController extends RestController {
         return $result;
     }
 
+    /**
+     * POST: 	/sungirl/photo/upload
+     * @param $category
+     * @param $id
+     * @return array
+     * @throws AuthorizationException
+     * @throws DbOperationException
+     * @throws InvalidAccessParamsException
+     */
     public function update( $category ,$id) {
         $result = array();
         PlatformUser::instanceBySession();
@@ -181,12 +190,9 @@ class SungirlbbListController extends RestController {
         }
         if( $category == "photo" ) {
             $photoCout = $photoCollection->multipleDestroyByCondition(array('sungirlbb_id' => $id));
-            if ($photoCout == 0) {
-                throw new DbOperationException("Delete sungirlbb_photo record to DB fail.");
-            }
         }
 
-        return  array($photoCout);
+        return  array($count);
     }
 
 

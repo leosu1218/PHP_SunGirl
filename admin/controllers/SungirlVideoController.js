@@ -18,7 +18,7 @@ define(['angular', 'app', 'createController', 'configs'],
                 $scope.title = data.title;
                 $scope.home_state = data.home_state;
                 $scope.ready_time.setdate(data.ready_time);
-                $scope.video = data.vodeo;
+                $scope.video = data.video_url;
                 $scope.productCoverImage.push({'fileName' : data.banner_name});
 
             }).error(function(data, status, headers, config) {
@@ -124,7 +124,7 @@ define(['angular', 'app', 'createController', 'configs'],
 
 
 			function sungirl_update( formData ){
-				var url = configs.api.sungirl + "/photo/update/" + $routeParams.id;
+				var url = configs.api.sungirl + "/video/update/" + $routeParams.id;
 				var req = {
 				    method: 'PUT',
 				    url: url,
@@ -132,7 +132,7 @@ define(['angular', 'app', 'createController', 'configs'],
 				    data: formData
 				};
 				$http(req).success(function(result) {
-					location.href = "#!/photoList";
+					location.href = "#!/videoList";
 				}).error(function(error) {
 					Message("建立相簿發生問題請重新嘗試");
 				});
@@ -142,7 +142,7 @@ define(['angular', 'app', 'createController', 'configs'],
 				var formData = {
 						title 			: 	$scope.title,
                         banner_name  	: 	$scope.productCoverImage[0].fileName,
-						photo      :   $scope.productImages,
+						video_url      :   $scope.video,
                         home_state : $scope.home_state,
                         ready_time: $scope.ready_time.getdate()
 
@@ -153,7 +153,7 @@ define(['angular', 'app', 'createController', 'configs'],
 
 
 			//create flow
-			$scope.create = function(){
+			$scope.update = function(){
 
 				var result = IsFillInForm();
 				

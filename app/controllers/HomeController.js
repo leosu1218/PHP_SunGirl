@@ -5,28 +5,26 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
 
     return app.controller("HomeController", function ($scope,$timeout ,$http) {
         $scope.pageNo = 1;
-        $scope.pageSize = 12;
+        $scope.pageSize = 4;
+
         kn.index = {
             apiData:"",
             oldLIST:"",
-            liLength:0,
             setList:function(elemId,moreBtn){
                 var oldList = $(".th-asideInfo >div");
                 var data;
                 var liDom="";
                 var dateTime ="";
                 var array=[];
-                kn.index.apiData = elemId =="indexNew" ? kn.API.indexNew : kn.API.indexMost;
-                if(moreBtn != "indexMore"){
-                    kn.index.liLength = 0;
-                    oldList.hide();
-                }
-                data = kn.index.apiData;
+                kn.common.btnId = elemId;//通知共用albumSetpop
+                data = kn.common.apiData;
+
+                if(moreBtn != "indexMore"){oldList.hide(); }
                 if(data.pageNo < data.totalPage){ $("#indexMore").show();}else{ $("#indexMore").hide(); }
-                for(kn.index.liLength; kn.index.liLength<data.records.length; kn.index.liLength++){
-                    dateTime = data.records[kn.index.liLength].ready_time;
+                for(var i = 0; i<data.records.length; i++){
+                    dateTime = data.records[i].ready_time;
                     array = dateTime.substr(0,10).split("-");
-                    switch(data.records[kn.index.liLength].category){
+                    switch(data.records[i].category){
                         case "photo":
                             liDom+= '<div class="md-album">'+
                             '<div class="album-cont">'+
@@ -35,10 +33,10 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
                             '<span>'+parseInt(array[1],10)+'</span>月'+
                             '<span>'+parseInt(array[2],10)+'</span>日'+
                             '</time>'+
-                            '<figure id="'+data.records[kn.index.liLength].id+'">'+
-                            '<img src="upload/photo/'+data.records[kn.index.liLength].banner_name+'" alt="">'+
+                            '<figure id="'+data.records[i].id+'">'+
+                            '<img src="upload/photo/'+data.records[i].banner_name+'" alt="">'+
                             '<figcaption>'+
-                            '<i class="icon-video"></i>'+data.records[kn.index.liLength].title+
+                            '<i class="icon-video"></i>'+data.records[i].title+
                             '<span class="times"><i>1,2342</i>次点击</span>'+
                             '</figcaption>'+
                             '</figure>'+
@@ -53,10 +51,10 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
                             '<span>'+parseInt(array[1],10)+'</span>月'+
                             '<span>'+parseInt(array[2],10)+'</span>日'+
                             '</time>'+
-                            '<figure id="'+data.records[kn.index.liLength].id+'">'+
-                            '<img src="upload/photo/'+data.records[kn.index.liLength].banner_name+'" alt="">'+
+                            '<figure id="'+data.records[i].id+'">'+
+                            '<img src="upload/photo/'+data.records[i].banner_name+'" alt="">'+
                             '<figcaption>'+
-                            '<i class="icon-video"></i>'+data.records[kn.index.liLength].title+
+                            '<i class="icon-video"></i>'+data.records[i].title+
                             '<span class="times"><i>1,2342</i>次点击</span>'+
                             '</figcaption>'+
                             '</figure>'+
@@ -67,63 +65,72 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
                 }
                 $(".th-asideInfo").append(liDom);
                 kn.index.clickSetting();
+                kn.common.checkQuery();
                 if(moreBtn != "indexMore"){oldList.remove(); }
             },
             clickSetting:function(){
-                var hashID = location.hash.substr(1);
                 $(".album-cont figure").on('click',function(){
-                    var _this = $(this).parents(".md-album").index();
-                    var _parent = $(this).parents('.th-asideInfo').attr('class');
+                    var _this = $(this).parents(".md-album");
+                    var _id = $(this).attr("id");
                     $('body').addClass('hiddenY');
                     $(".th-maskbg").addClass('showMask');
                     $(".th-maskbg .gp-mdCont").load("popupPage/popalbum.html",function(){
-                        kn.common.albumSetpop(_this,_parent);
+                        kn.common.albumSetpop(_this.index(),_id);
                     });
                 });
 
                 $(".video-cont figure").on('click',function(){
-                    var _this =  $(this).parents(".md-video").index();
-                    var _parent = $(this).parents('.th-asideInfo').attr('class');
+                    var _this =  $(this).parents(".md-video");
+                    var _id = $(this).attr("id");
                     $('body').addClass('hiddenY');
                     $(".th-maskbg").addClass('showMask');
                     $(".th-maskbg .gp-mdCont").load("popupPage/popvideo.html",function(){
-                        kn.common.videoSetpop(_this,_parent);
+                        kn.common.videoSetpop(_this.index(),_id);
                     });
                 });
-                if(hashID !=""){$("#"+hashID).click();}
-            },
-            setNewestData:function(data){
-                return kn.API.indexNew = data;
-            },
-            setMostData:function(data){
-                return kn.API.indexMost = data;
             }
-        };
+        }
 
-        var url = configs.api.sungirl + "/all/client/" + $scope.pageNo + '/' +  $scope.pageSize;
-        var req = {
-            method: 'GET',
-            url: url,
-            headers: configs.api.headers
+        $scope.getDateJson = function(url , callback){
+           // var url = configs.api.sungirl + "/all/client/" + $scope.pageNo + '/' +  $scope.pageSize;
+            var req = {
+                method: 'GET',
+                url: url,
+                headers: configs.api.headers
+            };
+            $http(req).success(function(data, status, headers, config) {
+                callback(data, status, headers, config);
+            }).error(function(data, status, headers, config) {
+                alert("找不到資料");
+            });
+
         };
-        $http(req).success(function(data, status, headers, config) {
-            $scope.sungirlData = data;
-            kn.index.setNewestData($scope.sungirlData);
+        var url = configs.api.sungirl + "/all/client/" + $scope.pageNo + '/' +  $scope.pageSize;
+        $scope.getDateJson(url, function(data, status, headers, config){
+            kn.common.setData(data);
             kn.index.setList("indexNew");
-        }).error(function(data, status, headers, config) {
-            alert("找不到資料");
         });
+
+
 
 
         //index 最新更新
         $("#indexNew").click(function(){
-            kn.index.setNewestData(newlist);
+            var url = configs.api.sungirl + "/all/client/" + $scope.pageNo + '/' +  $scope.pageSize;
+            $scope.pageNo = 1;
+            $scope.getDateJson(url, function(data, status, headers, config){
+                kn.common.setData(data);
+            });
             kn.index.setList($(this).attr("id"));
             $(this).addClass('active').siblings().removeClass('active');
         });
         //index 最多觀看
         $("#indexMost").click(function(){
-            kn.index.setMostData(mostlist);
+            var url = configs.api.sungirl + "/all/client/" + $scope.pageNo + '/' +  $scope.pageSize;
+            $scope.pageNo = 1;
+            $scope.getDateJson(url, function(data, status, headers, config){
+                kn.common.setData(data);
+            });
             kn.index.setList($(this).attr("id"));
             $(this).addClass('active').siblings().removeClass('active');
         });
@@ -132,8 +139,28 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
         $("#indexMore").click(function(e){
             e.preventDefault();
             var _index = $("#dataBtn").find(".active").index();
-            if(_index==0){ kn.index.setNewestData(newlist); }else{ kn.index.setMostData(mostlist); }
-            kn.index.setList("indexNew",$(this).attr("id"));
+            var element = "";
+            var _this = $(this);
+            if(_index==0){
+                element = "indexNew";
+                $scope.pageNo++;
+                var url = configs.api.sungirl + "/all/client/" + $scope.pageNo + '/' +  $scope.pageSize;
+                $scope.getDateJson(url, function(data, status, headers, config){
+                    kn.common.setData(data);
+                    kn.index.setList(element,_this.attr("id"));
+                });
+
+            }else{
+                element = "indexMost";
+                $scope.pageNo++;
+                var url = configs.api.sungirl + "/all/client/" + $scope.pageNo + '/' +  $scope.pageSize;
+                $scope.getDateJson(url, function(data, status, headers, config){
+                    kn.common.setData(data);
+                    kn.index.setList(element,_this.attr("id"));
+                });
+
+            }
+
         });
 
         $timeout(function() {
@@ -154,6 +181,19 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
                     }
                 }
             }).scroll();
+            //首頁右側hover效果
+            $(".md-activity figure").hover(function(e){
+                $(this).find(".pt-hover").css({
+                    top:e.pageY - (~~$(this).offset().top),
+                    left:e.pageX - (~~$(this).offset().left)
+                }).stop().animate({ width: "100%",height: "100%",top:0,left:0},300);
+            },function(e){
+                $(this).find(".pt-hover").stop().animate({
+                    top:e.pageY - (~~$(this).offset().top),
+                    left:e.pageX - (~~$(this).offset().left),
+                    width: 0,height: 0
+                },300);
+            });
 
             //燈箱開啟時 按browser back時關掉燈箱
             $(window).on("hashchange", function() {

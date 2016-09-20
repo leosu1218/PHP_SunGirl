@@ -1,113 +1,170 @@
 /*global define*/
 'use strict';
 
-define(['angular', 'app'], function (angular, app) {
+define(['angular', 'app' , 'configs'], function (angular, app , configs) {
 
-    return app.controller("DownloadController", function ($scope,$timeout) {
+    return app.controller("DownloadController", function ($scope,$timeout , $http) {
+        $scope.pageNo = 1;
+        $scope.pageSize = 12;
+
+        kn.download = {
+            shareImg:"",
+            shareTitle:"",
+            //download.html的相簿list click
+            clickSetting:function(){
+                $(".pt-cont").on('click',function(){
+                    var _this = $(this);
+                    var _id = $(this).attr("id");
+                    $('body').addClass('hiddenY');
+                    $(".th-maskbg").addClass('showMask');
+                    $(".th-maskbg .gp-mdCont").load("popupPage/popdownload.html",function(){
+                        kn.download.downloadSetpop(_this.index(),_id);
+                    });
+                });
+            },
+            downloadSetpop:function(n,pId){
+                var hdText = $(".downloadCont header"),
+                    bigImg = $("#dwnload-bigImg"),
+                    pc1 = $("#pc-img1"),
+                    pc2 = $("#pc-img2"),
+                    pc3 = $("#pc-img3"),
+                    pc4 = $("#pc-img4"),
+                    mobile1 = $("#mobile-img1"),
+                    mobile2 = $("#mobile-img2"),
+                    mobile3 = $("#mobile-img3"),
+                    mobile4 = $("#mobile-img4"),
+                    liDom="",
+                    popdata,
+                    imgsrc = "";
+                kn.common.idNow = pId; //for shareBtn
+                popdata = location.search==""? kn.common.apiData : kn.common.oneData;
+                imgsrc = "upload/photo/"+popdata.records[n].banner_name;
+                kn.download.shareImg = popdata.records[n].banner_name;
+                kn.download.shareTitle = popdata.records[n].title;
+                hdText.text(popdata.records[n].title);
+                bigImg.attr("src",imgsrc);
+                pc1.attr("href", "upload/download/"+popdata.records[n].pc_img1);
+                pc2.attr("href", "upload/download/"+popdata.records[n].pc_img2);
+                pc3.attr("href", "upload/download/"+popdata.records[n].pc_img3);
+                pc4.attr("href", "upload/download/"+popdata.records[n].pc_img4);
+                mobile1.attr("href", "upload/download/"+popdata.records[n].mobile_img1);
+                mobile2.attr("href", "upload/download/"+popdata.records[n].mobile_img2);
+                mobile3.attr("href", "upload/download/"+popdata.records[n].mobile_img3);
+                mobile4.attr("href", "upload/download/"+popdata.records[n].mobile_img4);
+                $(".md-download-popup").maskSet();
+                kn.download.shareFn();
+            },
+            shareFn:function(){
+                var clean_uri = location.protocol + "//" + location.host + location.pathname;
+                $(".fbBtn").off('click').on("click",function(e){
+                    e.preventDefault();
+                    var _href = clean_uri+"?i="+kn.common.idNow;
+                    $(this).attr("href",_href);
+                    kn.common.shareFB(kn.download.shareTitle,kn.download.shareImg,_href);
+                });
+                $('.twitterBtn').off('click').on("click",function(e){
+                    e.preventDefault();
+                    var _href = clean_uri+"?i="+kn.common.idNow;
+                    $(this).attr("href",_href);
+                    kn.common.shareTwitter(kn.download.shareTitle,_href);
+                });
+                $('.weiboBtn').off('click').on("click",function(e){
+                    e.preventDefault();
+                    var _href = clean_uri+"?i="+kn.common.idNow;
+                    $(this).attr("href",_href);
+                    kn.common.shareWeibo(kn.download.shareTitle,kn.download.shareImg,_href);
+                });
+            }
+        };
+
+        $scope.getDateJson = function(url , callback){
+            var req = {
+                method: 'GET',
+                url: url,
+                headers: configs.api.headers
+            };
+            $http(req).success(function(data, status, headers, config) {
+                callback(data, status, headers, config);
+            }).error(function(data, status, headers, config) {
+                alert("找不到資料");
+            });
+
+        };
+
+        //download 最新更新
+        $("#downloadNew").click(function(){
+            var url = configs.api.sungirl + "/client/download/" + $scope.pageNo + '/' +  $scope.pageSize;
+            $scope.pageNo = 1;
+            var _this = $(this);
+            $scope.getDateJson(url, function(data, status, headers, config){
+                kn.common.setData(data);
+                kn.common.setList(_this.attr("id"),_this.parent().attr("class"));
+            });
+            $(this).addClass('active').siblings().removeClass('active');
+        }).click();
+        //download 最多觀看
+        $("#downloadMost").click(function(){
+            var url = configs.api.sungirl + "/client/download/" + $scope.pageNo + '/' +  $scope.pageSize;
+            $scope.pageNo = 1;
+            var _this = $(this);
+            $scope.getDateJson(url, function(data, status, headers, config){
+                kn.common.setData(data);
+                kn.common.setList(_this.attr("id"),_this.parent().attr("class"));
+            });
+            $(this).addClass('active').siblings().removeClass('active');
+        });
+        //download 更多
+        $("#downloadMore").click(function(e){
+            e.preventDefault();
+            var _index = $("#dataBtn").find(".active").index();
+            var element = "";
+            var _this = $(this);
+            if(_index==0){
+                $scope.pageNo++;
+                var url = configs.api.sungirl + "/client/download/" + $scope.pageNo + '/' +  $scope.pageSize;
+                $scope.getDateJson(url, function(data, status, headers, config){
+                    kn.common.setData(data);
+                    kn.index.setList(element, "albumSort", _this.attr("id"));
+                });
+                element = "videoNew";
+            }else{
+                var url = configs.api.sungirl + "/client/download/" + $scope.pageNo + '/' +  $scope.pageSize;
+                $scope.getDateJson(url, function(data, status, headers, config){
+                    kn.common.setData(data);
+                    kn.index.setList(element, "albumSort", _this.attr("id"));
+                });
+                element = "videoMost";
+            }
+        });
+
 
         $timeout(function() {
-            //輪播
-            //桌布下載
-            var mon={
-                dwdata:"",
-                dwlength:0,
-                chooseMonth:function(pIndex){
-                    var indexNum = pIndex;
-                    var data;
-                    var dwCont_header = $(".downloadCont header");
-                    var dwCont_img = $(".downloadCont figure img");
-                    var month_img = $(".othermonth li");
-                    var pc_alink = $(".pt-pc a");
-                    var phone_alink = $(".pt-phone a");
-                    var numString = "00";
-                    mon.dwlength =Object.keys(mon.dwdata).length;
-                    numString = numString + (indexNum+1).toString();
-                    try{
-                        data =  mon.dwdata[numString][0];
-                        dwCont_header.text(data.title);
-                        dwCont_img.attr("src",month_img.eq(indexNum).find('img').attr("src"));
-                        for(var i=0; i<pc_alink.length; i++){
-                            pc_alink.eq(i).attr('href', data.computer[i]);
-                            phone_alink.eq(i).attr('href', data.mobile[i]);
-                        }
-                    }catch(err){}
-                }
-            }
-
-            //get download json
-            $.getJSON('json/download.json',function(data){
-                mon.dwdata = data;
-                return mon.dwdata;
-            });
-
-            //popup list click to change image and href
-            $(".othermonth li").on('click',function(){
-                mon.chooseMonth($(this).index());
-                $("html body").animate({scrollTop:0});
-            });
-
-
-            //album,video,download開啟popup
-            $(".pt-cont").on("click",function(){
-                $(".md-album-popup").maskSet().albumPopup();
-                $(".md-video-popup").maskSet();
-                if($(".md-download-popup").length>=1){
-                    mon.chooseMonth($(this).index());
-                    if($(this).index()< mon.dwlength){
-                        $(".md-download-popup").maskSet();
-                    }else{return}
-                }
-                $(".th-maskbg").addClass('showMask');
-                $("body, html").animate({scrollTop:0});
-            });
-
-            //首頁開啟popup
-            $(".main-aside .album-cont figure").on("click",function(){
-                $(".md-album-popup").maskSet();
-                $(".md-album-popup").albumPopup();
-                $(".th-maskbg").addClass('showMask');
-                $("body, html").animate({scrollTop:0});
-            });
-            $(".main-aside .md-video figure").on("click",function(){
-                $(".md-video-popup").maskSet();
-                $(".th-maskbg").addClass('showMask');
-                $("body, html").animate({scrollTop:0});
-            });
-
-            //首頁 右側浮動
-            $(window).scroll(function(){
-                var scrollH = $(this).scrollTop();
-                var finalScrollH = ($(document).outerHeight(true)-$(window).innerHeight())-scrollH;
-                if($(".index").length>=1){
-                    if(scrollH > $("#footer").offset().top - $(".md-activity").outerHeight(true) - $(".fixedHdBg").height() ){
-                        //大於footer;
-                        $(".md-activity").attr("style","").css({
-                            position:"fixed",
-                            bottom: $("#footer").height() + 20 - finalScrollH +"px"
-                        });
-                    }else if(scrollH > ($(".fullbar").offset().top + $(".fullbar").height())){
-                        //大於header;
-                        $(".md-activity").attr("style","").css({
-                            position:"fixed",
-                            top: "0",
-                            marginTop:"70px"
-                        });
-                    } else{
-                        //小於header;
-                        $(".md-activity").attr("style","");
+            //燈箱開啟時 按browser back時關掉燈箱
+            $(window).on("hashchange", function() {
+                var hashID = location.hash.substr(1);
+                function hashchangeCloseBg(){
+                    $(".th-maskbg").removeClass('showMask');
+                    $(".albumCont").parent().remove();
+                    $(".downloadCont").parent().remove();
+                    $(".videoCont").parent().remove();
+                    $('body').removeClass('hiddenY');
+                    if(navigator.userAgent.indexOf("MSIE 9.0")>0){
+                        location.hash="";
+                    }else{
+                        window.history.pushState(null, null, location.href.replace(location.hash,''));
                     }
                 }
-            }).scroll();
+                if(hashID==""){
+                    hashchangeCloseBg();
+                }else{
+                    if( $("#"+location.hash.substr(1)).length<1){
+                        hashchangeCloseBg();
+                    }else{
+                        $("#"+location.hash.substr(1)).click();
+                    }
+                }
+            });
         },500);
-
-        
-
-        //相簿,影音,下載hover
-        $(".md-list figure").hover(function(){
-            if($(window).width()>960){$(this).find("figcaption").stop().animate({top:"40%"},400);}
-        },function(){
-            if($(window).width()>960){$(this).find("figcaption").stop().animate({top: $(this).height()-40+"px" },400);}
-        });
        
     });
 });

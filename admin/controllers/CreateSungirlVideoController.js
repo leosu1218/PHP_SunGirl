@@ -128,7 +128,7 @@ define(['angular', 'app', 'createController', 'configs'],
 				var formData = {
 						title 			: 	$scope.title,
                         banner_name  	: 	$scope.productCoverImage[0].fileName,
-						video      :   $scope.video,
+						video_url      :   $scope.video,
                         home_state : $scope.home_state,
                         ready_time: $scope.ready_time.getdate()
 

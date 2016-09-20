@@ -4,47 +4,19 @@
         <div class="th-video">
             <header>
                 <h2><i class="icon-video"></i>美女視頻</h2>
-                <div>
-                    <span class="active"><i class="icon-clock"></i>最新更新</span>
-                    <span><i class="icon-heart"></i>最多覌看</span>
+                <div id="dataBtn" class="videoSort">
+                    <span id="videoNew" class="active"><i class="icon-clock"></i>最新更新</span>
+                    <span id="videoMost"><i class="icon-heart"></i>最多覌看</span>
                 </div>
             </header>
             <div class="gp-content">
                 <ul class="md-list">
                     <!--video module start-->
-                    <li class="pt-cont">
-                        <figure>
-                            <img src="images/list_img02.jpg" alt="">
-                            <figcaption>
-                                <!--i tag 的 icon className 與 album及download的不一樣-->
-                                <i class="icon-video"></i>亮麗的蛻變 Kitty<span class="times"><i>1,2342</i>次点击</span>
-                                <button>觀看</button>
-                            </figcaption>
-                        </figure>
-                    </li>
                     <!--video module end-->
-                    <li class="pt-cont">
-                        <figure>
-                            <img src="images/list_img04.jpg" alt="">
-                            <figcaption>
-                                <i class="icon-video"></i>亮麗的蛻變 Kitty<span class="times"><i>1,2342</i>次点击</span>
-                                <button>觀看</button>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li class="pt-cont">
-                        <figure>
-                            <img src="images/list_img03.jpg" alt="">
-                            <figcaption>
-                                <i class="icon-video"></i>亮麗的蛻變 Kitty<span class="times"><i>1,2342</i>次点击</span>
-                                <button>觀看</button>
-                            </figcaption>
-                        </figure>
-                    </li>
                 </ul>
                 <!--more button start-->
                 <div class="md-moreBtn">
-                    <a href="#">更多</a>
+                    <a id="videoMore" href="#">更多</a>
                 </div>
                 <!--more button end-->
             </div>
@@ -52,21 +24,8 @@
         <!--美女視頻 end-->
         <!--美女視頻popup start-->
         <div class="th-maskbg">
-            <div class="md-video-popup">
-                <div class="pt-closebtn"></div>
-                <div class="videoCont">
-                    <header>比基尼宝贝视频特辑</header>
-                    <div class="pt-videoCont">
-                        <iframe src="https://www.youtube.com/embed/d0fvb7SZ_9w" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <ul class="pt-shareicon">
-                        <li><a href="" target="_blank"><i class="icon-weibo"></i></a></li>
-                        <li><a href="" target="_blank"><i class="icon-wechat"></i></a></li>
-                        <li><a href="" target="_blank"><i class="icon-fb"></i></a></li>
-                        <li><a href="" target="_blank"><i class="icon-twitter"></i></a></li>
-                        <li><a href="" target="_blank"><i class="icon-camera"></i></a></li>
-                    </ul>
-                </div>
+            <div class="gp-mdCont">
+                <!--load popdvideo.html json組畫面 -->
             </div>
         </div>
         <!--美女視頻popup end-->

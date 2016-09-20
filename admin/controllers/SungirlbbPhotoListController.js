@@ -79,7 +79,7 @@ define(['angular', 'app', 'createController', 'message', 'configs'],
             }
 
             function removePhoto(row, value) {
-                var api = configs.api.sungirl +"/video/delete/" + row.id;
+                var api = configs.api.sungirl +"/photo/delete/" + row.id;
                 var request = {
                     method: 'DELETE',
                     url: api,
@@ -89,7 +89,7 @@ define(['angular', 'app', 'createController', 'message', 'configs'],
                 $http(request).success(function(data, status, headers, config) {
                     $scope.reloadList();
                 }).error(function(data, status, headers, config){
-                    $scope.alert.show("圖片刪除有誤，請再次嘗試。");
+                    $scope.alert.show("刪除資料有誤,請再次嘗試。");
                 });
             }
 

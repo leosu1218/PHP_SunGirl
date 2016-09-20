@@ -50,11 +50,18 @@ try
                 array( "POST: 	/sungirl/<category:\w+>/create",								                  "SungirlbbListController", "create(<category>)"),
                 array( "PUT: 	/sungirl/<category:\w+>/update/<id:\d+>",								                  "SungirlbbListController", "update(<category>,<id>)"),
                 array( "DELETE: /sungirl/photo/delete/<filename:\w+>/<type:\w+>",											"SungirlbbListController", "removePhoto(<filename>,<type>)"),
-                array( "DELETE: /sungirl/<category:\w+>/delete/<id:\d+>",											"SungirlbbListController", "removeSungirl(<category:\w+>,<id>)"),
+                array( "DELETE: /sungirl/<category:\w+>/delete/<id:\d+>",											"SungirlbbListController", "removeSungirl(<category>,<id>)"),
 
                 //sungirlDownload
-                array( "GET: 	/sungirlDownload/list/<pageNo:\d+>/<pageSize:\d+>/<querystring:\w+>",			   		"SungirlDownloadController", "getSungirlDownload(<pageNo>,<pageSize>)"),
-			),
+                array( "GET: 	/sungirl/downloadList/<pageNo:\d+>/<pageSize:\d+>/<querystring:\w+>",			   		"SungirlDownloadController", "getSungirlDownload(<pageNo>,<pageSize>)"),
+                array( "GET: 	/sungirl/download/getByid/<id:\d+>",			   		                                    "SungirlDownloadController", "getSungirlDownloadById(<id>)"),
+                array( "GET: 	/sungirl/client/download/<pageNo:\d+>/<pageSize:\d+>",			   		"SungirlDownloadController", "getDownloadClient(<category>,<pageNo>,<pageSize>)"),
+                array( "POST: 	/sungirl/download/upload",								                          "SungirlDownloadController", "upLoadDownload()"),
+                array( "POST: 	/sungirl/create/download",								                  "SungirlDownloadController", "create()"),
+                array( "DELETE: /sungirl/delete/download/<id:\d+>",											"SungirlDownloadController", "removeDownload(<id>)"),
+                array( "DELETE: /sungirl/download/deleteImg/<filename:\w+>/<type:\w+>",											"SungirlDownloadController", "removeDownloadImg(<filename>,<type>)"),
+                array( "PUT: 	/sungirl/update/download/<id:\d+>",								                  "SungirlDownloadController", "update(<id>)"),
+            ),
 			'default' => array( "DefaultController", "getNotFound" )
 		)
 	));

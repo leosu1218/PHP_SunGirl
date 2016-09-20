@@ -92,7 +92,7 @@ $.fn.sliderShow = function(){
     if (dragState) {
       var passDate = new Date() - dragDate;
       var endX = (e.type == "mouseup" || e.type == "mouseleave") ? e.pageX : e.originalEvent.changedTouches[0].pageX;
-      if (e.type == "mouseleave" || e.type == "touchleave" || passDate > 150) { 
+      if (e.type == "mouseleave" || e.type == "touchleave" || passDate > 150  && endX!=dragStartX) { 
         imgNext = endX > dragStartX ? imgNow-1 : imgNow+1;
         moveNext(imgNext);
         $(this).find('a').click(function() {return false});
@@ -131,10 +131,7 @@ $.fn.maskSet = function(){
       resizeTimer,
       clean_uri;
 
-  if(location.search!=null){
-    clean_uri = location.protocol + "//" + location.host + location.pathname
-  }
-
+  clean_uri = location.protocol + "//" + location.host + location.pathname;
   $(window).resize(function(){  
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(doResizething, 50);
@@ -154,8 +151,12 @@ $.fn.maskSet = function(){
     downloadCont.parent().remove();
     videoCont.parent().remove();
     $('body').removeClass('hiddenY');
-    if(location.search!=null){
-      window.history.replaceState({}, document.title, clean_uri);
+    if(location.search!=""){      
+      if(navigator.userAgent.indexOf("MSIE 9.0")>0){   
+        location.href = clean_uri;
+      }else{
+        window.history.replaceState({}, document.title, clean_uri); 
+      }
     }
   }
   closebg.on("mousedown",closeMask);
@@ -256,6 +257,7 @@ $.fn.albumPopup = function(){
     e.preventDefault(); //擋掉圖片被拖拉而造成無法執行後續的moveNext(_this.index());
     if (imgNext != null || $(this).hasClass("on")) return; 
     moveNext($(this).index());
+    $(".th-maskbg").animate({scrollTop:0});
   });
   return element;
 }

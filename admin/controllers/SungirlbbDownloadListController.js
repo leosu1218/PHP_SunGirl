@@ -11,7 +11,7 @@ define(['angular', 'app', 'createController', 'message', 'configs'],
             $scope.search.keyword = null;
             $scope.search.order = "DESC";
             $scope.enableSelect = $scope.enableSelect || false;
-            $scope.api = configs.api.sungirlDownload + "/list";
+            $scope.api = configs.api.sungirl + "/downloadList";
 
 
             /**
@@ -42,7 +42,7 @@ define(['angular', 'app', 'createController', 'message', 'configs'],
                     {attribute: "control",          name: "控制",
                         controls: [
                             {type: "button", icon: "fa-search", click: viewDetail },
-                            {type: "button", icon: "fa-times", click: removePhoto }
+                            {type: "button", icon: "fa-times", click: removeDownload }
                         ]
                     }
                 ]);
@@ -75,11 +75,11 @@ define(['angular', 'app', 'createController', 'message', 'configs'],
              * view the item's details.
              */
             function viewDetail(row, value) {
-                location.href = "#!/videoList/view/"+row.id;
+                location.href = "#!/downloadList/view/"+row.id;
             }
 
-            function removePhoto(row, value) {
-                var api = configs.api.sungirl +"/delete/" + row.id;
+            function removeDownload(row, value) {
+                var api = configs.api.sungirl +"/delete/download/" + row.id;
                 var request = {
                     method: 'DELETE',
                     url: api,

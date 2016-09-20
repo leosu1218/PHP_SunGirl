@@ -176,8 +176,7 @@ define(['angular', 'app', 'createController', 'configs'],
 				if( result.isOk )
 				{
 					var formData = getDataForm();
-                    console.log(formData);
-					//Product_create(formData);
+					Product_create(formData);
 				}
 				else
 				{

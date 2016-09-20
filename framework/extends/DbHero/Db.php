@@ -15,7 +15,7 @@ require_once(__DIR__ . '/TestPDO.php');
 class Db extends DbHero {
 	protected function _config() {
 		return array(
-            "aems"  =>  new PDO(
+            DB_NAME  =>  new PDO(
                 'mysql:host=localhost;dbname=' . DB_CONNECT_NAME,
                 DB_LOGIN_USRE,
                 DB_LOGIN_PASSWORD,

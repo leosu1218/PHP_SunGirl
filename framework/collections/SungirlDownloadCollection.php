@@ -42,6 +42,36 @@ class SungirlDownloadCollection extends PermissionDbCollection {
 		return "SungirlDownload";
 	}
 
+    public function searchRecords($pageNo, $pageSize, $search=array()) {
+
+        $result = $this->getDefaultRecords($pageNo, $pageSize);
+        $table = $this->getTable();
+        $conditions = array('and','1=1');
+        $params = array();
+
+        $this->dao->fresh();
+        $this->dao->select(array(
+            'sd.*'
+        ));
+
+
+        $this->dao->from("$table sd");
+        $this->dao->group('sd.id');
+        $this->dao->order('sd.ready_time DESC');
+
+        array_push($conditions, 'sd.ready_time <= :ready_time');
+        $params[':ready_time'] = $search['ready_time'];
+
+        $this->dao->where($conditions,$params);
+        $result['recordCount'] = intval($this->dao->queryCount());
+        $result['totalRecord'] = $result['recordCount'];
+        $result["totalPage"] = intval(ceil($result['totalRecord'] / $pageSize));
+        $this->dao->paging($pageNo, $pageSize);
+        $result["records"] = $this->dao->queryAll();
+
+        return $result;
+    }
+
 	/**
 	*	Check attributes is valid.
 	*

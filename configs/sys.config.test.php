@@ -13,10 +13,10 @@ define('RAW_FILES_PATH', ROOT . "../raw_files/");
 
 //define('MAIL_API_PATH', 'http://' . $_SERVER['HTTP_HOST'] . '/api/mail');
 
-define('DB_NAME', 'aems');
-define('DB_CONNECT_NAME', 'aems');
-define('DB_LOGIN_USRE', 'aems');
-define('DB_LOGIN_PASSWORD', 'laskdnmcanv');
+define('DB_NAME', 'leo_sungirlbb');
+define('DB_CONNECT_NAME', 'leo_sungirlbb');
+define('DB_LOGIN_USRE', 'leo_sungirlbb');
+define('DB_LOGIN_PASSWORD', 'mjas#fskm&a');
 
 /********************************************
  *
