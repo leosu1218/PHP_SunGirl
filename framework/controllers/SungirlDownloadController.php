@@ -59,11 +59,33 @@ class SungirlDownloadController extends RestController {
      */
     public function getDownloadClient( $pageNo, $pageSize ){
         $collection = new SungirlDownloadCollection;
-       // $records = $collection->getRecords(array(),$pageNo,$pageSize);
         $search = array('ready_time' => date("Y-m-d"));
-        $records = $collection->searchRecords($pageNo, $pageSize, $search);
+        $records = $collection->searchRecords($pageNo, $pageSize, $search , 'ready_time DESC');
         return $records;
+    }
 
+    /**
+     * GET: 	/sungirl/client/download/clickSum/<pageNo:\d+>/<pageSize:\d+>
+     * @param $pageNo
+     * @param $pageSize
+     * @return array
+     */
+    public function getDownloadClientBysum( $pageNo, $pageSize ){
+        $collection = new SungirlDownloadCollection;
+        $search = array('ready_time' => date("Y-m-d"));
+        $records = $collection->searchRecords($pageNo, $pageSize, $search , 'click_sum DESC');
+        return $records;
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public function getDownloadClientByid($id){
+        $collection = new SungirlDownloadCollection;
+        $search = array('ready_time' => date("Y-m-d"), 'id' => $id);
+        $records = $collection->searchRecords(1, 1, $search, 'ready_time DESC');
+        return $records;
     }
 
     /**

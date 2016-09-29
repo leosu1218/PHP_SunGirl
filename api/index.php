@@ -44,7 +44,9 @@ try
 
                 //sungirlbb
                 array( "GET: 	/sungirl/<category:\w+>/list/<pageNo:\d+>/<pageSize:\d+>/<querystring:\w+>",			   		"SungirlbbListController", "getSungirlList(<category>,<pageNo>,<pageSize>)"),
-                array( "GET: 	/sungirl/<category:\w+>/<id:\d+>",			   		"SungirlbbListController", "getSungirlById(<category>,<id>)"),
+                array( "GET: 	/sungirl/<category:\w+>/<id:\d+>",			   		                              "SungirlbbListController", "getSungirlById(<category>,<id>)"),
+                array( "GET: 	/sungirl/<category:\w+>/<id:\d+>/client",			   		                       "SungirlbbListController", "getSungirlClientById(<category>,<id>)"),
+                array( "GET: 	/sungirl/<category:\w+>/client/clickSum/<pageNo:\d+>/<pageSize:\d+>",		"SungirlbbListController", "getSungirlClientBySum(<category>,<pageNo>,<pageSize>)"),
                 array( "GET: 	/sungirl/<category:\w+>/client/<pageNo:\d+>/<pageSize:\d+>",			   		"SungirlbbListController", "getSungirlClient(<category>,<pageNo>,<pageSize>)"),
                 array( "POST: 	/sungirl/photo/upload",								                          "SungirlbbListController", "upLoadPhoto()"),
                 array( "POST: 	/sungirl/<category:\w+>/create",								                  "SungirlbbListController", "create(<category>)"),
@@ -55,7 +57,9 @@ try
                 //sungirlDownload
                 array( "GET: 	/sungirl/downloadList/<pageNo:\d+>/<pageSize:\d+>/<querystring:\w+>",			   		"SungirlDownloadController", "getSungirlDownload(<pageNo>,<pageSize>)"),
                 array( "GET: 	/sungirl/download/getByid/<id:\d+>",			   		                                    "SungirlDownloadController", "getSungirlDownloadById(<id>)"),
-                array( "GET: 	/sungirl/client/download/<pageNo:\d+>/<pageSize:\d+>",			   		"SungirlDownloadController", "getDownloadClient(<category>,<pageNo>,<pageSize>)"),
+                array( "GET: 	/sungirl/client/download/<pageNo:\d+>/<pageSize:\d+>",			   		"SungirlDownloadController", "getDownloadClient(<pageNo>,<pageSize>)"),
+                array( "GET: 	/sungirl/client/download/clickSum/<pageNo:\d+>/<pageSize:\d+>",			   		"SungirlDownloadController", "getDownloadClientBysum(<pageNo>,<pageSize>)"),
+                array( "GET: 	/sungirl/client/download/<id:\d+>",			   		              "SungirlDownloadController", "getDownloadClientByid(<id>)"),
                 array( "POST: 	/sungirl/download/upload",								                          "SungirlDownloadController", "upLoadDownload()"),
                 array( "POST: 	/sungirl/create/download",								                  "SungirlDownloadController", "create()"),
                 array( "DELETE: /sungirl/delete/download/<id:\d+>",											"SungirlDownloadController", "removeDownload(<id>)"),

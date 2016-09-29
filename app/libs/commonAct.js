@@ -15,16 +15,9 @@ window.fbAsyncInit = function() {
    fjs.parentNode.insertBefore(js, fjs);
  }(document, 'script', 'facebook-jssdk'));
 
-//--------僅測試用----------start
-  function checkDataID(pId){
-    return albumOne;
-    // return videoOne;
-    // return downloadOne;
-  }
-//--------僅測試用-----------end 
-
-var kn = kn || {}
+var kn = kn || {};
 kn.common={
+  liLength:0,
   apiData:{},
   oneData:{},
   btnId:"",
@@ -46,6 +39,7 @@ kn.common={
     clearTimeout(kn.common.timer); 
     switch(parentClass){
       case "albumSort":
+            if(moreBtn !="albumMore"){ kn.common.liLength =0 }
             if(kn.common.apiData.pageNo < kn.common.apiData.totalPage){ $("#albumMore").show();}else{ $("#albumMore").hide(); }
             kn.common.oldLIST = $(".th-album .md-list li");
             kn.common.iconClass = "icon-photo";
@@ -54,6 +48,7 @@ kn.common={
             kn.common.timer = setTimeout(kn.common.getList, 100);
             break;
       case "videoSort":
+            if(moreBtn !="videoMore"){ kn.common.liLength =0 }
             if(kn.common.apiData.pageNo < kn.common.apiData.totalPage){ $("#videoMore").show();}else{ $("#videoMore").hide(); }
             kn.common.oldLIST = $(".th-video .md-list li");
             kn.common.iconClass = "icon-video";
@@ -62,6 +57,7 @@ kn.common={
             kn.common.timer = setTimeout(kn.common.getList, 100);
             break;
       case "downloadSort":
+            if(moreBtn !="downloadMore"){ kn.common.liLength =0 }
             if(kn.common.apiData.pageNo < kn.common.apiData.totalPage){ $("#downloadMore").show();}else{ $("#downloadMore").hide(); }
             kn.common.oldLIST = $(".th-download .md-list li");
             kn.common.iconClass = "icon-download";
@@ -76,14 +72,14 @@ kn.common={
     var liDom = "";
     var data = kn.common.apiData;
     if(kn.common.moreId==null){ oldList.hide();}
-    for(var i = 0; i<data.records.length; i++){
-      liDom+= '<li id="'+data.records[i].id+'" class="pt-cont">'+                             
+    for(kn.common.liLength; kn.common.liLength<data.records.length; kn.common.liLength++){
+      liDom+= '<li id="'+data.records[kn.common.liLength].id+'" class="pt-cont">'+
             '<figure>'+
-                '<img src="upload/photo/'+data.records[i].banner_name+'" alt="">'+
+                '<img src="upload/photo/'+data.records[kn.common.liLength].banner_name+'" alt="">'+
                 '<figcaption>'+
-                    '<i class="'+kn.common.iconClass+'"></i>'+data.records[i].title+
-                    '<span class="times"><i>1,2342</i>次点击</span>'+
-                    '<button>觀看</button>'+
+                    '<i class="'+kn.common.iconClass+'"></i>'+data.records[kn.common.liLength].title+
+                    '<span class="times"><i>'+data.records[kn.common.liLength].click_sum+'</i>次点击</span>'+
+                    '<button>观看</button>'+
                 '</figcaption>'+
             '</figure>'+                                           
         '</li>'
@@ -135,11 +131,13 @@ kn.common={
     kn.common.idNow = pId; //for shareBtn 
     kn.common.indexNow = n //for shareBtn
     apiData = location.search==""? kn.common.apiData : kn.common.oneData;
+      console.log(n);
+      console.log(apiData);
     for(var i=0; i<apiData.records[n].photo.length;i++){
       popImg+='<li><img src="upload/photo/'+apiData.records[n].photo[i].photo_name
       +'" data-height="'+apiData.records[n].photo[i].height
       +'" data-width="'+apiData.records[n].photo[i].width+'"></li>'
-    }  
+    }
     hdText.text(apiData.records[n].title);
     bigImg.append(popImg);
     smallImg.append(popImg);
@@ -184,20 +182,20 @@ kn.common={
   //檢查從分享回來的qeruy id是否存在
   checkQuery:function(){
     var iNum = [];
-    var pathArray = [];
-    var pageName =[];
-    var clean_uri = location.protocol + "//" + location.host + location.pathname;
+    //var pathArray = [];
+    //var pageName =[];
+    //var clean_uri = location.protocol + "//" + location.host + location.pathname;
     if(location.search!=""){
       iNum= location.search.split("=");
-      kn.common.oneData = checkDataID(iNum[1]);//檢查id是否存在 checkDataID()由後端提供
-      if(!!kn.common.oneData.records[0].id){
-        pathArray = location.pathname.split("/");
-        pageName = pathArray[(pathArray.length-1)].split(".");
-        kn.common.buildPop(iNum[1],pageName[0]);        
-      }else{
-        //不存在就導回
-        location.href = clean_uri;
-      }
+        kn.common.checkDataID(iNum[1]);//檢查id是否存在 checkDataID()由後端提供
+      //if(!!kn.common.oneData.records[0].id){
+      //  pathArray = location.pathname.split("/");
+      //  pageName = pathArray[(pathArray.length-1)].split(".");
+      //  kn.common.buildPop(iNum[1],pageName[0]);
+      //}else{
+      //  //不存在就導回
+      //  location.href = clean_uri;
+      //}
     }
   },
   //query id存在時要組燈箱畫面

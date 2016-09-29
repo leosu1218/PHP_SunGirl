@@ -77,6 +77,24 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
             }
         };
 
+        kn.common.checkDataID = function (pId){
+            var pathArray = [];
+            var pageName =[];
+            var clean_uri = location.protocol + "//" + location.host + location.pathname;
+            var url = configs.api.sungirl + "/client/download/" + pId;
+            $scope.getDateJson(url, function(data, status, headers, config){
+                kn.common.oneData = data;
+                if(kn.common.oneData.records.length !=0){
+                    pathArray = location.pathname.split("/");
+                    pageName = pathArray[(pathArray.length-1)].split(".");
+                    kn.common.buildPop(pId,pageName[0]);
+                }else{
+                    //不存在就導回
+                    location.href = clean_uri;
+                }
+            });
+        };
+
         $scope.getDateJson = function(url , callback){
             var req = {
                 method: 'GET',
@@ -93,8 +111,8 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
 
         //download 最新更新
         $("#downloadNew").click(function(){
+            $scope.pageSize = 12;
             var url = configs.api.sungirl + "/client/download/" + $scope.pageNo + '/' +  $scope.pageSize;
-            $scope.pageNo = 1;
             var _this = $(this);
             $scope.getDateJson(url, function(data, status, headers, config){
                 kn.common.setData(data);
@@ -104,8 +122,8 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
         }).click();
         //download 最多觀看
         $("#downloadMost").click(function(){
-            var url = configs.api.sungirl + "/client/download/" + $scope.pageNo + '/' +  $scope.pageSize;
-            $scope.pageNo = 1;
+            $scope.pageSize = 12;
+            var url = configs.api.sungirl + "/client/download/clickSum/" + $scope.pageNo + '/' +  $scope.pageSize;
             var _this = $(this);
             $scope.getDateJson(url, function(data, status, headers, config){
                 kn.common.setData(data);
@@ -116,11 +134,12 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
         //download 更多
         $("#downloadMore").click(function(e){
             e.preventDefault();
+            $scope.pageSize = $scope.pageSize + 12;
             var _index = $("#dataBtn").find(".active").index();
             var element = "";
             var _this = $(this);
             if(_index==0){
-                $scope.pageNo++;
+
                 var url = configs.api.sungirl + "/client/download/" + $scope.pageNo + '/' +  $scope.pageSize;
                 $scope.getDateJson(url, function(data, status, headers, config){
                     kn.common.setData(data);
@@ -128,7 +147,7 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
                 });
                 element = "videoNew";
             }else{
-                var url = configs.api.sungirl + "/client/download/" + $scope.pageNo + '/' +  $scope.pageSize;
+                var url = configs.api.sungirl + "/client/download/clickSum/" + $scope.pageNo + '/' +  $scope.pageSize;
                 $scope.getDateJson(url, function(data, status, headers, config){
                     kn.common.setData(data);
                     kn.index.setList(element, "albumSort", _this.attr("id"));
@@ -139,31 +158,6 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
 
 
         $timeout(function() {
-            //燈箱開啟時 按browser back時關掉燈箱
-            $(window).on("hashchange", function() {
-                var hashID = location.hash.substr(1);
-                function hashchangeCloseBg(){
-                    $(".th-maskbg").removeClass('showMask');
-                    $(".albumCont").parent().remove();
-                    $(".downloadCont").parent().remove();
-                    $(".videoCont").parent().remove();
-                    $('body').removeClass('hiddenY');
-                    if(navigator.userAgent.indexOf("MSIE 9.0")>0){
-                        location.hash="";
-                    }else{
-                        window.history.pushState(null, null, location.href.replace(location.hash,''));
-                    }
-                }
-                if(hashID==""){
-                    hashchangeCloseBg();
-                }else{
-                    if( $("#"+location.hash.substr(1)).length<1){
-                        hashchangeCloseBg();
-                    }else{
-                        $("#"+location.hash.substr(1)).click();
-                    }
-                }
-            });
         },500);
        
     });

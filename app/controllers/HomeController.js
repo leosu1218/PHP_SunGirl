@@ -7,9 +7,28 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
         $scope.pageNo = 1;
         $scope.pageSize = 4;
 
+        kn.common.checkDataID = function(pId){
+            var pathArray = [];
+            var pageName =[];
+            var clean_uri = location.protocol + "//" + location.host + location.pathname;
+            var url = configs.api.sungirl + "/all/" + pId + "/client";
+            $scope.getDateJson(url, function(data, status, headers, config){
+                kn.common.oneData = data;
+                if(kn.common.oneData.records.length !=0){
+                    pathArray = location.pathname.split("/");
+                    pageName = pathArray[(pathArray.length-1)].split(".");
+                    kn.common.buildPop(pId,pageName[0]);
+                }else{
+                    //不存在就導回
+                    location.href = clean_uri;
+                }
+            });
+        };
+
         kn.index = {
             apiData:"",
             oldLIST:"",
+            liLength:0,
             setList:function(elemId,moreBtn){
                 var oldList = $(".th-asideInfo >div");
                 var data;
@@ -19,12 +38,12 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
                 kn.common.btnId = elemId;//通知共用albumSetpop
                 data = kn.common.apiData;
 
-                if(moreBtn != "indexMore"){oldList.hide(); }
+                if(moreBtn != "indexMore"){ kn.index.liLength = 0;oldList.hide(); }
                 if(data.pageNo < data.totalPage){ $("#indexMore").show();}else{ $("#indexMore").hide(); }
-                for(var i = 0; i<data.records.length; i++){
-                    dateTime = data.records[i].ready_time;
+                for(kn.index.liLength; kn.index.liLength < data.records.length; kn.index.liLength++){
+                    dateTime = data.records[kn.index.liLength].ready_time;
                     array = dateTime.substr(0,10).split("-");
-                    switch(data.records[i].category){
+                    switch(data.records[kn.index.liLength].category){
                         case "photo":
                             liDom+= '<div class="md-album">'+
                             '<div class="album-cont">'+
@@ -33,11 +52,11 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
                             '<span>'+parseInt(array[1],10)+'</span>月'+
                             '<span>'+parseInt(array[2],10)+'</span>日'+
                             '</time>'+
-                            '<figure id="'+data.records[i].id+'">'+
-                            '<img src="upload/photo/'+data.records[i].banner_name+'" alt="">'+
+                            '<figure id="'+data.records[kn.index.liLength].id+'">'+
+                            '<img src="upload/photo/'+data.records[kn.index.liLength].banner_name+'" alt="">'+
                             '<figcaption>'+
-                            '<i class="icon-video"></i>'+data.records[i].title+
-                            '<span class="times"><i>1,2342</i>次点击</span>'+
+                            '<i class="icon-video"></i>'+data.records[kn.index.liLength].title+
+                            '<span class="times">' + data.records[kn.index.liLength].click_sum + '</i>次点击</span>'+
                             '</figcaption>'+
                             '</figure>'+
                             '</div>'+
@@ -51,11 +70,11 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
                             '<span>'+parseInt(array[1],10)+'</span>月'+
                             '<span>'+parseInt(array[2],10)+'</span>日'+
                             '</time>'+
-                            '<figure id="'+data.records[i].id+'">'+
-                            '<img src="upload/photo/'+data.records[i].banner_name+'" alt="">'+
+                            '<figure id="'+data.records[kn.index.liLength].id+'">'+
+                            '<img src="upload/photo/'+data.records[kn.index.liLength].banner_name+'" alt="">'+
                             '<figcaption>'+
-                            '<i class="icon-video"></i>'+data.records[i].title+
-                            '<span class="times"><i>1,2342</i>次点击</span>'+
+                            '<i class="icon-video"></i>'+data.records[kn.index.liLength].title+
+                            '<span class="times"><i>'+ data.records[kn.index.liLength].click_sum +'</i>次点击</span>'+
                             '</figcaption>'+
                             '</figure>'+
                             '</div>'+
@@ -89,10 +108,9 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
                     });
                 });
             }
-        }
+        };
 
         $scope.getDateJson = function(url , callback){
-           // var url = configs.api.sungirl + "/all/client/" + $scope.pageNo + '/' +  $scope.pageSize;
             var req = {
                 method: 'GET',
                 url: url,
@@ -116,22 +134,24 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
 
         //index 最新更新
         $("#indexNew").click(function(){
+            var _this = $(this);
+            $scope.pageSize = 4;
             var url = configs.api.sungirl + "/all/client/" + $scope.pageNo + '/' +  $scope.pageSize;
-            $scope.pageNo = 1;
             $scope.getDateJson(url, function(data, status, headers, config){
                 kn.common.setData(data);
+                kn.index.setList(_this.attr("id"));
             });
-            kn.index.setList($(this).attr("id"));
             $(this).addClass('active').siblings().removeClass('active');
         });
         //index 最多觀看
         $("#indexMost").click(function(){
-            var url = configs.api.sungirl + "/all/client/" + $scope.pageNo + '/' +  $scope.pageSize;
-            $scope.pageNo = 1;
+            var _this =$(this);
+            $scope.pageSize = 4;
+            var url = configs.api.sungirl + "/all/client/clickSum/" + $scope.pageNo + '/' +  $scope.pageSize;
             $scope.getDateJson(url, function(data, status, headers, config){
                 kn.common.setData(data);
+                kn.index.setList(_this.attr("id"));
             });
-            kn.index.setList($(this).attr("id"));
             $(this).addClass('active').siblings().removeClass('active');
         });
 
@@ -141,9 +161,9 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
             var _index = $("#dataBtn").find(".active").index();
             var element = "";
             var _this = $(this);
+            $scope.pageSize =$scope.pageSize + 4 ;
             if(_index==0){
                 element = "indexNew";
-                $scope.pageNo++;
                 var url = configs.api.sungirl + "/all/client/" + $scope.pageNo + '/' +  $scope.pageSize;
                 $scope.getDateJson(url, function(data, status, headers, config){
                     kn.common.setData(data);
@@ -152,8 +172,7 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
 
             }else{
                 element = "indexMost";
-                $scope.pageNo++;
-                var url = configs.api.sungirl + "/all/client/" + $scope.pageNo + '/' +  $scope.pageSize;
+                var url = configs.api.sungirl + "/all/client/clickSum/" + $scope.pageNo + '/' +  $scope.pageSize;
                 $scope.getDateJson(url, function(data, status, headers, config){
                     kn.common.setData(data);
                     kn.index.setList(element,_this.attr("id"));
@@ -193,32 +212,6 @@ define(['angular', 'app' , 'configs'], function (angular, app , configs) {
                     left:e.pageX - (~~$(this).offset().left),
                     width: 0,height: 0
                 },300);
-            });
-
-            //燈箱開啟時 按browser back時關掉燈箱
-            $(window).on("hashchange", function() {
-                var hashID = location.hash.substr(1);
-                function hashchangeCloseBg(){
-                    $(".th-maskbg").removeClass('showMask');
-                    $(".albumCont").parent().remove();
-                    $(".downloadCont").parent().remove();
-                    $(".videoCont").parent().remove();
-                    $('body').removeClass('hiddenY');
-                    if(navigator.userAgent.indexOf("MSIE 9.0")>0){
-                        location.hash="";
-                    }else{
-                        window.history.pushState(null, null, location.href.replace(location.hash,''));
-                    }
-                }
-                if(hashID==""){
-                    hashchangeCloseBg();
-                }else{
-                    if( $("#"+location.hash.substr(1)).length<1){
-                        hashchangeCloseBg();
-                    }else{
-                        $("#"+location.hash.substr(1)).click();
-                    }
-                }
             });
 
         },500);

@@ -103,8 +103,6 @@ define(['angular', 'app', 'createController', 'configs'],
 				{
 					return { isOk:false, msg:"影音主圖  照片" };
 				}
-
-
 				return { isOk:true };
 			}
 
@@ -126,17 +124,15 @@ define(['angular', 'app', 'createController', 'configs'],
 
 			function getDataForm(){
 				var formData = {
-						title 			: 	$scope.title,
-                        banner_name  	: 	$scope.productCoverImage[0].fileName,
-						video_url      :   $scope.video,
-                        home_state : $scope.home_state,
-                        ready_time: $scope.ready_time.getdate()
-
+                    title 			: 	$scope.title,
+                    banner_name  	: 	$scope.productCoverImage[0].fileName,
+                    video_url      :   $scope.video,
+                    home_state : $scope.home_state,
+                    ready_time: $scope.ready_time.getdate(),
+                    click_sum : $scope.click_sum
 				};
 				return formData;
 			}
-
-
 
 			//create flow
 			$scope.create = function(){

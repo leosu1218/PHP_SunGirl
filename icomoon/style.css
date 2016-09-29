@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?clw7rz');
-  src:  url('fonts/icomoon.eot?clw7rz#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?clw7rz') format('truetype'),
-    url('fonts/icomoon.woff?clw7rz') format('woff'),
-    url('fonts/icomoon.svg?clw7rz#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?7tzrr1');
+  src:  url('fonts/icomoon.eot?7tzrr1#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?7tzrr1') format('truetype'),
+    url('fonts/icomoon.woff?7tzrr1') format('woff'),
+    url('fonts/icomoon.svg?7tzrr1#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,6 +24,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-yk:before {
+  content: "\e919";
+}
 .icon-wechat:before {
   content: "\e908";
 }

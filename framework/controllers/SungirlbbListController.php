@@ -42,7 +42,6 @@ class SungirlbbListController extends RestController {
      * @return array
      * @throws AuthorizationException
      */
-
     public function getSungirlById($category,$id){
         $collection = new SungirlbbListCollection;
         $record = $collection->getRecordById($id);
@@ -52,6 +51,32 @@ class SungirlbbListController extends RestController {
             $record['photo'] = $photorecords['records'];
         }
         return $record;
+    }
+
+    /**
+     * GET: 	/sungirl/<category:\w+>/<id:\d+>/client
+     * @param $category
+     * @param $id
+     * @return array
+     * @throws AuthorizationException
+     */
+    public function getSungirlClientById($category,$id){
+        $collection = new SungirlbbListCollection;
+        $photoCollection = new SungirlbbPhotoCollection();
+        $attributes = array();
+        if($category == 'all'){
+            $attributes['home_state'] = 0;
+        }else{
+            $attributes['category'] = $category;
+        }
+        $attributes['id'] = $id;
+        $records = $collection->getRecords($attributes, 1, 1 , array() );
+        foreach($records['records'] as $key => $record){
+            $photorecords = $photoCollection->getRecords( array("sungirlbb_id"=>  $record['id'] ));
+            $records['records'][$key]['photo'] = $photorecords['records'];
+        }
+
+        return $records;
     }
 
     /**
@@ -72,6 +97,33 @@ class SungirlbbListController extends RestController {
         }
 
         $records = $collection->getRecords($attributes, $pageNo, $pageSize , array() , "ready_time DESC , id DESC");
+        foreach($records['records'] as $key => $record){
+            $photorecords = $photoCollection->getRecords( array("sungirlbb_id"=>  $record['id'] ));
+            $records['records'][$key]['photo'] = $photorecords['records'];
+        }
+
+        return $records;
+    }
+
+    /**
+     * GET: 	/sungirl/<category:\w+>/client/clickSum/<pageNo:\d+>/<pageSize:\d+>
+     * @param $category
+     * @param $pageNo
+     * @param $pageSize
+     * @return array
+     * @throws AuthorizationException
+     */
+    public function getSungirlClientBySum($category , $pageNo, $pageSize ){
+        $collection = new SungirlbbListCollection;
+        $photoCollection = new SungirlbbPhotoCollection();
+        $attributes = array();
+        if($category == 'all'){
+            $attributes['home_state'] = 0;
+        }else{
+            $attributes['category'] = $category;
+        }
+
+        $records = $collection->getRecords($attributes, $pageNo, $pageSize , array() , "click_sum DESC");
         foreach($records['records'] as $key => $record){
             $photorecords = $photoCollection->getRecords( array("sungirlbb_id"=>  $record['id'] ));
             $records['records'][$key]['photo'] = $photorecords['records'];

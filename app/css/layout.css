@@ -344,13 +344,13 @@ main.index { background-color: #ffeef2; }
   .md-album-popup .btnCont { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
   .md-album-popup .pt-btnList li { width: 100%; height: auto; margin: 0 -4px 3% 0; }
   .md-album-popup .pt-btnList li:before, .md-album-popup .pt-btnList li:after { display: none; } }
-.md-video-popup { max-width: 1280px; }
+.md-video-popup { max-width: 1280px; padding: 10px 60px 10px 40px; }
 .md-video-popup header { max-width: 1160px; }
 .md-video-popup .videoCont { max-width: 1160px; margin: 0 auto; width: 100%; }
 .md-video-popup .pt-videoCont { max-width: 1160px; margin: 0 auto; width: 100%; }
 .md-video-popup .pt-videoCont iframe { display: block; width: 100%; }
 
-@media (max-width: 980px) { .md-video-popup .pt-videoCont { padding: 0 3%; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; } }
+@media (max-width: 980px) { .md-video-popup .pt-videoCont { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; } }
 .md-download-popup .downloadCont { max-width: 860px; margin: 0 auto; width: 100%; }
 .md-download-popup .downloadCont > figure { position: relative; margin: 75px auto 0px; width: 100%; float: left; }
 .md-download-popup .downloadCont > figure img { width: 100%; position: relative; z-index: 0; }

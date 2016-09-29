@@ -156,12 +156,12 @@ define(['angular', 'app', 'createController', 'configs'],
 
 			function getDataForm(){
 				var formData = {
-						title 			: 	$scope.title,
-                        banner_name  	: 	$scope.productCoverImage[0].fileName,
-						photo      :   $scope.productImages,
-                        home_state : $scope.home_state,
-                        ready_time: $scope.ready_time.getdate()
-
+                    title 			: 	$scope.title,
+                    banner_name  	: 	$scope.productCoverImage[0].fileName,
+                    photo      :   $scope.productImages,
+                    home_state : $scope.home_state,
+                    ready_time : $scope.ready_time.getdate(),
+                    click_sum : $scope.click_sum
 				};
 				return formData;
 			}

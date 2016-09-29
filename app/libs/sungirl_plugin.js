@@ -151,13 +151,13 @@ $.fn.maskSet = function(){
     downloadCont.parent().remove();
     videoCont.parent().remove();
     $('body').removeClass('hiddenY');
-    if(location.search!=""){      
-      if(navigator.userAgent.indexOf("MSIE 9.0")>0){   
-        location.href = clean_uri;
-      }else{
-        window.history.replaceState({}, document.title, clean_uri); 
-      }
-    }
+    //if(location.search!=""){
+    //  if(navigator.userAgent.indexOf("MSIE 9.0")>0){
+    //    location.href = clean_uri;
+    //  }else{
+    //    window.history.replaceState({}, document.title, clean_uri);
+    //  }
+    //}
   }
   closebg.on("mousedown",closeMask);
   colosBtn.on("mousedown",closeMask);

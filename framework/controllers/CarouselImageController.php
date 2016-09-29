@@ -47,8 +47,6 @@ class CarouselImageController extends RestController {
         foreach($result  as  $item){
             $upLoadData['filename'] = $item['fileName'] ;
             $upLoadData['property'] = 0 ;
-            $upLoadData['high'] = $item['high'] ;
-            $upLoadData['width'] = $item['width'] ;
 
         }
 

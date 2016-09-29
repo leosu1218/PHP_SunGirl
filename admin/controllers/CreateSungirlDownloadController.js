@@ -222,7 +222,8 @@ define(['angular', 'app', 'createController', 'configs'],
                     mobile_img2     :   $scope.mobileImg2[0].fileName,
                     mobile_img3     :   $scope.mobileImg3[0].fileName,
                     mobile_img4     :   $scope.mobileImg4[0].fileName,
-                    ready_time      : $scope.ready_time.getdate()
+                    ready_time      : $scope.ready_time.getdate(),
+                    click_sum : $scope.click_sum
 				};
 				return formData;
 			}
